@@ -5,6 +5,14 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel='stylesheet' media='screen' href='base.css' />
+  <link rel='stylesheet' media='screen' href='darknet.css' />
+  <link rel='stylesheet' media='screen' href='index.css' />
+  <link rel='stylesheet' media='screen' href='papers.css' />
+  <link rel='stylesheet' media='screen' href='projects.css' />
+  <link rel='stylesheet' media='screen' href='coqindex.css' />
+  
+
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -55,9 +63,13 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-16 mx-auto">
-            <h1 class="brand-heading">YOLO</h1>
-            <p class="intro-text">YOLO : Real-Time Object Detection
-              <br>You only look once (YOLO) is a state-of-the-art, real-time object detection system.  
+            <div class="main markdown">
+              <p id=dnlogo>
+                <img class="img-fluid img-centered" src="img/yologo_1.png" alt="">
+              </p>
+            </div>
+            <h2>YOLO : Real-Time Object Detection</h2>
+            <p>You only look once (YOLO) is a state-of-the-art, real-time object detection system.  
               <br>On a Titan X it processes images at 40-90 FPS and has a mAP on VOC 2007 of 78.6% and a mAP of 48.1% on COCO test-dev.</p>
               <a href="#about" class="btn btn-circle js-scroll-trigger">
                 <i class="fa fa-angle-double-down animated"></i>
@@ -211,79 +223,264 @@
           <p>Prior detection systems repurpose classifiers or localizers to perform detection. They apply the model to an image at multiple locations and scales. High scoring regions of the image are considered detections.</p>
           <p>We use a totally different approach. We apply a single neural network to the full image. This network divides the image into regions and predicts bounding boxes and probabilities for each region. These bounding boxes are weighted by the predicted probabilities.</p>
           <img class="img-fluid img-centered" src="img/model2.png" alt="">
+          <p>Our model has several advantages over classifier-based systems. It looks at the whole image at test time so its predictions are informed by global context in the image. It also makes predictions with a single network evaluation unlike systems like <a href="https://github.com/rbgirshick/rcnn">R-CNN</a> which require thousands for a single image. This makes it extremely fast, more than 1000x faster than R-CNN and 100x faster than <a href="https://github.com/rbgirshick/fast-rcnn">Fast R-CNN</a>. See our <a href="https://arxiv.org/abs/1612.08242">paper</a> for more details on the full system.</p>
+          <h3>What's New in Version 2?</h3>
+          <p>YOLOv2 uses a few tricks to improve training and increase performance. Like Overfeat and SSD we use a fully-convolutional model, but we still train on whole images, not hard negatives. Like Faster R-CNN we adjust priors on bounding boxes instead of predicting the width and height outright. However, we still predict the <code>x</code> and <code>y</code> coordinates directly. The full details are in our <a href="https://arxiv.org/abs/1612.08242">paper</a>.!</p>
+          <h2>Detection Using A Pre-Trained Model</h2>
+          <p>This post will guide you through detecting objects with the YOLO system using a pre-trained model. If you don't already have Darknet installed, you should <a href="https://pjreddie.com/darknet/install/">do that first</a>. Or instead of reading all that just run:</p>
+          <pre><code>git clone https://github.com/pjreddie/darknet
+            cd darknet
+            make
+          </code></pre>
+          <p>Easy!</p>
+          <p>You already have the config file for YOLO in the <code>cfg/</code> subdirectory. You will have to download the pre-trained weight file <a href="https://pjreddie.com/media/files/yolo.weights">here (258 MB)</a>. Or just run this:</p>
+          <pre><code>wget https://pjreddie.com/media/files/yolo.weights
+          </code></pre>
+          <p>Then run the detector!</p>
+          <pre><code>./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg
+          </code></pre>
+          <p>You will see some output like this:</p>
+          <pre><code>layer     filters    size              input                output
+            0 conv     32  3 x 3 / 1   416 x 416 x   3   -&gt;   416 x 416 x  32
+            1 max          2 x 2 / 2   416 x 416 x  32   -&gt;   208 x 208 x  32
+            .......
+            29 conv    425  1 x 1 / 1    13 x  13 x1024   -&gt;    13 x  13 x 425
+            30 detection
+            Loading weights from yolo.weights...Done!
+            data/dog.jpg: Predicted in 0.016287 seconds.
+            car: 54%
+            bicycle: 51%
+            dog: 56%
+          </code></pre>
+          <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_11.14.54_AM.png" alt="">
+          <p>Darknet prints out the objects it detected, its confidence, and how long it took to find them. We didn't compile Darknet with <code>OpenCV</code> so it can't display the detections directly. Instead, it saves them in <code>predictions.png</code>. You can open it to see the detected objects. Since we are using Darknet on the CPU it takes around 6-12 seconds per image. If we use the GPU version it would be much faster.</p>
+          <p>I've included some example images to try in case you need inspiration. Try <code>data/eagle.jpg</code>, <code>data/dog.jpg</code>, <code>data/person.jpg</code>, or <code>data/horses.jpg</code>!</p>
+          <p>The <code>detect</code> command is shorthand for a more general version of the command. It is equivalent to the command:</p>
+          <pre><code>./darknet detector test cfg/coco.data cfg/yolo.cfg yolo.weights data/dog.jpg
+          </code></pre>
+          <p>You don't need to know this if all you want to do is run detection on one image but it's useful to know if you want to do other things like run on a webcam (which you will see <a href="#demo">later on</a>).</p>
+          <h3>Multiple Images</h3>
+          <p>Instead of supplying an image on the command line, you can leave it blank to try multiple images in a row. Instead you will see a prompt when the config and weights are done loading:</p>
+          <pre><code>./darknet detect cfg/yolo.cfg yolo.weights
+            layer     filters    size              input                output
+            0 conv     32  3 x 3 / 1   416 x 416 x   3   -&gt;   416 x 416 x  32
+            1 max          2 x 2 / 2   416 x 416 x  32   -&gt;   208 x 208 x  32
+            .......
+            29 conv    425  1 x 1 / 1    13 x  13 x1024   -&gt;    13 x  13 x 425
+            30 detection
+            Loading weights from yolo.weights ...Done!
+            Enter Image Path:
+          </code></pre>
+          <p>Enter an image path like <code>data/horses.jpg</code> to have it predict boxes for that image.</p>
+          <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_12.26.06_PM.png" alt="">
+          <p>Once it is done it will prompt you for more paths to try different images. Use <code>Ctrl-C</code> to exit the program once you are done.</p>
+          <h3>Changing The Detection Threshold</h3>
+          <p>By default, YOLO only displays objects detected with a confidence of .25 or higher. You can change this by passing the <code>-thresh &lt;val&gt;</code> flag to the <code>yolo</code> command. For example, to display all detection you can set the threshold to 0:</p>
+          <pre><code>./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg -thresh 0
+          </code></pre>
+          <p>Which produces:</p>
+          <<img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_12.03.22_PM.png" alt="">
 
-            </div>
-          </div>
-        </div>
-      </section>
+          <p>So that's obviously not super useful but you can set it to different values to control what gets thresholded by the model.</p>
+          <h2><a id=tiny></a>Tiny YOLO</h2>
+          <p>Tiny YOLO is based off of the <a href="https://pjreddie.com/darknet/imagenet/#reference">Darknet reference network</a> and is much faster but less accurate than the normal YOLO model. To use the version trained on VOC:</p>
+          <pre><code>wget https://pjreddie.com/media/files/tiny-yolo-voc.weights
+            ./darknet detector test cfg/voc.data cfg/tiny-yolo-voc.cfg tiny-yolo-voc.weights data/dog.jpg
+          </code></pre>
+          <p>Which, ok, it's not perfect, but boy it sure is fast. On GPU it runs at &gt;200 FPS.</p>
+          
+          <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-26_at_11.22.46_PM.png" alt="">
+          <h2><a id=demo></a>Real-Time Detection on a Webcam</h2>
+          <p>Running YOLO on test data isn't very interesting if you can't see the result. Instead of running it on a bunch of images let's run it on the input from a webcam!</p>
+          <p>To run this demo you will need to compile <a href="https://pjreddie.com/darknet/install/#cuda">Darknet with CUDA and OpenCV</a>. Then run the command:</p>
+          <pre><code>./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights
+          </code></pre>
+          <p>YOLO will display the current FPS and predicted classes as well as the image with bounding boxes drawn on top of it.</p>
+          <p>You will need a webcam connected to the computer that OpenCV can connect to or it won't work. If you have multiple webcams connected and want to select which one to use you can pass the flag <code>-c &lt;num&gt;</code> to pick (OpenCV uses webcam <code>0</code> by default).</p>
+          <p>You can also run it on a video file if OpenCV can read the video:</p>
+          <pre><code>./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights &lt;video file&gt;
+          </code></pre>
+          <p>That's how we made the YouTube video above.</p>
+          <h2><a id=train-voc></a>Training YOLO on VOC</h2>
+          <p>You can train YOLO from scratch if you want to play with different training regimes, hyper-parameters, or datasets. Here's how to get it working on the Pascal VOC dataset.</p>
+          <h3>Get The Pascal VOC Data</h3>
+          <p>To train YOLO you will need all of the VOC data from 2007 to 2012. You can find links to the data <a href="https://pjreddie.com/projects/pascal-voc-dataset-mirror/">here</a>. To get all the data, make a directory to store it all and from that directory run:</p>
+          <pre><code>wget https://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar
+            wget https://pjreddie.com/media/files/VOCtrainval_06-Nov-2007.tar
+            wget https://pjreddie.com/media/files/VOCtest_06-Nov-2007.tar
+            tar xf VOCtrainval_11-May-2012.tar
+            tar xf VOCtrainval_06-Nov-2007.tar
+            tar xf VOCtest_06-Nov-2007.tar
+          </code></pre>
+          <p>There will now be a <code>VOCdevkit/</code> subdirectory with all the VOC training data in it. </p>
+          <h3>Generate Labels for VOC</h3>
+          <p>Now we need to generate the label files that Darknet uses. Darknet wants a <code>.txt</code> file for each image with a line for each ground truth object in the image that looks like:</p>
+          <pre><code>&lt;object-class&gt; &lt;x&gt; &lt;y&gt; &lt;width&gt; &lt;height&gt;
+          </code></pre>
+          <p>Where <code>x</code>, <code>y</code>, <code>width</code>, and <code>height</code> are relative to the image's width and height. To generate these file we will run the <code>voc_label.py</code> script in Darknet's <code>scripts/</code> directory. Let's just download it again because we are lazy.</p>
+          <pre><code>wget https://pjreddie.com/media/files/voc_label.py
+            python voc_label.py
+          </code></pre>
+          <p>After a few minutes, this script will generate all of the requisite files. Mostly it generates a lot of label files in <code>VOCdevkit/VOC2007/labels/</code> and <code>VOCdevkit/VOC2012/labels/</code>. In your directory you should see:</p>
+          <pre><code>ls
+            2007_test.txt   VOCdevkit
+            2007_train.txt  voc_label.py
+            2007_val.txt    VOCtest_06-Nov-2007.tar
+            2012_train.txt  VOCtrainval_06-Nov-2007.tar
+            2012_val.txt    VOCtrainval_11-May-2012.tar
+          </code></pre>
+          <p>The text files like <code>2007_train.txt</code> list the image files for that year and image set. Darknet needs one text file with all of the images you want to train on. In this example, let's train with everything except the 2007 test set so that we can test our model. Run:</p>
+          <pre><code>cat 2007_train.txt 2007_val.txt 2012_*.txt &gt; train.txt
+          </code></pre>
+          <p>Now we have all the 2007 trainval and the 2012 trainval set in one big list. That's all we have to do for data setup!</p>
+          <h3>Modify Cfg for Pascal Data</h3>
+          <p>Now go to your Darknet directory. We have to change the <code>cfg/voc.data</code> config file to point to your data:</p>
+          <pre><code>  1 classes= 20
+            2 train  = &lt;path-to-voc&gt;/train.txt
+            3 valid  = &lt;path-to-voc&gt;2007_test.txt
+            4 names = data/voc.names
+            5 backup = backup
+          </code></pre>
+          <p>You should replace <code>&lt;path-to-voc&gt;</code> with the directory where you put the VOC data.</p>
+          <h3>Download Pretrained Convolutional Weights</h3>
+          <p>For training we use convolutional weights that are pre-trained on Imagenet. We use weights from the <a href="https://pjreddie.com/darknet/imagenet/#extraction">Extraction</a> model. You can just download the weights for the convolutional layers <a href="https://pjreddie.com/media/files/darknet19_448.conv.23">here (76 MB)</a>.</p>
+          <pre><code>wget https://pjreddie.com/media/files/darknet19_448.conv.23
+          </code></pre>
+          <p>If you want to generate the pre-trained weights yourself, download the pretrained <a href="https://pjreddie.com/darknet/imagenet/#darknet19_448">Darknet19 448x448 model</a> and run the following command:</p>
+          <pre><code>./darknet partial cfg/darknet19_448.cfg darknet19_448.weights darknet19_448.conv.23 23
+          </code></pre>
+          <p>But if you just download the weights file it's way easier.</p>
+          <h3>Train The Model</h3>
+          <p>Now we can train! Run the command:</p>
+          <pre><code>./darknet detector train cfg/voc.data cfg/yolo-voc.cfg darknet19_448.conv.23
+          </code></pre>
+          <h2><a id=train-coco></a>Training YOLO on COCO</h2>
+          <p>You can train YOLO from scratch if you want to play with different training regimes, hyper-parameters, or datasets. Here's how to get it working on the <a href="http://mscoco.org/dataset/#overview">COCO dataset</a>.</p>
+          <h3>Get The COCO Data</h3>
+          <p>To train YOLO you will need all of the COCO data and labels. The script <code>scripts/get_coco_dataset.sh</code> will do this for you. Figure out where you want to put the COCO data and download it, for example:</p>
+          <pre><code>cp scripts/get_coco_dataset.sh data
+            cd data
+            bash get_coco_dataset.sh
+          </code></pre>
+          <p>Now you should have all the data and the labels generated for Darknet.</p>
+          <h3>Modify cfg for COCO</h3>
+          <p>Now go to your Darknet directory. We have to change the <code>cfg/coco.data</code> config file to point to your data:</p>
+          <pre><code>  1 classes= 80
+            2 train  = &lt;path-to-coco&gt;/trainvalno5k.txt
+            3 valid  = &lt;path-to-coco&gt;/5k.txt
+            4 names = data/coco.names
+            5 backup = backup
+          </code></pre>
+          <p>You should replace <code>&lt;path-to-coco&gt;</code> with the directory where you put the COCO data.</p>
+          <p>You should also modify your model cfg for training instead of testing. <code>cfg/yolo.cfg</code> should look like this:</p>
+          <pre><code>[net]
+            # Testing
+            # batch=1
+            # subdivisions=1
+            # Training
+            batch=64
+            subdivisions=8
+            ....
+          </code></pre>
+          <h3>Train The Model</h3>
+          <p>Now we can train! Run the command:</p>
+          <pre><code>./darknet detector train cfg/coco.data cfg/yolo.cfg darknet19_448.conv.23
+          </code></pre>
+          <p>If you want to use multiple gpus run:</p>
+          <pre><code>./darknet detector train cfg/coco.data cfg/yolo.cfg darknet19_448.conv.23 -gpus 0,1,2,3
+          </code></pre>
+          <p>If you want to stop and restart training from a checkpoint:</p>
+          <pre><code>./darknet detector train cfg/coco.data cfg/yolo.cfg backup/yolo.backup -gpus 0,1,2,3
+          </code></pre>
+          <h2>What Happened to the Old YOLO Site?</h2>
+          <p>If you are using YOLO version 1 you can still find the site here: <a href="https://pjreddie.com/darknet/yolov1/">https://pjreddie.com/darknet/yolov1/</a></p>
+          <h2>Cite</h2>
+          <p>If you use YOLOv2 in your work please cite our paper!</p>
+          <pre><code>@article{redmon2016yolo9000,
+            title={YOLO9000: Better, Faster, Stronger},
+            author={Redmon, Joseph and Farhadi, Ali},
+            journal={arXiv preprint arXiv:1612.08242},
+            year={2016}
+          }
+        </code></pre>
+      </div>
 
-      <!-- Download Section -->
-      <section id="download" class="download-section content-section text-center">
-        <div class="container">
-          <div class="col-lg-8 mx-auto">
-            <h2>Download Grayscale</h2>
-            <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
-            <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
-          </div>
-        </div>
-      </section>
 
-      <!-- Contact Section -->
-      <section id="contact" class="content-section text-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <h2>Contact Start Bootstrap</h2>
-              <p>Feel free to leave us a comment on the
-                <a href="http://startbootstrap.com/template-overviews/grayscale/">Grayscale template overview page</a>
-              on Start Bootstrap to give some feedback about this theme!</p>
-              <ul class="list-inline banner-social-buttons">
-                <li class="list-inline-item">
-                  <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg">
-                    <i class="fa fa-twitter fa-fw"></i>
-                    <span class="network-name">Twitter</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="https://github.com/OSSProjectYOLO/DarkNetYoloAPI" class="btn btn-default btn-lg">
-                    <i class="fa fa-github fa-fw"></i>
-                    <span class="network-name">Github</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg">
-                    <i class="fa fa-google-plus fa-fw"></i>
-                    <span class="network-name">Google+</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-      <!-- Footer -->
-      <footer>
-        <div class="container text-center">
-          <p>Copyright &copy; 이대경 김한섭 강일송 2017 오픈소스SW Team Project</p>
-        </div>
-      </footer>
-
-      <!-- Bootstrap core JavaScript -->
-      <script src="vendor/jquery/jquery.min.js"></script>
-      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-      <!-- Plugin JavaScript -->
-      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-      <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
-
-      <!-- Custom scripts for this template -->
-      <script src="js/grayscale.min.js"></script>
 
     </body>
-
     </html>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- Download Section -->
+<section id="download" class="download-section content-section text-center">
+  <div class="container">
+    <div class="col-lg-8 mx-auto">
+      <h2>Download Grayscale</h2>
+      <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
+      <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="content-section text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h2>Contact Start Bootstrap</h2>
+        <p>Feel free to leave us a comment on the
+          <a href="http://startbootstrap.com/template-overviews/grayscale/">Grayscale template overview page</a>
+        on Start Bootstrap to give some feedback about this theme!</p>
+        <ul class="list-inline banner-social-buttons">
+          <li class="list-inline-item">
+            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg">
+              <i class="fa fa-twitter fa-fw"></i>
+              <span class="network-name">Twitter</span>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://github.com/OSSProjectYOLO/DarkNetYoloAPI" class="btn btn-default btn-lg">
+              <i class="fa fa-github fa-fw"></i>
+              <span class="network-name">Github</span>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg">
+              <i class="fa fa-google-plus fa-fw"></i>
+              <span class="network-name">Google+</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Footer -->
+<footer>
+  <div class="container text-center">
+    <p>Copyright &copy; 이대경 김한섭 강일송 2017 오픈소스SW Team Project</p>
+  </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+<!-- Custom scripts for this template -->
+<script src="js/grayscale.min.js"></script>
+
+</body>
+
+</html>
