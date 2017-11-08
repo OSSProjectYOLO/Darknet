@@ -101,10 +101,6 @@
       <div class="row">
         <div class="col-lg-12 mx-auto">
          <h2>About YOLO</h2>
-         <p style="text-align: left">
-          Titan X에서는 40-90 FPS로 이미지를 처리하며
-          <br>and has a mAP on VOC 2007 of 78.6% and a mAP of 48.1% on COCO test-dev.</p>
-
           <iframe width="800" height="450" src="https://www.youtube.com/embed/VOC3huqHrss" frameborder="0" allowfullscreen></iframe>
 
           <style>
@@ -238,16 +234,21 @@
           </tr>
         </table>
 
-        <h2>How To Work</h2>
-        <p>기존의 탐지시스템은 Repurpose classifiers 혹은 Localizers를 사용하여 탐지를 수행하였습니다.
+        <h2 style="text-align: left;">How To Work</h2>
+        <p style="text-align: left;">기존의 탐지시스템은 Repurpose classifiers 혹은 Localizers를 사용하여 탐지를 수행하였습니다.
           <br>이 방법은 모델의 여러 위치에 격자 이미지를 적용하는 방식이며 격자 중 높은 일치도를 보인 물체를 탐지합니다.  </p>
-        <p>We use a totally different approach. We apply a single neural network to the full image. This network divides the image into regions and predicts bounding boxes and probabilities for each region. These bounding boxes are weighted by the predicted probabilities.</p>
+        <p style="text-align: left;">하지만 YOLO는 하나의 신경망을 전체 이미지에 적용하는 완전히 다른 방식을 사용합니다. 
+          <br>이 신경망은 이미지를 여러 영역으로 분할하고 각 영역에 대한 바운딩 영역과 가중치로 사용될 일치 확률을 예측하여 줍니다.  </p>
         <img class="img-fluid img-centered" src="img/model2.png" alt="">
-        <p>Our model has several advantages over classifier-based systems. It looks at the whole image at test time so its predictions are informed by global context in the image. It also makes predictions with a single network evaluation unlike systems like <a href="https://github.com/rbgirshick/rcnn">R-CNN</a> which require thousands for a single image. This makes it extremely fast, more than 1000x faster than R-CNN and 100x faster than <a href="https://github.com/rbgirshick/fast-rcnn">Fast R-CNN</a>. See our <a href="https://arxiv.org/abs/1612.08242">paper</a> for more details on the full system.</p>
-        <h3>What's New in Version 2?</h3>
-        <p>YOLOv2 uses a few tricks to improve training and increase performance. Like Overfeat and SSD we use a fully-convolutional model, but we still train on whole images, not hard negatives. Like Faster R-CNN we adjust priors on bounding boxes instead of predicting the width and height outright. However, we still predict the <code>x</code> and <code>y</code> coordinates directly. The full details are in our <a href="https://arxiv.org/abs/1612.08242">paper</a>.!</p>
-        <h2>Detection Using A Pre-Trained Model</h2>
-        <p>This post will guide you through detecting objects with the YOLO system using a pre-trained model. If you don't already have Darknet installed, you should <a href="https://pjreddie.com/darknet/install/">do that first</a>. Or instead of reading all that just run:</p>
+        <p style="text-align: left;"><br>YOLO 시스템은 분류 기반의 시스템에 비해 몇 가지 장점을 가지고 있습니다. 
+          <br>그 중 하나는 테스트 시간 동안 전체 이미지를 보고 예측된 정보를 이미지에 텍스트로 알려줍니다.
+        또한 수천개의 단일 이미지가 필요한  <a href="https://github.com/rbgirshick/rcnn">R-CNN</a> 과는 달리 단일 네트워크만으로 평가하고 예측이 가능합니다. 이로 인해 R-CNN보다는 1000배 이상 빠르며 <a href="https://github.com/rbgirshick/fast-rcnn">Fast R-CNN</a>보다는 100배 빠릅니다. 
+        전체 시스템에 대한 자세한 내용은 해당 <a href="https://arxiv.org/abs/1612.08242">논문</a>을 참고하여 주세요</p>
+        <h3 style="text-align: left;">버전 2의 새로운 기능</h3>
+        <p style="text-align: left">YOLOv2는 트레이닝을 개선하고 성능을 향상시키기 위해 몇 가지 트릭을 사용합니다. Overfeat과 SSD 처럼 심층 신경망인 Fully-Convolutional 신경망 모델을 사용하지만 Hard-Negatives 정보가 아닌 전체 이미지를 계속 학습합니다. Like Faster R-CNN we adjust priors on bounding boxes instead of predicting the width and height outright. 그러나 여전히 x, y좌표를 직접 예측하는데 전체 내용은 해당  <a href="https://arxiv.org/abs/1612.08242">논문</a>에 있습니다.</p>
+        <h2 style="text-align: left">사전에 학습된 모델을 사용한 탐지 기법</h2>
+        <p style="text-align: left">이후 부터는 사전 훈련 된 모델을 사용하여 YOLO 시스템으로 물체를 탐지 하는 방법을 설명합니다.
+        <br>Darknet을 아직 설치 하지 않았다면 먼저 <a href="https://pjreddie.com/darknet/install/">설치</a> 해야합니다.</p>
         <pre><code>git clone https://github.com/pjreddie/darknet
           cd darknet
           make
