@@ -83,8 +83,10 @@
                 <img class="img-fluid img-centered" src="img/yologo_1.png" alt="">
               </p>
             </div>
-            <h4>YOLO : Real-Time Object Detection</h4>
-            <p>YOLO(You only Look Once) 최첨단 실시간 물체 감지 시스템   </p>
+            <p><font size="5"> <strong>YOLO(You Only Look Once) 최첨단 실시간 물체 감지 시스템</strong></font>
+              <br>조선대학교 컴퓨터공학과 오픈소스 소프트웨어
+              <br>Team-Project 이대경 김한섭 강일송</P></p>
+            
             
             <a href="#about" class="btn btn-circle js-scroll-trigger">
               <i class="fa fa-angle-double-down animated"></i>
@@ -284,11 +286,12 @@
                 <p style="text-align: left;">영감을 위한 몇 가지 예시 파일들을 포함시켜 놓았습니다. 확인해보시길 바랍니다. 
                   <br><font color="#00FFF5">1. data/eagle.jpg     <br>2. data/dog.jpg     <br>3. data/person.jpg     <br>4. data/horses.jpg</font></p>
                 <p style="text-align: left"><strong><font color="#00FFF5">detect</font></strong>명령은 보다 일반적인 명령어 버전의 줄임말이며 다음 명령어와 동일합니다.</p>
-                <pre><code>./darknet detector test cfg/coco.data cfg/yolo.cfg yolo.weights data/dog.jpg
+                <pre><code style="color: rgb(0, 255, 245);">./darknet detector test cfg/coco.data cfg/yolo.cfg yolo.weights data/dog.jpg
                 </code></pre>
-                <p>You don't need to know this if all you want to do is run detection on one image but it's useful to know if you want to do other things like run on a webcam (which you will see <a href="#demo">later on</a>).</p>
+                <p style="text-align: left;">하나의 이미지에서 탐지를 실행하는 시스템이지만 <br>웹캠에서 실행되는 것과 같은
+                  다른 환경에서의 다른 작업을 수행 할 것인지를 아는 것이 유용합니다. <a href="#demo">이후에 배우게 됩니다.</a></p>
                 <h3 style="text-align: left;">다중 이미지</h3>
-                <p>Instead of supplying an image on the command line, you can leave it blank to try multiple images in a row. Instead you will see a prompt when the config and weights are done loading:</p>
+                <p style="text-align: left">명령창에 이미지를 제공하는 대신 하나의 행에 여러 이미지를 시도해 볼 수 있으며 구성과 가중치가 완료되면 프롬포트가 표시됩니다. </p>
                 <pre><code style="color: rgb(0, 255, 245);">./darknet detect cfg/yolo.cfg yolo.weights
                   layer     filters    size              input                output
                   0 conv     32  3 x 3 / 1   416 x 416 x   3   -&gt;   416 x 416 x  32
@@ -299,23 +302,22 @@
                   Loading weights from yolo.weights ...Done!
                   Enter Image Path:
                 </code></pre>
-                <p style="text-align: left;">Enter an image path like <code>data/horses.jpg</code> to have it predict boxes for that image.</p>
+                <p style="text-align: left;">
+                  <font color="#00FFF5">data/horses.jpg</font>이미지의 경로를 입력하면  해당 이미지의 경계 영역을 예측하게 됩니다.</p>
                 <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_12.26.06_PM.png" alt="">
-                <p>Once it is done it will prompt you for more paths to try different images. Use <code>Ctrl-C</code> to exit the program once you are done.</p>
-                <h3 style="text-align: left;">Changing The Detection Threshold</h3>
-                <p>By default, YOLO only displays objects detected with a confidence of .25 or higher. You can change this by passing the <code>-thresh &lt;val&gt;</code> flag to the <code>yolo</code> command. For example, to display all detection you can set the threshold to 0:</p>
-                <pre><code>./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg -thresh 0
+                <p style="text-align: left;">하나의 이미지가 완료되면 다른 이미지를 시도하귀 위해 더 많은 경로를 물어볼 것입니다.<br><font color="#00FFF5">Ctrl-C</font>를 사용해 프로그램을 종료하시면 됩니다.</p>
+                <h3 style="text-align: left;">탐색의 임계 값 변경</h3>
+                <p style="text-align: left;">YOLO 시스템의 신뢰도는 기본값이 0.25이며 객체의 탐색 일치도가 0.25 이상인 객체만을 표시하여 사용자에게 보여줍니다.<br>이러한 임계값은 <font color="#00FFF5">-thresh &lt;val&gt;</font> 명령어 플래그를 이용하여 임계값을 변경 할 수 있습니다. <br>아래의 예시는 탐색된 모든 객체를 표시하기 위하여 임계값을 0으로 설정한 것입니다. 예시 이미지를 참고하시기 바랍니다.</p>
+                <pre><code style="color: rgb(0, 255, 245);">./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg -thresh 0
                 </code></pre>
-                <p>Which produces:</p>
-                <<img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_12.03.22_PM.png" alt="">
-
-                <p>So that's obviously not super useful but you can set it to different values to control what gets thresholded by the model.</p>
+                <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_12.03.22_PM.png" alt="">
+                <p style="text-align: left;">따라서 모델별로 임계값을 제어하는 값을 다른 값으로 설정할 수 있습니다. <br>그러나 이것이 유용하다고 명백하게 말하기는 힘듭니다.</p>
                 <h2 style="text-align: left;"><a id=tiny></a>Tiny YOLO</h2>
-                <p>Tiny YOLO is based off of the <a href="https://pjreddie.com/darknet/imagenet/#reference">Darknet reference network</a> and is much faster but less accurate than the normal YOLO model. To use the version trained on VOC:</p>
+                <p>Tiny YOLO 시스템은<a href="https://pjreddie.com/darknet/imagenet/#r채eference">Darknet reference network</a>를 기반으로 작동하며 일반 YOLO모델보다 훨씬 빠르지만 정확성이 떨어집니다. VOC에 대한 교육 버전을 사용하려면 다음을 수행하시기 바랍니다.</p>
                 <pre><code>wget https://pjreddie.com/media/files/tiny-yolo-voc.weights
                   ./darknet detector test cfg/voc.data cfg/tiny-yolo-voc.cfg tiny-yolo-voc.weights data/dog.jpg
                 </code></pre>
-                <p>Which, ok, it's not perfect, but boy it sure is fast. On GPU it runs at &gt;200 FPS.</p>
+                <p style="text-align: left;">어느 것이 좋고 완벽하다고 자신할 수 없지만 Tiny YOLO 시스템은 확실히 빠릅니다. GPU에서는 <font color="#00FFF5">200 FPS</font> 이상에서 실행이됩니다.</p>
 
                 <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-26_at_11.22.46_PM.png" alt="">
                 <h2><a id=demo></a>Real-Time Detection on a Webcam</h2>
@@ -380,13 +382,13 @@
                 <p>But if you just download the weights file it's way easier.</p>
                 <h3 style="text-align: left;">모델 훈련</h3>
                 <p style="text-align: left;">지금 당장 훈련을 시킬 수 있습니다. 아래의 명령어를 실행시키세요. </p>
-                <pre><code>./darknet detector train cfg/voc.data cfg/yolo-voc.cfg darknet19_448.conv.23
+                <pre><code style="color: rgb(0, 255, 245);">./darknet detector train cfg/voc.data cfg/yolo-voc.cfg darknet19_448.conv.23
                 </code></pre>
-                <h2><a id=train-coco></a>Training YOLO on COCO</h2>
-                <p>You can train YOLO from scratch if you want to play with different training regimes, hyper-parameters, or datasets. Here's how to get it working on the <a href="http://mscoco.org/dataset/#overview">COCO dataset</a>.</p>
-                <h3>Get The COCO Data</h3>
-                <p>To train YOLO you will need all of the COCO data and labels. The script <code>scripts/get_coco_dataset.sh</code> will do this for you. Figure out where you want to put the COCO data and download it, for example:</p>
-                <pre><code>cp scripts/get_coco_dataset.sh data
+                <h2 style="text-align: left;">COCO에서의 YOLO 훈련</h2>
+                <p style="text-align: left;">You can train YOLO from scratch if you want to play with different training regimes, hyper-parameters, or datasets. Here's how to get it working on the <a href="http://mscoco.org/dataset/#overview">COCO dataset</a>.</p>
+                <h3 style="text-align: left;">COCO Data 얻어오기</h3>
+                <p style="text-align: left;">To train YOLO you will need all of the COCO data and labels. The script <font style="color: rgb(0, 255, 245);">scripts/get_coco_dataset.sh </font>will do this for you. Figure out where you want to put the COCO data and download it, for example:</p>
+                <pre><code style="color: rgb(0, 255, 245);">cp scripts/get_coco_dataset.sh data
                   cd data
                   bash get_coco_dataset.sh
                 </code></pre>
@@ -410,15 +412,15 @@
                   subdivisions=8
                   ....
                 </code></pre>
-                <h3 style="text-align: left;">Train The Model</h3>
-                <p style="text-align: left;">Now we can train! Run the command:</p>
-                <pre><code>./darknet detector train cfg/coco.data cfg/yolo.cfg darknet19_448.conv.23
+                <h3 style="text-align: left;">모델 훈련</h3>
+                <p style="text-align: left;">이제부터 모델 훈련을 위해 아래 명령어를 실행하시기 바랍니다.</p>
+                <pre><code style="color: rgb(0, 255, 245);">./darknet detector train cfg/coco.data cfg/yolo.cfg darknet19_448.conv.23
                 </code></pre>
-                <p style="text-align: left;">If you want to use multiple gpus run:</p>
-                <pre><code>./darknet detector train cfg/coco.data cfg/yolo.cfg darknet19_448.conv.23 -gpus 0,1,2,3
+                <p style="text-align: left;">만약 여러개의 GPU를 사용한다면 다음 명령어를 실행하시기 바랍니다.</p>
+                <pre><code style="color: rgb(0, 255, 245);">./darknet detector train cfg/coco.data cfg/yolo.cfg darknet19_448.conv.23 -gpus 0,1,2,3
                 </code></pre>
-                <p style="text-align: left;">If you want to stop and restart training from a checkpoint:</p>
-                <pre><code>./darknet detector train cfg/coco.data cfg/yolo.cfg backup/yolo.backup -gpus 0,1,2,3
+                <p style="text-align: left;">만약 Checkpoint에서 훈련을 중지하고 다시 시작하기 위해서는 다음 명령어를 실행하시기 바랍니다.</p>
+                <pre><code style="color: rgb(0, 255, 245);">./darknet detector train cfg/coco.data cfg/yolo.cfg backup/yolo.backup -gpus 0,1,2,3
                 </code></pre>
                 <h2 style="text-align: left;">구 버전 사용</h2>
                 <p style="text-align: left;">YOLO의 1버전을 찾으신다면 아래의 사이트에서 이용하실 수 있습니다.
