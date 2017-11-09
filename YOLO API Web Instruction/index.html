@@ -32,17 +32,14 @@
   <link href="css/grayscale.min.css" rel="stylesheet">
   <link rel='icon' type='image/png' href='img/icon.png' />
   <script type="text/javascript">
-
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-37236849-1']);
     _gaq.push(['_trackPageview']);
-
     (function() {
       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-
   </script>
 </head>
 
@@ -120,7 +117,6 @@
               font-size: .5em;
             }
           }
-
         </style>
         <br>
         <table>
@@ -335,20 +331,21 @@
 
                               <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-26_at_11.22.46_PM.png" alt="">
                               <h2><a id=demo></a>Real-Time Detection on a Webcam</h2>
-                              <p>Running YOLO on test data isn't very interesting if you can't see the result. Instead of running it on a bunch of images let's run it on the input from a webcam!</p>
-                              <p>To run this demo you will need to compile <a href="https://pjreddie.com/darknet/install/#cuda">Darknet with CUDA and OpenCV</a>. Then run the command:</p>
+                              <p>테스트 데이터에서 YOLO 를 실행하면 결과를 볼수 없어서 흥미로울수 없습니다.. 막대한 이미지 대신에 웹켐에서 입력으로 실행해 봅시다!</p>
+<p>이 데모를 실행하려면 컴파일 해야합니다. <a href="https://pjreddie.com/darknet/install/#cuda">Darknet with CUDA and OpenCV</a>. Then run the command:</p>
                               <pre><code>./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights
                               </code></pre>
-                              <p>YOLO will display the current FPS and predicted classes as well as the image with bounding boxes drawn on top of it.</p>
-                              <p>You will need a webcam connected to the computer that OpenCV can connect to or it won't work. If you have multiple webcams connected and want to select which one to use you can pass the flag <code>-c &lt;num&gt;</code> to pick (OpenCV uses webcam <code>0</code> by default).</p>
-                              <p>You can also run it on a video file if OpenCV can read the video:</p>
+                              <p>YOLO는 현재 FPS 및 예상 클래스뿐만 아니라 경계 상자가 그 위에 그려진 이미지를 표시합니다..</p>
+
+                              <p>OpenCV가 연결할 수있는 컴퓨터에 웹캠이 연결되어 있어야합니다. 그렇지 않으면 작동하지 않습니다. 여러 웹캠이 연결되어 있고 사용할 웹캠을 선택하려는 경우 플래그를  통해 전달할 수 있습니다 <code>-c &lt;num&gt;</code> to pick (OpenCV uses webcam <code>0</code> by default).</p>
+                              <p>OpenCV가 비디오를 읽을 수 있으면 비디오 파일에서도 실행할 수 있습니다</p>
                               <pre><code>./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights &lt;video file&gt;
                               </code></pre>
-                              <p>That's how we made the YouTube video above.</p>
+                              <p>이것이 우리가 위의 YouTube 동영상을 만든 방법입니다</p>
                               <h2><a id=train-voc></a>Training YOLO on VOC</h2>
-                              <p>You can train YOLO from scratch if you want to play with different training regimes, hyper-parameters, or datasets. Here's how to get it working on the Pascal VOC dataset.</p>
+                              <p>다양한 트레이닝 영역과 하이퍼 파라미터 또는 데이터 세트로 게임을하고 싶다면 YOLO를 처음부터 교육 할 수 있습니다. Pascal VOC 데이터 세트에서 작업하는 방법은 다음과 같습니다.</p>
                               <h3>Get The Pascal VOC Data</h3>
-                              <p>To train YOLO you will need all of the VOC data from 2007 to 2012. You can find links to the data <a href="https://pjreddie.com/projects/pascal-voc-dataset-mirror/">here</a>. To get all the data, make a directory to store it all and from that directory run:</p>
+                              <p>요로 (Yolo)를 훈련 시키려면 2007 년부터 2012 년까지의 모든 VOC 데이터가 필요합니다. 여기에서 데이터에 대한 링크를 찾을 수 있습니다. 모든 데이터를 가져 오려면 디렉토리를 모두 저장하고 해당 디렉토리에서 다음을 실행하십시오. <a href="https://pjreddie.com/projects/pascal-voc-dataset-mirror/">here</a>. 모든 데이터를 얻으려면 디렉토리를 모두 저장하고 해당 디렉토리에서 데이터를 저장하십시오</p>
                               <pre><code>wget https://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar
                                 wget https://pjreddie.com/media/files/VOCtrainval_06-Nov-2007.tar
                                 wget https://pjreddie.com/media/files/VOCtest_06-Nov-2007.tar
@@ -356,16 +353,16 @@
                                 tar xf VOCtrainval_06-Nov-2007.tar
                                 tar xf VOCtest_06-Nov-2007.tar
                               </code></pre>
-                              <p>There will now be a <code>VOCdevkit/</code> subdirectory with all the VOC training data in it. </p>
+                              <p> 이제는 <code>VOCdevkit/</code> 하위 디렉토리에 모든 VOC 교육 데이터가 포함되어 있습니다. </p>
                               <h3>Generate Labels for VOC</h3>
-                              <p>Now we need to generate the label files that Darknet uses. Darknet wants a <code>.txt</code> file for each image with a line for each ground truth object in the image that looks like:</p>
+                              <p>이제 Darknet이 사용하는 레이블 파일을 생성해야합니다. Darknet 은 원합니다 <code>.txt</code> file for each image with a line for each ground truth object in the image that looks like:</p>
                               <pre><code>&lt;object-class&gt; &lt;x&gt; &lt;y&gt; &lt;width&gt; &lt;height&gt;
                               </code></pre>
-                              <p>Where <code>x</code>, <code>y</code>, <code>width</code>, and <code>height</code> are relative to the image's width and height. To generate these file we will run the <code>voc_label.py</code> script in Darknet's <code>scripts/</code> directory. Let's just download it again because we are lazy.</p>
+                              <p>여기서 <code>x</code>, <code>y</code>, <code>width</code>, and <code>height</code> 는 이미지의 높이와 너비를 기준으로. 이 파일을 생성하기 위해서<code>voc_label.py</code> Darknet 의 스크립트 안에<code>scripts/</code> 디렉토리에 있습니다.그냥 다시 다운로드하는게 안귀찮고 편합니다.</p>
                               <pre><code>wget https://pjreddie.com/media/files/voc_label.py
                                 python voc_label.py
                               </code></pre>
-                              <p>After a few minutes, this script will generate all of the requisite files. Mostly it generates a lot of label files in <code>VOCdevkit/VOC2007/labels/</code> and <code>VOCdevkit/VOC2012/labels/</code>. In your directory you should see:</p>
+                              <p>몇 분 후에이 스크립트는 필요한 모든 파일을 생성합니다. 대부분의 많은 파일 라벨들이  <code>VOCdevkit/VOC2007/labels/</code> 그리고 <code>VOCdevkit/VOC2012/labels/</code>. 당신의 디렉토리에 가지고 있습니다.:</p>
                               <pre><code>ls
                                 2007_test.txt   VOCdevkit
                                 2007_train.txt  voc_label.py
@@ -373,27 +370,28 @@
                                 2012_train.txt  VOCtrainval_06-Nov-2007.tar
                                 2012_val.txt    VOCtrainval_11-May-2012.tar
                               </code></pre>
-                              <p>The text files like <code>2007_train.txt</code> list the image files for that year and image set. Darknet needs one text file with all of the images you want to train on. In this example, let's train with everything except the 2007 test set so that we can test our model. Run:</p>
+                              <p>The text files like <code>2007_train.txt</code> 와 같은 텍스트 파일은 해당 연도의 이미지 파일과 이미지 세트를 나열합니다.. 다크 넷은 당신이 훈련시키고자 하는 모든 이미지를 가진 하나의 텍스트 파일을 필요로합니다.. 
+이 예제에서 우리 모델을 테스트 할 수 있도록 2007 테스트 세트를 제외한 모든 것을 훈련시켜 봅시다</p>
                               <pre><code>cat 2007_train.txt 2007_val.txt 2012_*.txt &gt; train.txt
                               </code></pre>
-                              <p>Now we have all the 2007 trainval and the 2012 trainval set in one big list. That's all we have to do for data setup!</p>
+                              <p>이제 우리는 모든 2007 년형 trainval 과 2012 년형 trainval을 하나의 큰 목록에 포함 시켰습니다. 그것이 데이터 설정을 위해해야 ​​할 모든 것입니다! </p>
                               <h3>Modify Cfg for Pascal Data</h3>
-                              <p>Now go to your Darknet directory. We have to change the <code>cfg/voc.data</code> config file to point to your data:</p>
+                              <p>이제 Darknet 디렉토리로 가십시오. 데이터를 가리 키도록 <code>cfg/voc.data</code>구성 파일을 변경해야합니다.</p>
                               <pre><code>  1 classes= 20
                                 2 train  = &lt;path-to-voc&gt;/train.txt
                                 3 valid  = &lt;path-to-voc&gt;2007_test.txt
                                 4 names = data/voc.names
                                 5 backup = backup
                               </code></pre>
-                              <p>You should replace <code>&lt;path-to-voc&gt;</code> with the directory where you put the VOC data.</p>
+                              <p> <code>&lt;path-to-voc&gt;</code> 을 VOC 데이터를 저장 한 디렉토리로 대체해야합니다. .</p>
                               <h3>Download Pretrained Convolutional Weights</h3>
-                              <p>For training we use convolutional weights that are pre-trained on Imagenet. We use weights from the <a href="https://pjreddie.com/darknet/imagenet/#extraction">Extraction</a> model. You can just download the weights for the convolutional layers <a href="https://pjreddie.com/media/files/darknet19_448.conv.23">here (76 MB)</a>.</p>
+                              <p>교육을 위해 우리는 Imagenet에서 사전 훈련 된 추출 모델의 가중치를 사용합니다 <a href="https://pjreddie.com/darknet/imagenet/#extraction">Extraction</a> model. 여기서 레이어의 가중치를 다운로드 할 수 있습니다 <a href="https://pjreddie.com/media/files/darknet19_448.conv.23">here (76 MB)</a>.</p>
                               <pre><code>wget https://pjreddie.com/media/files/darknet19_448.conv.23
                               </code></pre>
-                              <p>If you want to generate the pre-trained weights yourself, download the pretrained <a href="https://pjreddie.com/darknet/imagenet/#darknet19_448">Darknet19 448x448 model</a> and run the following command:</p>
+                              <p>사전 훈련 된 가중치를 직접 생성하려면 사전 교육 된 <a href="https://pjreddie.com/darknet/imagenet/#darknet19_448">Darknet19 448x448 model</a> 의 다음 명령을 실행하십시오.:</p>
                               <pre><code>./darknet partial cfg/darknet19_448.cfg darknet19_448.weights darknet19_448.conv.23 23
                               </code></pre>
-                              <p>But if you just download the weights file it's way easier.</p>
+                              <p하지만 가중치 파일을 다운로드하면 더 쉽게 사용할 수 있습니다.</p>
                               <h3 style="text-align: left;">모델 훈련</h3>
                               <p style="text-align: left;">아래의 명령어를 이용해 훈련을 시킬 수 있습니다. </p>
                               <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
