@@ -381,29 +381,30 @@
                 </code></pre>
                 <p>But if you just download the weights file it's way easier.</p>
                 <h3 style="text-align: left;">모델 훈련</h3>
-                <p style="text-align: left;">지금 당장 훈련을 시킬 수 있습니다. 아래의 명령어를 실행시키세요. </p>
+                <p style="text-align: left;">아래의 명령어를 이용해 훈련을 당장 시킬 수 있습니다. </p>
                 <pre><code style="color: rgb(0, 255, 245);">./darknet detector train cfg/voc.data cfg/yolo-voc.cfg darknet19_448.conv.23
                 </code></pre>
                 <h2 style="text-align: left;">COCO에서의 YOLO 훈련</h2>
-                <p style="text-align: left;">You can train YOLO from scratch if you want to play with different training regimes, hyper-parameters, or datasets. Here's how to get it working on the <a href="http://mscoco.org/dataset/#overview">COCO dataset</a>.</p>
+                <p style="text-align: left;">만약 다른 훈련체계, Hyper-Parameters 또는 데이터셋을 사용하고 싶다면 YOLO를 처음부터 훈련 시킬 수 있습니다. <a href="http://mscoco.org/dataset/#overview">COCO dataset</a>에서 작업을 하는 방법은 다음과 같습니다.</p>
                 <h3 style="text-align: left;">COCO Data 얻어오기</h3>
-                <p style="text-align: left;">To train YOLO you will need all of the COCO data and labels. The script <font style="color: rgb(0, 255, 245);">scripts/get_coco_dataset.sh </font>will do this for you. Figure out where you want to put the COCO data and download it, for example:</p>
+                <p style="text-align: left;">YOLO 시스템을 훈련시키기 위해서는 모든 COCO의 데이터와 라벨이 필요합니다. <br> <font style="color: rgb(0, 255, 245);">scripts/get_coco_dataset.sh </font>이 스크립트가 해당 작업을 수행합니다. <br>COCO 데이터를 넣고 다운로드 하려면 아래를 참고하시면 됩니다.</p>
                 <pre><code style="color: rgb(0, 255, 245);">cp scripts/get_coco_dataset.sh data
                   cd data
                   bash get_coco_dataset.sh
                 </code></pre>
-                <p style="text-align: left;">Now you should have all the data and the labels generated for Darknet.</p>
-                <h3 style="text-align: left;">Modify cfg for COCO</h3>
-                <p style="text-align: left;">Now go to your Darknet directory. We have to change the <code>cfg/coco.data</code> config file to point to your data:</p>
-                <pre><code>  1 classes= 80
+                <p style="text-align: left;">이제 Darknet에 모든 데이터와 라벨을 생성해야 합니다.</p>
+                <h3 style="text-align: left;">COCO의 CFG 수정</h3>
+                <p style="text-align: left;">이제 Darknet 폴더로 이동합니다.
+                <br> <font style="color: rgb(0, 255, 245);">cfg/coco.data</font>를 가리키도록 config 파일을 변경해야 합니다.</p>
+                <pre><code style="color: rgb(0, 255, 245);">  1 classes= 80
                   2 train  = &lt;path-to-coco&gt;/trainvalno5k.txt
                   3 valid  = &lt;path-to-coco&gt;/5k.txt
                   4 names = data/coco.names
                   5 backup = backup
                 </code></pre>
-                <p style="text-align: left;">You should replace <code>&lt;path-to-coco&gt;</code> with the directory where you put the COCO data.</p>
-                <p style="text-align: left;">You should also modify your model cfg for training instead of testing. <code>cfg/yolo.cfg</code> should look like this:</p>
-                <pre><code>[net]
+                <p style="text-align: left;">COCO 데이터를 저장하는 디렉토리로 <font style="color: rgb(0, 255, 245);">&lt;path-to-coco&gt;</font>를 대체해야합니다.</p>
+                <p style="text-align: left;">또한 <font style="color: rgb(0, 255, 245);">cfg</font>를 테스팅 용이 아닌 훈련용으로 수정해야합니다. <font style="color: rgb(0, 255, 245);">cfg/yolo.cfg</font>가 아래와 같아야 합니다.</p>
+                <pre><code style="color: rgb(0, 255, 245);">[net]
                   # Testing
                   # batch=1
                   # subdivisions=1
@@ -427,7 +428,7 @@
                   <br><a href="https://pjreddie.com/darknet/yolov1/">https://pjreddie.com/darknet/yolov1/</a></p>
                   <h2 style="text-align: left;">인용</h2>
                   <p style="text-align: left;">YOLOv2를 작업에 사용한다면 해당 논문을 인용하십시오!</p>
-                  <pre><code>@article{redmon2016yolo9000,
+                  <pre><code style="color: rgb(0, 255, 245);">@article{redmon2016yolo9000,
                     title={YOLO9000: Better, Faster, Stronger},
                     author={Redmon, Joseph and Farhadi, Ali},
                     journal={arXiv preprint arXiv:1612.08242},
@@ -446,9 +447,8 @@
     <section id="download" class="download-section content-section text-center">
       <div class="container">
         <div class="col-lg-8 mx-auto">
-          <h2>Download Grayscale</h2>
-          <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
-          <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+           <h2>Darknet YOLO API 홈페이지</h2>
+          <a href="https://pjreddie.com/darknet/yolo/" class="btn btn-default btn-lg">Visit Page</a>
         </div>
       </div>
     </section>
@@ -457,11 +457,8 @@
     <section id="contact" class="content-section text-center">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Contact Start Bootstrap</h2>
-            <p>Feel free to leave us a comment on the
-              <a href="http://startbootstrap.com/template-overviews/grayscale/">Grayscale template overview page</a>
-            on Start Bootstrap to give some feedback about this theme!</p>
+          <div class="col-lg-16 mx-auto">
+            <P>저희가 직접 작성한 YOLO API의 소스코드에 대한 한글 매뉴얼은 아래의 Github Repository에 올려 놓았습니다. </P>
             <ul class="list-inline banner-social-buttons">
 
               <li class="list-inline-item">
