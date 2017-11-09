@@ -86,416 +86,442 @@
             <p><font size="5"> <strong>YOLO(You Only Look Once) 최첨단 실시간 물체 감지 시스템</strong></font>
               <br>조선대학교 컴퓨터공학과 오픈소스 소프트웨어
               <br>Team-Project 이대경 김한섭 강일송</P></p>
-            
-            
-            <a href="#about" class="btn btn-circle js-scroll-trigger">
-              <i class="fa fa-angle-double-down animated"></i>
-            </a>
+
+
+              <a href="#about" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- About Section -->
-  <section id="about" class="content-section text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 mx-auto">
-         <h2>About YOLO</h2>
-         <iframe width="800" height="450" src="https://www.youtube.com/embed/VOC3huqHrss" frameborder="0" allowfullscreen></iframe>
-
-         <style>
-         td:first-child {text-align:left;}
-         td {text-align:right; padding:0em .5em;}
-         th {padding:0em .5em;}
-         table {
-          margin:0em auto 3em; font-size:1em;
-        }
-        @media (max-width: 640px) {
-          table {
-            font-size: .75em;
-          }
-          .model {
-            font-size: .5em;
-          }
-        }
-
-      </style>
-      <br>
-      <table>
-        <tr>
-          <th style="text-align:left;">Model</th>
-          <th style="text-align:right;">Train</th> 
-          <th style="text-align:right;">Test</th>
-          <th style="text-align:right;">mAP</th>
-          <th style="text-align:right; ">FLOPS</th>
-          <th style="text-align:right; ">FPS</th>
-          <th style="text-align:right; ">Cfg</th>
-          <th style="text-align:right; ">Weights</th>
-        </tr>
-
-        <tr>
-          <td>Old YOLO</td>
-          <td>VOC 2007+2012</td> 
-          <td>2007</td>
-          <td>63.4</td>
-          <td>40.19 Bn</td>
-          <td>45</td>
-          <td colspan="2"><a href =https://pjreddie.com/darknet/yolov1/ >link</a></td>
-        </tr>
-        <tr>
-          <td>SSD300</td>
-          <td>VOC 2007+2012</td> 
-          <td>2007</td>
-          <td>74.3</td>
-          <td>-</td>
-          <td>46</td>
-          <td colspan = "2"><a href =https://arxiv.org/abs/1512.02325 >link</a></td>
-        </tr>
-        <tr>
-          <td>SSD500</td>
-          <td>VOC 2007+2012</td> 
-          <td>2007</td>
-          <td>76.8</td>
-          <td>-</td>
-          <td>19</td>
-          <td colspan="2"><a href =https://arxiv.org/abs/1512.02325 >link</a></td>
-        </tr>
-        <tr>
-          <td>YOLOv2</td>
-          <td>VOC 2007+2012</td> 
-          <td>2007</td>
-          <td>76.8</td>
-          <td>34.90 Bn</td>
-          <td>67</td>
-          <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/yolo-voc.cfg>cfg</a></td>
-          <td><a href=https://pjreddie.com/media/files/yolo-voc.weights>weights</a></td>
-        </tr>
-        <tr>
-          <td>YOLOv2 544x544</td>
-          <td>VOC 2007+2012</td> 
-          <td>2007</td>
-          <td>78.6</td>
-          <td>59.68 Bn</td>
-          <td>40</td>
-          <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/yolo-voc.cfg>cfg</a></td>
-          <td><a href=https://pjreddie.com/media/files/yolo-voc.weights>weights</a></td>
-        </tr>
-        <tr>
-          <td>Tiny YOLO</td>
-          <td>VOC 2007+2012</td> 
-          <td>2007</td>
-          <td>57.1</td>
-          <td>6.97 Bn</td>
-          <td>207</td>
-          <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/tiny-yolo-voc.cfg>cfg</a></td>
-          <td><a href=https://pjreddie.com/media/files/tiny-yolo-voc.weights>weights</a></td>
-        </tr>
-        <tr>
-          <td colspan="8"><hr/></td>
-        </tr>
-        <tr>
-          <td>SSD300</td>
-          <td>COCO trainval</td> 
-          <td>test-dev</td>
-          <td>41.2</td>
-          <td>-</td>
-          <td>46</td>
-          <td colspan = "2"><a href =https://arxiv.org/abs/1512.02325 >link</a></td>
-        </tr>
-        <tr>
-          <td>SSD500</td>
-          <td>COCO trainval</td> 
-          <td>test-dev</td>
-          <td>46.5</td>
-          <td>-</td>
-          <td>19</td>
-          <td colspan="2"><a href =https://arxiv.org/abs/1512.02325 >link</a></td>
-        </tr>
-
-        <tr>
-          <td>YOLOv2 608x608</td>
-          <td>COCO trainval</td> 
-          <td>test-dev</td>
-          <td>48.1</td>
-          <td>62.94 Bn</td>
-          <td>40</td>
-          <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/yolo.cfg>cfg</a></td>
-          <td><a href=https://pjreddie.com/media/files/yolo.weights>weights</a></td>
-        </tr>
-        <tr>
-          <td>Tiny YOLO</td>
-          <td>COCO trainval</td> 
-          <td>-</td>
-          <td>-</td>
-          <td>7.07 Bn</td>
-          <td>200</td>
-          <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/tiny-yolo.cfg>cfg</a></td>
-          <td><a href=https://pjreddie.com/media/files/tiny-yolo.weights>weights</a></td>
-        </tr>
-      </table>
-
-      <h2 style="text-align: left;">How To Work</h2>
-      <p style="text-align: left;">기존의 탐지시스템은 Repurpose classifiers 혹은 Localizers를 사용하여 탐지를 수행하였습니다.
-        <br>이 방법은 모델의 여러 위치에 격자 이미지를 적용하는 방식이며 격자 중 높은 일치도를 보인 물체를 탐지합니다.  </p>
-        <p style="text-align: left;">하지만 YOLO는 하나의 신경망을 전체 이미지에 적용하는 완전히 다른 방식을 사용합니다. 
-          <br>이 신경망은 이미지를 여러 영역으로 분할하고 각 영역에 대한 바운딩 영역과 가중치로 사용될 일치 확률을 예측하여 줍니다.  </p>
-          <img class="img-fluid img-centered" src="img/model2.png" alt="">
-          <p style="text-align: left;"><br>YOLO 시스템은 분류 기반의 시스템에 비해 몇 가지 장점을 가지고 있습니다. 
-            <br>그 중 하나는 테스트 시간 동안 전체 이미지를 보고 예측된 정보를 이미지에 텍스트로 알려줍니다.
-            또한 수천개의 단일 이미지가 필요한  <a href="https://github.com/rbgirshick/rcnn">R-CNN</a> 과는 달리 단일 네트워크만으로 평가하고 예측이 가능합니다. 이로 인해 R-CNN보다는 1000배 이상 빠르며 <a href="https://github.com/rbgirshick/fast-rcnn">Fast R-CNN</a>보다는 100배 빠릅니다. 
-            전체 시스템에 대한 자세한 내용은 해당 <a href="https://arxiv.org/abs/1612.08242">논문</a>을 참고하여 주세요</p>
-            <h3 style="text-align: left;">버전 2의 새로운 기능</h3>
-            <p style="text-align: left">YOLOv2는 트레이닝을 개선하고 성능을 향상시키기 위해 몇 가지 트릭을 사용합니다. Overfeat과 SSD 처럼 심층 신경망인 Fully-Convolutional 신경망 모델을 사용하지만 Hard-Negatives 정보가 아닌 전체 이미지를 계속 학습합니다. Like Faster R-CNN we adjust priors on bounding boxes instead of predicting the width and height outright. 그러나 여전히 x, y좌표를 직접 예측하는데 전체 내용은 해당  <a href="https://arxiv.org/abs/1612.08242">논문</a>에 있습니다.</p>
-            <h2 style="text-align: left">사전에 학습된 모델을 사용한 탐지 기법</h2>
-            <p style="text-align: left">이후 부터는 사전 훈련 된 모델을 사용하여 YOLO 시스템으로 물체를 탐지 하는 방법을 설명합니다.
-              <br>Darknet을 아직 설치 하지 않았다면 먼저 <a href="https://pjreddie.com/darknet/install/">설치</a> 해야합니다.</p>
-              <pre><code style="color: rgb(0, 255, 245);">.git clone https://github.com/pjreddie/darknet
-                cd darknet
-                make
-              </code>
-            </pre>
-            <h3 style ="text-align: left">
-              Easy! 
-            </h3>
-            <p style="text-align: left">당신에게는 이미 cfg/ 서브디렉토리에 YOLO에 대한 설정파일이 있습니다. 
-              <br> 사전 훈련된 가중치 파일을 다운받으세요. <a href="https://pjreddie.com/media/files/yolo.weights">다운로드 (258 MB)</a>. 이후 다음을 실행하세요.</p>
-              <pre><code style="color: rgb(0, 255, 245);">wget https://pjreddie.com/media/files/yolo.weights</code>
-              </pre>
-              <p style="text-align: left">이후 탐지기를 실행하세요</p>
-              <pre><code style="color: rgb(0, 255, 245);">./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg</code>
-              </pre>
-              <p style="text-align: left;">다음과 같은 출력이 표시됩니다.</p>
-              <pre><code style="color: rgb(0, 255, 245);">.layer     filters    size              input                output
-                0 conv     32  3 x 3 / 1   416 x 416 x   3   -&gt;   416 x 416 x  32
-                1 max          2 x 2 / 2   416 x 416 x  32   -&gt;   208 x 208 x  32
-                .......
-                29 conv    425  1 x 1 / 1    13 x  13 x1024   -&gt;    13 x  13 x 425
-                30 detection
-                Loading weights from yolo.weights...Done!
-                data/dog.jpg: Predicted in 0.016287 seconds.
-                car: 54%
-                bicycle: 51%
-                dog: 56%
-              </code></pre>
-              <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_11.14.54_AM.png" alt="">
-              <p style="text-align: left">Darknet은 탐지한 객체와 일치도, 발견하는데 소요된 시간을 인쇄합니다. 
-                <br>해당 시스템은 <font color="#00FFF5">Open CV</font>를 이용해 컴파일하지 않았기 떄문에 탐지를 직접적으로 표시할 수 없습니다. 그렇기에 탐지된 내용을 predictions.png로 저장하고 사용자는 저장된 파일을 열어 탐지된 객체를 확인하는 방식을 사용하고 있습니다.
-                <br> 해당 시스템은 CPU를 사용하기 때문에 하나의 이미지당 6초에서 12초가 소요됩니다. <br>만약 GPU 환경을 사용한다면 더 빨라질 수 있습니다.</p>
-                <p style="text-align: left;">영감을 위한 몇 가지 예시 파일들을 포함시켜 놓았습니다. 확인해보시길 바랍니다. 
-                  <br><font color="#00FFF5">1. data/eagle.jpg     <br>2. data/dog.jpg     <br>3. data/person.jpg     <br>4. data/horses.jpg</font></p>
-                <p style="text-align: left"><strong><font color="#00FFF5">detect</font></strong>명령은 보다 일반적인 명령어 버전의 줄임말이며 다음 명령어와 동일합니다.</p>
-                <pre><code style="color: rgb(0, 255, 245);">./darknet detector test cfg/coco.data cfg/yolo.cfg yolo.weights data/dog.jpg
-                </code></pre>
-                <p style="text-align: left;">하나의 이미지에서 탐지를 실행하는 시스템이지만 <br>웹캠에서 실행되는 것과 같은
-                  다른 환경에서의 다른 작업을 수행 할 것인지를 아는 것이 유용합니다. <a href="#demo">이후에 배우게 됩니다.</a></p>
-                <h3 style="text-align: left;">다중 이미지</h3>
-                <p style="text-align: left">명령창에 이미지를 제공하는 대신 하나의 행에 여러 이미지를 시도해 볼 수 있으며 구성과 가중치가 완료되면 프롬포트가 표시됩니다. </p>
-                <pre><code style="color: rgb(0, 255, 245);">./darknet detect cfg/yolo.cfg yolo.weights
-                  layer     filters    size              input                output
-                  0 conv     32  3 x 3 / 1   416 x 416 x   3   -&gt;   416 x 416 x  32
-                  1 max          2 x 2 / 2   416 x 416 x  32   -&gt;   208 x 208 x  32
-                  .......
-                  29 conv    425  1 x 1 / 1    13 x  13 x1024   -&gt;    13 x  13 x 425
-                  30 detection
-                  Loading weights from yolo.weights ...Done!
-                  Enter Image Path:
-                </code></pre>
-                <p style="text-align: left;">
-                  <font color="#00FFF5">data/horses.jpg</font>이미지의 경로를 입력하면  해당 이미지의 경계 영역을 예측하게 됩니다.</p>
-                <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_12.26.06_PM.png" alt="">
-                <p style="text-align: left;">하나의 이미지가 완료되면 다른 이미지를 시도하귀 위해 더 많은 경로를 물어볼 것입니다.<br><font color="#00FFF5">Ctrl-C</font>를 사용해 프로그램을 종료하시면 됩니다.</p>
-                <h3 style="text-align: left;">탐색의 임계 값 변경</h3>
-                <p style="text-align: left;">YOLO 시스템의 신뢰도는 기본값이 0.25이며 객체의 탐색 일치도가 0.25 이상인 객체만을 표시하여 사용자에게 보여줍니다.<br>이러한 임계값은 <font color="#00FFF5">-thresh &lt;val&gt;</font> 명령어 플래그를 이용하여 임계값을 변경 할 수 있습니다. <br>아래의 예시는 탐색된 모든 객체를 표시하기 위하여 임계값을 0으로 설정한 것입니다. 예시 이미지를 참고하시기 바랍니다.</p>
-                <pre><code style="color: rgb(0, 255, 245);">./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg -thresh 0
-                </code></pre>
-                <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_12.03.22_PM.png" alt="">
-                <p style="text-align: left;">따라서 모델별로 임계값을 제어하는 값을 다른 값으로 설정할 수 있습니다. <br>그러나 이것이 유용하다고 명백하게 말하기는 힘듭니다.</p>
-                <h2 style="text-align: left;"><a id=tiny></a>Tiny YOLO</h2>
-                <p>Tiny YOLO 시스템은<a href="https://pjreddie.com/darknet/imagenet/#r채eference">Darknet reference network</a>를 기반으로 작동하며 일반 YOLO모델보다 훨씬 빠르지만 정확성이 떨어집니다. VOC에 대한 교육 버전을 사용하려면 다음을 수행하시기 바랍니다.</p>
-                <pre><code>wget https://pjreddie.com/media/files/tiny-yolo-voc.weights
-                  ./darknet detector test cfg/voc.data cfg/tiny-yolo-voc.cfg tiny-yolo-voc.weights data/dog.jpg
-                </code></pre>
-                <p style="text-align: left;">어느 것이 좋고 완벽하다고 자신할 수 없지만 Tiny YOLO 시스템은 확실히 빠릅니다. GPU에서는 <font color="#00FFF5">200 FPS</font> 이상에서 실행이됩니다.</p>
-
-                <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-26_at_11.22.46_PM.png" alt="">
-                <h2><a id=demo></a>Real-Time Detection on a Webcam</h2>
-                <p>Running YOLO on test data isn't very interesting if you can't see the result. Instead of running it on a bunch of images let's run it on the input from a webcam!</p>
-                <p>To run this demo you will need to compile <a href="https://pjreddie.com/darknet/install/#cuda">Darknet with CUDA and OpenCV</a>. Then run the command:</p>
-                <pre><code>./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights
-                </code></pre>
-                <p>YOLO will display the current FPS and predicted classes as well as the image with bounding boxes drawn on top of it.</p>
-                <p>You will need a webcam connected to the computer that OpenCV can connect to or it won't work. If you have multiple webcams connected and want to select which one to use you can pass the flag <code>-c &lt;num&gt;</code> to pick (OpenCV uses webcam <code>0</code> by default).</p>
-                <p>You can also run it on a video file if OpenCV can read the video:</p>
-                <pre><code>./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights &lt;video file&gt;
-                </code></pre>
-                <p>That's how we made the YouTube video above.</p>
-                <h2><a id=train-voc></a>Training YOLO on VOC</h2>
-                <p>You can train YOLO from scratch if you want to play with different training regimes, hyper-parameters, or datasets. Here's how to get it working on the Pascal VOC dataset.</p>
-                <h3>Get The Pascal VOC Data</h3>
-                <p>To train YOLO you will need all of the VOC data from 2007 to 2012. You can find links to the data <a href="https://pjreddie.com/projects/pascal-voc-dataset-mirror/">here</a>. To get all the data, make a directory to store it all and from that directory run:</p>
-                <pre><code>wget https://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar
-                  wget https://pjreddie.com/media/files/VOCtrainval_06-Nov-2007.tar
-                  wget https://pjreddie.com/media/files/VOCtest_06-Nov-2007.tar
-                  tar xf VOCtrainval_11-May-2012.tar
-                  tar xf VOCtrainval_06-Nov-2007.tar
-                  tar xf VOCtest_06-Nov-2007.tar
-                </code></pre>
-                <p>There will now be a <code>VOCdevkit/</code> subdirectory with all the VOC training data in it. </p>
-                <h3>Generate Labels for VOC</h3>
-                <p>Now we need to generate the label files that Darknet uses. Darknet wants a <code>.txt</code> file for each image with a line for each ground truth object in the image that looks like:</p>
-                <pre><code>&lt;object-class&gt; &lt;x&gt; &lt;y&gt; &lt;width&gt; &lt;height&gt;
-                </code></pre>
-                <p>Where <code>x</code>, <code>y</code>, <code>width</code>, and <code>height</code> are relative to the image's width and height. To generate these file we will run the <code>voc_label.py</code> script in Darknet's <code>scripts/</code> directory. Let's just download it again because we are lazy.</p>
-                <pre><code>wget https://pjreddie.com/media/files/voc_label.py
-                  python voc_label.py
-                </code></pre>
-                <p>After a few minutes, this script will generate all of the requisite files. Mostly it generates a lot of label files in <code>VOCdevkit/VOC2007/labels/</code> and <code>VOCdevkit/VOC2012/labels/</code>. In your directory you should see:</p>
-                <pre><code>ls
-                  2007_test.txt   VOCdevkit
-                  2007_train.txt  voc_label.py
-                  2007_val.txt    VOCtest_06-Nov-2007.tar
-                  2012_train.txt  VOCtrainval_06-Nov-2007.tar
-                  2012_val.txt    VOCtrainval_11-May-2012.tar
-                </code></pre>
-                <p>The text files like <code>2007_train.txt</code> list the image files for that year and image set. Darknet needs one text file with all of the images you want to train on. In this example, let's train with everything except the 2007 test set so that we can test our model. Run:</p>
-                <pre><code>cat 2007_train.txt 2007_val.txt 2012_*.txt &gt; train.txt
-                </code></pre>
-                <p>Now we have all the 2007 trainval and the 2012 trainval set in one big list. That's all we have to do for data setup!</p>
-                <h3>Modify Cfg for Pascal Data</h3>
-                <p>Now go to your Darknet directory. We have to change the <code>cfg/voc.data</code> config file to point to your data:</p>
-                <pre><code>  1 classes= 20
-                  2 train  = &lt;path-to-voc&gt;/train.txt
-                  3 valid  = &lt;path-to-voc&gt;2007_test.txt
-                  4 names = data/voc.names
-                  5 backup = backup
-                </code></pre>
-                <p>You should replace <code>&lt;path-to-voc&gt;</code> with the directory where you put the VOC data.</p>
-                <h3>Download Pretrained Convolutional Weights</h3>
-                <p>For training we use convolutional weights that are pre-trained on Imagenet. We use weights from the <a href="https://pjreddie.com/darknet/imagenet/#extraction">Extraction</a> model. You can just download the weights for the convolutional layers <a href="https://pjreddie.com/media/files/darknet19_448.conv.23">here (76 MB)</a>.</p>
-                <pre><code>wget https://pjreddie.com/media/files/darknet19_448.conv.23
-                </code></pre>
-                <p>If you want to generate the pre-trained weights yourself, download the pretrained <a href="https://pjreddie.com/darknet/imagenet/#darknet19_448">Darknet19 448x448 model</a> and run the following command:</p>
-                <pre><code>./darknet partial cfg/darknet19_448.cfg darknet19_448.weights darknet19_448.conv.23 23
-                </code></pre>
-                <p>But if you just download the weights file it's way easier.</p>
-                <h3 style="text-align: left;">모델 훈련</h3>
-                <p style="text-align: left;">아래의 명령어를 이용해 훈련을 당장 시킬 수 있습니다. </p>
-                <pre><code style="color: rgb(0, 255, 245);">./darknet detector train cfg/voc.data cfg/yolo-voc.cfg darknet19_448.conv.23
-                </code></pre>
-                <h2 style="text-align: left;">COCO에서의 YOLO 훈련</h2>
-                <p style="text-align: left;">만약 다른 훈련체계, Hyper-Parameters 또는 데이터셋을 사용하고 싶다면 YOLO를 처음부터 훈련 시킬 수 있습니다. <a href="http://mscoco.org/dataset/#overview">COCO dataset</a>에서 작업을 하는 방법은 다음과 같습니다.</p>
-                <h3 style="text-align: left;">COCO Data 얻어오기</h3>
-                <p style="text-align: left;">YOLO 시스템을 훈련시키기 위해서는 모든 COCO의 데이터와 라벨이 필요합니다. <br> <font style="color: rgb(0, 255, 245);">scripts/get_coco_dataset.sh </font>이 스크립트가 해당 작업을 수행합니다. <br>COCO 데이터를 넣고 다운로드 하려면 아래를 참고하시면 됩니다.</p>
-                <pre><code style="color: rgb(0, 255, 245);">cp scripts/get_coco_dataset.sh data
-                  cd data
-                  bash get_coco_dataset.sh
-                </code></pre>
-                <p style="text-align: left;">이제 Darknet에 모든 데이터와 라벨을 생성해야 합니다.</p>
-                <h3 style="text-align: left;">COCO의 CFG 수정</h3>
-                <p style="text-align: left;">이제 Darknet 폴더로 이동합니다.
-                <br> <font style="color: rgb(0, 255, 245);">cfg/coco.data</font>를 가리키도록 config 파일을 변경해야 합니다.</p>
-                <pre><code style="color: rgb(0, 255, 245);">  1 classes= 80
-                  2 train  = &lt;path-to-coco&gt;/trainvalno5k.txt
-                  3 valid  = &lt;path-to-coco&gt;/5k.txt
-                  4 names = data/coco.names
-                  5 backup = backup
-                </code></pre>
-                <p style="text-align: left;">COCO 데이터를 저장하는 디렉토리로 <font style="color: rgb(0, 255, 245);">&lt;path-to-coco&gt;</font>를 대체해야합니다.</p>
-                <p style="text-align: left;">또한 <font style="color: rgb(0, 255, 245);">cfg</font>를 테스팅 용이 아닌 훈련용으로 수정해야합니다. <font style="color: rgb(0, 255, 245);">cfg/yolo.cfg</font>가 아래와 같아야 합니다.</p>
-                <pre><code style="color: rgb(0, 255, 245);">[net]
-                  # Testing
-                  # batch=1
-                  # subdivisions=1
-                  # Training
-                  batch=64
-                  subdivisions=8
-                  ....
-                </code></pre>
-                <h3 style="text-align: left;">모델 훈련</h3>
-                <p style="text-align: left;">이제부터 모델 훈련을 위해 아래 명령어를 실행하시기 바랍니다.</p>
-                <pre><code style="color: rgb(0, 255, 245);">./darknet detector train cfg/coco.data cfg/yolo.cfg darknet19_448.conv.23
-                </code></pre>
-                <p style="text-align: left;">만약 여러개의 GPU를 사용한다면 다음 명령어를 실행하시기 바랍니다.</p>
-                <pre><code style="color: rgb(0, 255, 245);">./darknet detector train cfg/coco.data cfg/yolo.cfg darknet19_448.conv.23 -gpus 0,1,2,3
-                </code></pre>
-                <p style="text-align: left;">만약 Checkpoint에서 훈련을 중지하고 다시 시작하기 위해서는 다음 명령어를 실행하시기 바랍니다.</p>
-                <pre><code style="color: rgb(0, 255, 245);">./darknet detector train cfg/coco.data cfg/yolo.cfg backup/yolo.backup -gpus 0,1,2,3
-                </code></pre>
-                <h2 style="text-align: left;">구 버전 사용</h2>
-                <p style="text-align: left;">YOLO의 1버전을 찾으신다면 아래의 사이트에서 이용하실 수 있습니다.
-                  <br><a href="https://pjreddie.com/darknet/yolov1/">https://pjreddie.com/darknet/yolov1/</a></p>
-                  <h2 style="text-align: left;">인용</h2>
-                  <p style="text-align: left;">YOLOv2를 작업에 사용한다면 해당 논문을 인용하십시오!</p>
-                  <pre><code style="color: rgb(0, 255, 245);">@article{redmon2016yolo9000,
-                    title={YOLO9000: Better, Faster, Stronger},
-                    author={Redmon, Joseph and Farhadi, Ali},
-                    journal={arXiv preprint arXiv:1612.08242},
-                    year={2016}
-                  }
-                </code></pre>
-              </div>
-            </body>
-            </html>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Download Section -->
-    <section id="download" class="download-section content-section text-center">
-      <div class="container">
-        <div class="col-lg-8 mx-auto">
-           <h2>Darknet YOLO API 홈페이지</h2>
-          <a href="https://pjreddie.com/darknet/yolo/" class="btn btn-default btn-lg">Visit Page</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="content-section text-center">
+    <!-- About Section -->
+    <section id="about" class="content-section text-center">
       <div class="container">
         <div class="row">
-          <div class="col-lg-16 mx-auto">
-            <P>저희가 직접 작성한 YOLO API의 소스코드에 대한 한글 매뉴얼은 아래의 Github Repository에 올려 놓았습니다. </P>
-            <ul class="list-inline banner-social-buttons">
+          <div class="col-lg-12 mx-auto">
+           <h2>About YOLO</h2>
+           <iframe width="800" height="450" src="https://www.youtube.com/embed/VOC3huqHrss" frameborder="0" allowfullscreen></iframe>
 
-              <li class="list-inline-item">
-                <a href="https://github.com/OSSProjectYOLO/DarkNetYoloAPI" class="btn btn-default btn-lg">
-                  <i class="fa fa-github fa-fw"></i>
-                  <span class="network-name">Github</span>
-                </a>
-              </li>
+           <style>
+           td:first-child {text-align:left;}
+           td {text-align:right; padding:0em .5em;}
+           th {padding:0em .5em;}
+           table {
+            margin:0em auto 3em; font-size:1em;
+          }
+          @media (max-width: 640px) {
+            table {
+              font-size: .75em;
+            }
+            .model {
+              font-size: .5em;
+            }
+          }
 
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+        </style>
+        <br>
+        <table>
+          <tr>
+            <th style="text-align:left;">Model</th>
+            <th style="text-align:right;">Train</th> 
+            <th style="text-align:right;">Test</th>
+            <th style="text-align:right;">mAP</th>
+            <th style="text-align:right; ">FLOPS</th>
+            <th style="text-align:right; ">FPS</th>
+            <th style="text-align:right; ">Cfg</th>
+            <th style="text-align:right; ">Weights</th>
+          </tr>
+
+          <tr>
+            <td>Old YOLO</td>
+            <td>VOC 2007+2012</td> 
+            <td>2007</td>
+            <td>63.4</td>
+            <td>40.19 Bn</td>
+            <td>45</td>
+            <td colspan="2"><a href =https://pjreddie.com/darknet/yolov1/ >link</a></td>
+          </tr>
+          <tr>
+            <td>SSD300</td>
+            <td>VOC 2007+2012</td> 
+            <td>2007</td>
+            <td>74.3</td>
+            <td>-</td>
+            <td>46</td>
+            <td colspan = "2"><a href =https://arxiv.org/abs/1512.02325 >link</a></td>
+          </tr>
+          <tr>
+            <td>SSD500</td>
+            <td>VOC 2007+2012</td> 
+            <td>2007</td>
+            <td>76.8</td>
+            <td>-</td>
+            <td>19</td>
+            <td colspan="2"><a href =https://arxiv.org/abs/1512.02325 >link</a></td>
+          </tr>
+          <tr>
+            <td>YOLOv2</td>
+            <td>VOC 2007+2012</td> 
+            <td>2007</td>
+            <td>76.8</td>
+            <td>34.90 Bn</td>
+            <td>67</td>
+            <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/yolo-voc.cfg>cfg</a></td>
+            <td><a href=https://pjreddie.com/media/files/yolo-voc.weights>weights</a></td>
+          </tr>
+          <tr>
+            <td>YOLOv2 544x544</td>
+            <td>VOC 2007+2012</td> 
+            <td>2007</td>
+            <td>78.6</td>
+            <td>59.68 Bn</td>
+            <td>40</td>
+            <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/yolo-voc.cfg>cfg</a></td>
+            <td><a href=https://pjreddie.com/media/files/yolo-voc.weights>weights</a></td>
+          </tr>
+          <tr>
+            <td>Tiny YOLO</td>
+            <td>VOC 2007+2012</td> 
+            <td>2007</td>
+            <td>57.1</td>
+            <td>6.97 Bn</td>
+            <td>207</td>
+            <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/tiny-yolo-voc.cfg>cfg</a></td>
+            <td><a href=https://pjreddie.com/media/files/tiny-yolo-voc.weights>weights</a></td>
+          </tr>
+          <tr>
+            <td colspan="8"><hr/></td>
+          </tr>
+          <tr>
+            <td>SSD300</td>
+            <td>COCO trainval</td> 
+            <td>test-dev</td>
+            <td>41.2</td>
+            <td>-</td>
+            <td>46</td>
+            <td colspan = "2"><a href =https://arxiv.org/abs/1512.02325 >link</a></td>
+          </tr>
+          <tr>
+            <td>SSD500</td>
+            <td>COCO trainval</td> 
+            <td>test-dev</td>
+            <td>46.5</td>
+            <td>-</td>
+            <td>19</td>
+            <td colspan="2"><a href =https://arxiv.org/abs/1512.02325 >link</a></td>
+          </tr>
+
+          <tr>
+            <td>YOLOv2 608x608</td>
+            <td>COCO trainval</td> 
+            <td>test-dev</td>
+            <td>48.1</td>
+            <td>62.94 Bn</td>
+            <td>40</td>
+            <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/yolo.cfg>cfg</a></td>
+            <td><a href=https://pjreddie.com/media/files/yolo.weights>weights</a></td>
+          </tr>
+          <tr>
+            <td>Tiny YOLO</td>
+            <td>COCO trainval</td> 
+            <td>-</td>
+            <td>-</td>
+            <td>7.07 Bn</td>
+            <td>200</td>
+            <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/tiny-yolo.cfg>cfg</a></td>
+            <td><a href=https://pjreddie.com/media/files/tiny-yolo.weights>weights</a></td>
+          </tr>
+        </table>
+
+        <h2 style="text-align: left;">How To Work</h2>
+        <p style="text-align: left;">기존의 탐지시스템은 Repurpose classifiers 혹은 Localizers를 사용하여 탐지를 수행하였습니다.
+          <br>이 방법은 모델의 여러 위치에 격자 이미지를 적용하는 방식이며 격자 중 높은 일치도를 보인 물체를 탐지합니다.  </p>
+          <p style="text-align: left;">하지만 YOLO는 하나의 신경망을 전체 이미지에 적용하는 완전히 다른 방식을 사용합니다. 
+            <br>이 신경망은 이미지를 여러 영역으로 분할하고 각 영역에 대한 바운딩 영역과 가중치로 사용될 일치 확률을 예측하여 줍니다.  </p>
+            <img class="img-fluid img-centered" src="img/model2.png" alt="">
+            <p style="text-align: left;"><br>YOLO 시스템은 분류 기반의 시스템에 비해 몇 가지 장점을 가지고 있습니다. 
+              <br>그 중 하나는 테스트 시간 동안 전체 이미지를 보고 예측된 정보를 이미지에 텍스트로 알려줍니다.
+              또한 수천개의 단일 이미지가 필요한  <a href="https://github.com/rbgirshick/rcnn">R-CNN</a> 과는 달리 단일 네트워크만으로 평가하고 예측이 가능합니다. 이로 인해 R-CNN보다는 1000배 이상 빠르며 <a href="https://github.com/rbgirshick/fast-rcnn">Fast R-CNN</a>보다는 100배 빠릅니다. 
+              전체 시스템에 대한 자세한 내용은 해당 <a href="https://arxiv.org/abs/1612.08242">논문</a>을 참고하여 주세요</p>
+              <h3 style="text-align: left;">버전 2의 새로운 기능</h3>
+              <p style="text-align: left">YOLOv2는 트레이닝을 개선하고 성능을 향상시키기 위해 몇 가지 트릭을 사용합니다. Overfeat과 SSD 처럼 심층 신경망인 Fully-Convolutional 신경망 모델을 사용하지만 Hard-Negatives 정보가 아닌 전체 이미지를 계속 학습합니다. Like Faster R-CNN we adjust priors on bounding boxes instead of predicting the width and height outright. 그러나 여전히 x, y좌표를 직접 예측하는데 전체 내용은 해당  <a href="https://arxiv.org/abs/1612.08242">논문</a>에 있습니다.</p>
+              <h2 style="text-align: left">사전에 학습된 모델을 사용한 탐지 기법</h2>
+              <p style="text-align: left">이후 부터는 사전 훈련 된 모델을 사용하여 YOLO 시스템으로 물체를 탐지 하는 방법을 설명합니다.
+                <br>Darknet을 아직 설치 하지 않았다면 먼저 <a href="https://pjreddie.com/darknet/install/">설치</a> 해야합니다.</p>
+                <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                  <br>&nbsp&nbsp .git clone https://github.com/pjreddie/darknet
+                  <br>&nbsp&nbsp cd darknet
+                  <br>&nbsp&nbsp make
+                  <br>&nbsp
+                </p>
+                <h3 style ="text-align: left">
+                  Easy! 
+                </h3>
+                <p style="text-align: left">당신에게는 이미 cfg/ 서브디렉토리에 YOLO에 대한 설정파일이 있습니다. 
+                  <br> 사전 훈련된 가중치 파일을 다운받으세요. <a href="https://pjreddie.com/media/files/yolo.weights">다운로드 (258 MB)</a>. 이후 다음을 실행하세요.</p>
+                  <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                    <br>&nbsp&nbsp wget https://pjreddie.com/media/files/yolo.weights<br>&nbsp</p>
+
+                    <p style="text-align: left">이후 탐지기를 실행하세요</p>
+                    <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                      <br>&nbsp&nbsp /darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg
+                      <br>&nbsp</p>
+                      <p style="text-align: left;">다음과 같은 출력이 표시됩니다.</p>
+                      <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                        <br>&nbsp&nbsp .layer     filters    size              input                output
+                        <br>&nbsp&nbsp 0 conv     32  3 x 3 / 1   416 x 416 x   3   -&gt;   416 x 416 x  32
+                        <br>&nbsp&nbsp 1 max          2 x 2 / 2   416 x 416 x  32   -&gt;   208 x 208 x  32
+                        <br>&nbsp&nbsp .......
+                        <br>&nbsp&nbsp 29 conv    425  1 x 1 / 1    13 x  13 x1024   -&gt;    13 x  13 x 425
+                        <br>&nbsp&nbsp 30 detection
+                        <br>&nbsp&nbsp Loading weights from yolo.weights...Done!
+                        <br>&nbsp&nbsp data/dog.jpg: Predicted in 0.016287 seconds.
+                        <br>&nbsp&nbsp car: 54%
+                        <br>&nbsp&nbsp bicycle: 51%
+                        <br>&nbsp&nbsp dog: 56%
+                        <br>&nbsp
+                      </p>
+
+                      <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_11.14.54_AM.png" alt="">
+                      <p style="text-align: left">Darknet은 탐지한 객체와 일치도, 발견하는데 소요된 시간을 인쇄합니다. 
+                        <br>해당 시스템은 <font color="#00FFF5">Open CV</font>를 이용해 컴파일하지 않았기 떄문에 탐지를 직접적으로 표시할 수 없습니다. 그렇기에 탐지된 내용을 predictions.png로 저장하고 사용자는 저장된 파일을 열어 탐지된 객체를 확인하는 방식을 사용하고 있습니다.
+                        <br> 해당 시스템은 CPU를 사용하기 때문에 하나의 이미지당 6초에서 12초가 소요됩니다. <br>만약 GPU 환경을 사용한다면 더 빨라질 수 있습니다.</p>
+                        <p style="text-align: left;">영감을 위한 몇 가지 예시 파일들을 포함시켜 놓았습니다. 확인해보시길 바랍니다. 
+                          <br><font color="#00FFF5">1. data/eagle.jpg     <br>2. data/dog.jpg     <br>3. data/person.jpg     <br>4. data/horses.jpg</font></p>
+                          <p style="text-align: left"><strong><font color="#00FFF5">detect</font></strong>명령은 보다 일반적인 명령어 버전의 줄임말이며 다음 명령어와 동일합니다.</p>
+                          <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                            <br>&nbsp&nbsp./darknet detector test cfg/coco.data cfg/yolo.cfg yolo.weights data/dog.jpg
+                            <br>&nbsp&nbsp
+                          </p>
+                          <p style="text-align: left;">하나의 이미지에서 탐지를 실행하는 시스템이지만 <br>웹캠에서 실행되는 것과 같은
+                            다른 환경에서의 다른 작업을 수행 할 것인지를 아는 것이 유용합니다. <a href="#demo">이후에 배우게 됩니다.</a></p>
+                            <h3 style="text-align: left;">다중 이미지</h3>
+                            <p style="text-align: left">명령창에 이미지를 제공하는 대신 하나의 행에 여러 이미지를 시도해 볼 수 있으며 구성과 가중치가 완료되면 프롬포트가 표시됩니다. </p>
+                            <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                              <br>&nbsp&nbsp./darknet detect cfg/yolo.cfg yolo.weights
+                              <br>&nbsp&nbsplayer     filters    size              input                output
+                              <br>&nbsp&nbsp0 conv     32  3 x 3 / 1   416 x 416 x   3   -&gt;   416 x 416 x  32
+                              <br>&nbsp&nbsp1 max          2 x 2 / 2   416 x 416 x  32   -&gt;   208 x 208 x  32
+                              <br>&nbsp&nbsp.......
+                              <br>&nbsp&nbsp29 conv    425  1 x 1 / 1    13 x  13 x1024   -&gt;    13 x  13 x 425
+                              <br>&nbsp&nbsp30 detection
+                              <br>&nbsp&nbspLoading weights from yolo.weights ...Done!
+                              <br>&nbsp&nbspEnter Image Path:
+                              <br>&nbsp&nbsp
+                            </p>
+                            <p style="text-align: left;">
+                              <font color="#00FFF5">data/horses.jpg</font>이미지의 경로를 입력하면  해당 이미지의 경계 영역을 예측하게 됩니다.</p>
+                              <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_12.26.06_PM.png" alt="">
+                              <p style="text-align: left;">하나의 이미지가 완료되면 다른 이미지를 시도하귀 위해 더 많은 경로를 물어볼 것입니다.<br><font color="#00FFF5">Ctrl-C</font>를 사용해 프로그램을 종료하시면 됩니다.</p>
+                              <h3 style="text-align: left;">탐색의 임계 값 변경</h3>
+                              <p style="text-align: left;">YOLO 시스템의 신뢰도는 기본값이 0.25이며 객체의 탐색 일치도가 0.25 이상인 객체만을 표시하여 사용자에게 보여줍니다.<br>이러한 임계값은 <font color="#00FFF5">-thresh &lt;val&gt;</font> 명령어 플래그를 이용하여 임계값을 변경 할 수 있습니다. <br>아래의 예시는 탐색된 모든 객체를 표시하기 위하여 임계값을 0으로 설정한 것입니다. 예시 이미지를 참고하시기 바랍니다.</p>
+                              <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                                <br>&nbsp&nbsp./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg -thresh 0
+                                <br>&nbsp
+                              </p>
+                              <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_12.03.22_PM.png" alt="">
+                              <p style="text-align: left;">따라서 모델별로 임계값을 제어하는 값을 다른 값으로 설정할 수 있습니다. <br>그러나 이것이 유용하다고 명백하게 말하기는 힘듭니다.</p>
+                              <h2 style="text-align: left;"><a id=tiny></a>Tiny YOLO</h2>
+                              <p>Tiny YOLO 시스템은<a href="https://pjreddie.com/darknet/imagenet/#r채eference">Darknet reference network</a>를 기반으로 작동하며 일반 YOLO모델보다 훨씬 빠르지만 정확성이 떨어집니다. VOC에 대한 교육 버전을 사용하려면 다음을 수행하시기 바랍니다.</p>
+                              <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                                <br>&nbsp&nbsp wget https://pjreddie.com/media/files/tiny-yolo-voc.weights
+                                <br>&nbsp&nbsp./darknet detector test cfg/voc.data cfg/tiny-yolo-voc.cfg tiny-yolo-voc.weights data/dog.jpg
+                                <br>&nbsp
+                              </p>
+                              <p style="text-align: left;">어느 것이 좋고 완벽하다고 자신할 수 없지만 Tiny YOLO 시스템은 확실히 빠릅니다. GPU에서는 <font color="#00FFF5">200 FPS</font> 이상에서 실행이됩니다.</p>
+
+                              <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-26_at_11.22.46_PM.png" alt="">
+                              <h2><a id=demo></a>Real-Time Detection on a Webcam</h2>
+                              <p>Running YOLO on test data isn't very interesting if you can't see the result. Instead of running it on a bunch of images let's run it on the input from a webcam!</p>
+                              <p>To run this demo you will need to compile <a href="https://pjreddie.com/darknet/install/#cuda">Darknet with CUDA and OpenCV</a>. Then run the command:</p>
+                              <pre><code>./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights
+                              </code></pre>
+                              <p>YOLO will display the current FPS and predicted classes as well as the image with bounding boxes drawn on top of it.</p>
+                              <p>You will need a webcam connected to the computer that OpenCV can connect to or it won't work. If you have multiple webcams connected and want to select which one to use you can pass the flag <code>-c &lt;num&gt;</code> to pick (OpenCV uses webcam <code>0</code> by default).</p>
+                              <p>You can also run it on a video file if OpenCV can read the video:</p>
+                              <pre><code>./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights &lt;video file&gt;
+                              </code></pre>
+                              <p>That's how we made the YouTube video above.</p>
+                              <h2><a id=train-voc></a>Training YOLO on VOC</h2>
+                              <p>You can train YOLO from scratch if you want to play with different training regimes, hyper-parameters, or datasets. Here's how to get it working on the Pascal VOC dataset.</p>
+                              <h3>Get The Pascal VOC Data</h3>
+                              <p>To train YOLO you will need all of the VOC data from 2007 to 2012. You can find links to the data <a href="https://pjreddie.com/projects/pascal-voc-dataset-mirror/">here</a>. To get all the data, make a directory to store it all and from that directory run:</p>
+                              <pre><code>wget https://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar
+                                wget https://pjreddie.com/media/files/VOCtrainval_06-Nov-2007.tar
+                                wget https://pjreddie.com/media/files/VOCtest_06-Nov-2007.tar
+                                tar xf VOCtrainval_11-May-2012.tar
+                                tar xf VOCtrainval_06-Nov-2007.tar
+                                tar xf VOCtest_06-Nov-2007.tar
+                              </code></pre>
+                              <p>There will now be a <code>VOCdevkit/</code> subdirectory with all the VOC training data in it. </p>
+                              <h3>Generate Labels for VOC</h3>
+                              <p>Now we need to generate the label files that Darknet uses. Darknet wants a <code>.txt</code> file for each image with a line for each ground truth object in the image that looks like:</p>
+                              <pre><code>&lt;object-class&gt; &lt;x&gt; &lt;y&gt; &lt;width&gt; &lt;height&gt;
+                              </code></pre>
+                              <p>Where <code>x</code>, <code>y</code>, <code>width</code>, and <code>height</code> are relative to the image's width and height. To generate these file we will run the <code>voc_label.py</code> script in Darknet's <code>scripts/</code> directory. Let's just download it again because we are lazy.</p>
+                              <pre><code>wget https://pjreddie.com/media/files/voc_label.py
+                                python voc_label.py
+                              </code></pre>
+                              <p>After a few minutes, this script will generate all of the requisite files. Mostly it generates a lot of label files in <code>VOCdevkit/VOC2007/labels/</code> and <code>VOCdevkit/VOC2012/labels/</code>. In your directory you should see:</p>
+                              <pre><code>ls
+                                2007_test.txt   VOCdevkit
+                                2007_train.txt  voc_label.py
+                                2007_val.txt    VOCtest_06-Nov-2007.tar
+                                2012_train.txt  VOCtrainval_06-Nov-2007.tar
+                                2012_val.txt    VOCtrainval_11-May-2012.tar
+                              </code></pre>
+                              <p>The text files like <code>2007_train.txt</code> list the image files for that year and image set. Darknet needs one text file with all of the images you want to train on. In this example, let's train with everything except the 2007 test set so that we can test our model. Run:</p>
+                              <pre><code>cat 2007_train.txt 2007_val.txt 2012_*.txt &gt; train.txt
+                              </code></pre>
+                              <p>Now we have all the 2007 trainval and the 2012 trainval set in one big list. That's all we have to do for data setup!</p>
+                              <h3>Modify Cfg for Pascal Data</h3>
+                              <p>Now go to your Darknet directory. We have to change the <code>cfg/voc.data</code> config file to point to your data:</p>
+                              <pre><code>  1 classes= 20
+                                2 train  = &lt;path-to-voc&gt;/train.txt
+                                3 valid  = &lt;path-to-voc&gt;2007_test.txt
+                                4 names = data/voc.names
+                                5 backup = backup
+                              </code></pre>
+                              <p>You should replace <code>&lt;path-to-voc&gt;</code> with the directory where you put the VOC data.</p>
+                              <h3>Download Pretrained Convolutional Weights</h3>
+                              <p>For training we use convolutional weights that are pre-trained on Imagenet. We use weights from the <a href="https://pjreddie.com/darknet/imagenet/#extraction">Extraction</a> model. You can just download the weights for the convolutional layers <a href="https://pjreddie.com/media/files/darknet19_448.conv.23">here (76 MB)</a>.</p>
+                              <pre><code>wget https://pjreddie.com/media/files/darknet19_448.conv.23
+                              </code></pre>
+                              <p>If you want to generate the pre-trained weights yourself, download the pretrained <a href="https://pjreddie.com/darknet/imagenet/#darknet19_448">Darknet19 448x448 model</a> and run the following command:</p>
+                              <pre><code>./darknet partial cfg/darknet19_448.cfg darknet19_448.weights darknet19_448.conv.23 23
+                              </code></pre>
+                              <p>But if you just download the weights file it's way easier.</p>
+                              <h3 style="text-align: left;">모델 훈련</h3>
+                              <p style="text-align: left;">아래의 명령어를 이용해 훈련을 시킬 수 있습니다. </p>
+                              <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                                <br>&nbsp&nbsp./darknet detector train cfg/voc.data cfg/yolo-voc.cfg darknet19_448.conv.23
+                                <br>&nbsp
+                              </p>
+                              <h2 style="text-align: left;">COCO에서의 YOLO 훈련</h2>
+                              <p style="text-align: left;">만약 다른 훈련체계, Hyper-Parameters 또는 데이터셋을 사용하고 싶다면 YOLO를 처음부터 훈련 시킬 수 있습니다. <a href="http://mscoco.org/dataset/#overview">COCO dataset</a>에서 작업을 하는 방법은 다음과 같습니다.</p>
+                              <h3 style="text-align: left;">COCO Data 얻어오기</h3>
+                              <p style="text-align: left;">YOLO 시스템을 훈련시키기 위해서는 모든 COCO의 데이터와 라벨이 필요합니다. <br> <font style="color: rgb(0, 255, 245);">scripts/get_coco_dataset.sh </font>이 스크립트가 해당 작업을 수행합니다. <br>COCO 데이터를 넣고 다운로드 하려면 아래를 참고하시면 됩니다.</p>
+                              <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                                <br>&nbsp&nbspcp scripts/get_coco_dataset.sh data
+                                <br>&nbsp&nbspcd data
+                                <br>&nbsp&nbspbash get_coco_dataset.sh
+                                <br>&nbsp&nbsp
+                              </p>
+                              <p style="text-align: left;">이제 Darknet에 모든 데이터와 라벨을 생성해야 합니다.</p>
+                              <h3 style="text-align: left;">COCO의 CFG 수정</h3>
+                              <p style="text-align: left;">이제 Darknet 폴더로 이동합니다.
+                                <br> <font style="color: rgb(0, 255, 245);">cfg/coco.data</font>를 가리키도록 config 파일을 변경해야 합니다.</p>
+                                <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                                  <br>&nbsp&nbsp1 classes= 80
+                                  <br>&nbsp&nbsp2 train  = &lt;path-to-coco&gt;/trainvalno5k.txt
+                                  <br>&nbsp&nbsp3 valid  = &lt;path-to-coco&gt;/5k.txt
+                                  <br>&nbsp&nbsp4 names = data/coco.names
+                                  <br>&nbsp&nbsp5 backup = backup                  
+                                  <br>&nbsp
+                                </p>
+                                <p style="text-align: left;">COCO 데이터를 저장하는 디렉토리로 <font style="color: rgb(0, 255, 245);">&lt;path-to-coco&gt;</font>를 대체해야합니다.</p>
+                                <p style="text-align: left;">또한 <font style="color: rgb(0, 255, 245);">cfg</font>를 테스팅 용이 아닌 훈련용으로 수정해야합니다. <font style="color: rgb(0, 255, 245);">cfg/yolo.cfg</font>가 아래와 같아야 합니다.</p>
+                                <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                                  <br>&nbsp&nbsp[net]
+                                  <br>&nbsp&nbsp# Testing
+                                  <br>&nbsp&nbsp# batch=1
+                                  <br>&nbsp&nbsp# subdivisions=1
+                                  <br>&nbsp&nbsp# Training
+                                  <br>&nbsp&nbspbatch=64
+                                  <br>&nbsp&nbspsubdivisions=8
+                                  <br>&nbsp&nbsp....
+                                  <br>&nbsp&nbsp
+                                </p>
+                                <h3 style="text-align: left;">모델 훈련</h3>
+                                <p style="text-align: left;">이제부터 모델 훈련을 위해 아래 명령어를 실행하시기 바랍니다.</p>
+                                <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                                  <br>&nbsp&nbsp./darknet detector train cfg/coco.data cfg/yolo.cfg darknet19_448.conv.23
+                                  <br>&nbsp
+                                </p>
+                                <p style="text-align: left;">만약 여러개의 GPU를 사용한다면 다음 명령어를 실행하시기 바랍니다.</p>
+                                <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                                  <br>&nbsp&nbsp./darknet detector train cfg/coco.data cfg/yolo.cfg darknet19_448.conv.23 -gpus 0,1,2,3
+                                  <br>&nbsp&nbsp
+                                </p>
+                                <p style="text-align: left;">만약 Checkpoint에서 훈련을 중지하고 다시 시작하기 위해서는 다음 명령어를 실행하시기 바랍니다.</p>
+                                <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                                 <br>&nbsp&nbsp ./darknet detector train cfg/coco.data cfg/yolo.cfg backup/yolo.backup -gpus 0,1,2,3
+                                 <br>&nbsp&nbsp
+                               </p>
+                               <h2 style="text-align: left;">구 버전 사용</h2>
+                               <p style="text-align: left;">YOLO의 1버전을 찾으신다면 아래의 사이트에서 이용하실 수 있습니다.
+                                <br><a href="https://pjreddie.com/darknet/yolov1/">https://pjreddie.com/darknet/yolov1/</a></p>
+                                <h2 style="text-align: left;">인용</h2>
+                                <p style="text-align: left;">YOLOv2를 작업에 사용한다면 해당 논문을 인용하십시오!</p>
+                                <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;"><br>&nbsp&nbsp@article{redmon2016yolo9000,
+                                  <br>&nbsp&nbsptitle={YOLO9000: Better, Faster, Stronger},
+                                  <br>&nbsp&nbspauthor={Redmon, Joseph and Farhadi, Ali},
+                                  <br>&nbsp&nbspjournal={arXiv preprint arXiv:1612.08242},
+                                  <br>&nbsp&nbspyear={2016}
+                                <br>&nbsp&nbsp}
+                                <br>&nbsp&nbsp
+                              </p>
+                            </div>
+                          </body>
+                          </html>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- Download Section -->
+                  <section id="download" class="download-section content-section text-center">
+                    <div class="container">
+                      <div class="col-lg-8 mx-auto">
+                       <h2>Darknet YOLO API 홈페이지</h2>
+                       <a href="https://pjreddie.com/darknet/yolo/" class="btn btn-default btn-lg">Visit Page</a>
+                     </div>
+                   </div>
+                 </section>
+
+                 <!-- Contact Section -->
+                 <section id="contact" class="content-section text-center">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-16 mx-auto">
+                        <P>저희가 직접 작성한 YOLO API의 소스코드에 대한 한글 매뉴얼은 아래의 Github Repository에 올려 놓았습니다. </P>
+                        <ul class="list-inline banner-social-buttons">
+
+                          <li class="list-inline-item">
+                            <a href="https://github.com/OSSProjectYOLO/DarkNetYoloAPI" class="btn btn-default btn-lg">
+                              <i class="fa fa-github fa-fw"></i>
+                              <span class="network-name">Github</span>
+                            </a>
+                          </li>
+
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
 
 
-    <!-- Footer -->
-    <footer>
-      <div class="container text-center">
-        <p>Copyright &copy; 이대경 김한섭 강일송 2017 오픈소스SW Team Project</p>
-      </div>
-    </footer>
+                <!-- Footer -->
+                <footer>
+                  <div class="container text-center">
+                    <p>Copyright &copy; 이대경 김한섭 강일송 2017 오픈소스SW Team Project</p>
+                  </div>
+                </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- Bootstrap core JavaScript -->
+                <script src="vendor/jquery/jquery.min.js"></script>
+                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+                <!-- Plugin JavaScript -->
+                <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+                <!-- Custom scripts for this template -->
+                <script src="js/grayscale.min.js"></script>
 
-    <!-- Custom scripts for this template -->
-    <script src="js/grayscale.min.js"></script>
+              </body>
 
-  </body>
-
-  </html>
+              </html>

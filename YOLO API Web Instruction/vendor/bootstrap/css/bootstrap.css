@@ -244,20 +244,6 @@ a:not([href]):not([tabindex]):focus {
   outline: 0;
 }
 
-pre,
-code,
-kbd,
-samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
-}
-
-pre {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  overflow: auto;
-  -ms-overflow-style: scrollbar;
-}
 
 figure {
   margin: 0 0 1rem;
@@ -576,27 +562,6 @@ mark,
   color: #868e96;
 }
 
-code,
-kbd,
-pre,
-samp {
-  font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
-code {
-  padding: 0.2rem 0.4rem;
-  font-size: 90%;
-  color: #bd4147;
-  background-color: #f8f9fa;
-  border-radius: 0.25rem;
-}
-
-a > code {
-  padding: 0;
-  color: inherit;
-  background-color: inherit;
-}
-
 kbd {
   padding: 0.2rem 0.4rem;
   font-size: 90%;
@@ -609,22 +574,6 @@ kbd kbd {
   padding: 0;
   font-size: 100%;
   font-weight: 700;
-}
-
-pre {
-  display: block;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 90%;
-  color: #212529;
-}
-
-pre code {
-  padding: 0;
-  font-size: inherit;
-  color: inherit;
-  background-color: transparent;
-  border-radius: 0;
 }
 
 .pre-scrollable {
