@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Joseph Redmon">
+  <meta name="msvalidate.01" content="305CD82AE65FC4C9597F80416C1271B7" />
+  <link rel='stylesheet' media='screen' href='base.css' />
+  <link rel='stylesheet' media='screen' href='darknet.css' />
+  <link rel='stylesheet' media='screen' href='index.css' />
+  <link rel='stylesheet' media='screen' href='papers.css' />
+  <link rel='stylesheet' media='screen' href='projects.css' />
+  <link rel='stylesheet' media='screen' href='coqindex.css' />
+  
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Darknet - Yolo API</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/grayscale.min.css" rel="stylesheet">
+  <link rel='icon' type='image/png' href='img/icon.png' />
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37236849-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">OSS Project</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#download">Download</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Intro Header -->
+  <header class="masthead">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-16 mx-auto">
+            <div class="main markdown">
+              <p id=dnlogo>
+                <img class="img-fluid img-centered" src="img/yologo_1.png" alt="">
+              </p>
+            </div>
+            <p><font size="5"> <strong>YOLO(You Only Look Once) 최첨단 실시간 물체 감지 시스템</strong></font>
+              <br>조선대학교 컴퓨터공학과 오픈소스 소프트웨어
+              <br>Team-Project 이대경 김한섭 강일송</P></p>
+
+
+              <a href="#about" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+           <h1>Installing Darknet</h1>
+           <p>Darknet is easy to install with only two optional dependancies:</p>
+           <ul>
+            <li><a href="http://opencv.org/">OpenCV</a> if you want a wider variety of supported image types.</li>
+            <li><a href="https://developer.nvidia.com/cuda-downloads">CUDA</a> if you want GPU computation.</li>
+          </ul>
+          <p>Both are optional so lets start by just installing the base system. I've only tested this on Linux and Mac computers. If it doesn't work for you, email me or something?</p>
+          <h2>Installing The Base System</h2>
+          <p>First clone the Darknet git repository <a href="https://github.com/pjreddie/darknet">here</a>. This can be accomplished by:</p>
+          <pre><code>git clone https://github.com/pjreddie/darknet.git
+            cd darknet
+            make
+          </code></pre>
+          <p>If this works you should see a whole bunch of compiling information fly by:</p>
+          <pre><code>mkdir -p obj
+            gcc -I/usr/local/cuda/include/  -Wall -Wfatal-errors  -Ofast....
+            gcc -I/usr/local/cuda/include/  -Wall -Wfatal-errors  -Ofast....
+            gcc -I/usr/local/cuda/include/  -Wall -Wfatal-errors  -Ofast....
+            .....
+            gcc -I/usr/local/cuda/include/  -Wall -Wfatal-errors  -Ofast -lm....
+          </code></pre>
+          <p>If you have any errors, try to fix them? If everything seems to have compiled correctly, try running it!</p>
+          <pre><code>./darknet
+          </code></pre>
+          <p>You should get the output:</p>
+          <pre><code>usage: ./darknet &lt;function&gt;
+          </code></pre>
+          <p>Great! Now check out the cool things you can do with darknet <a href="https://pjreddie.com/darknet/">here</a>.</p>
+          <h2><a name="cuda"></a>Compiling With CUDA</h2>
+          <p>Darknet on the CPU is fast but it's like 500 times faster on GPU! You'll have to have an <a href="https://developer.nvidia.com/cuda-gpus">Nvidia GPU</a> and you'll have to install <a href="https://developer.nvidia.com/cuda-downloads">CUDA</a>. I won't go into CUDA installation in detail because it is terrifying.</p>
+          <p>Once you have CUDA installed, change the first line of the <code>Makefile</code> in the base directory to read:</p>
+          <pre><code>GPU=1
+          </code></pre>
+          <p>Now you can <code>make</code> the project and CUDA will be enabled. By default it will run the network on the 0th graphics card in your system (if you installed CUDA correctly you can list your graphics cards using <code>nvidia-smi</code>). If you want to change what card Darknet uses you can give it the optional command line flag <code>-i &lt;index&gt;</code>, like:</p>
+          <pre><code>./darknet -i 1 imagenet test cfg/alexnet.cfg alexnet.weights
+          </code></pre>
+          <p>If you compiled using CUDA but want to do CPU computation for whatever reason you can use <code>-nogpu</code> to use the CPU instead:</p>
+          <pre><code>./darknet -nogpu imagenet test cfg/alexnet.cfg alexnet.weights
+          </code></pre>
+          <p>Enjoy your new, super fast neural networks!</p>
+          <h2><a name="opencv"></a>Compiling With OpenCV</h2>
+          <p>By default, Darknet uses <a href="https://github.com/nothings/stb/blob/master/stb_image.h"><code>stb_image.h</code></a> for image loading. If you want more support for weird formats (like CMYK jpegs, thanks Obama) you can use <a href="http://opencv.org/">OpenCV</a> instead! OpenCV also allows you to view images and detections without having to save them to disk.</p>
+          <p>First install OpenCV. If you do this from source it will be long and complex so try to get a package manager to do it for you.</p>
+          <p>Next, change the 2nd line of the <code>Makefile</code> to read:</p>
+          <pre><code>OPENCV=1
+          </code></pre>
+          <p>You're done! To try it out, first re-<code>make</code> the project. Then use the <code>imtest</code> routine to test image loading and displaying:</p>
+          <pre><code>./darknet imtest data/eagle.jpg
+          </code></pre>
+          <p>If you get a bunch of windows with eagles in them you've succeeded! They may look like:</p>
+          <p><img alt="" src="/media/image/Screen_Shot_2015-06-10_at_2.47.08_PM.png" /></p>
+        </div>
+        
+        
+
+      </body>
+    </div>
+  </section>
+
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <p>Copyright &copy; 이대경 김한섭 강일송 2017 오픈소스SW Team Project</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/grayscale.min.js"></script>
+
+</body>
+
+</html>

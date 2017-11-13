@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Joseph Redmon">
+  <meta name="msvalidate.01" content="305CD82AE65FC4C9597F80416C1271B7" />
+  <link rel='stylesheet' media='screen' href='base.css' />
+  <link rel='stylesheet' media='screen' href='darknet.css' />
+  <link rel='stylesheet' media='screen' href='index.css' />
+  <link rel='stylesheet' media='screen' href='papers.css' />
+  <link rel='stylesheet' media='screen' href='projects.css' />
+  <link rel='stylesheet' media='screen' href='coqindex.css' />
+  
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Darknet - Yolo API</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/grayscale.min.css" rel="stylesheet">
+  <link rel='icon' type='image/png' href='img/icon.png' />
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37236849-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">OSS Project</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#download">Download</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Intro Header -->
+  <header class="masthead">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-16 mx-auto">
+            <div class="main markdown">
+              <p id=dnlogo>
+                <img class="img-fluid img-centered" src="img/yologo_1.png" alt="">
+              </p>
+            </div>
+            <p><font size="5"> <strong>YOLO(You Only Look Once) 최첨단 실시간 물체 감지 시스템</strong></font>
+              <br>조선대학교 컴퓨터공학과 오픈소스 소프트웨어
+              <br>Team-Project 이대경 김한섭 강일송</P></p>
+
+
+              <a href="#about" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-37236849-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+
+  <body>
+    <div class=top>
+      <ul class="nav">
+        <a href="/"><li>home</li></a>
+        <a href="/darknet/"><li class=relative><img id=dncircle src="/static/img/darknet_notext.png"></img>darknet</li></a>
+        <a href="/coq-tactics/"><li class=relative><img id=dncircle src="/static/img/coq.png"></img>coq tactics</li></a>
+        <a href="/publications/"><li>publications</li></a>
+        <a href="/projects/"><li>projects</li></a>
+        
+        <a href="/resume/"><li>résumé</li></a>
+      </ul>
+      <div class=break></div>
+      
+      <div class=break></div>
+    </div>
+    
+    <div class="main markdown">
+      <h1>Pascal VOC Dataset Mirror</h1>
+      <p>The <a href="http://host.robots.ox.ac.uk/pascal/VOC/index.html">Pascal VOC challenge</a> is a very popular dataset for building and evaluating algorithms for image classification, object detection, and segmentation. However, the website goes down like all the time. In case you need the file, here they are:</p>
+      <h2>VOC 2012</h2>
+      <ul>
+        <li><a href="http://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar">Train/Validation Data (1.9 GB)</a></li>
+        <li><a href="http://pjreddie.com/media/files/VOC2012test.tar">Test Data (1.8 GB)</a></li>
+        <li><a href="http://pjreddie.com/media/files/VOCdevkit_18-May-2011.tar">Development Kit</a></li>
+        <li><a href="http://pjreddie.com/media/files/VOC2012_doc.pdf">PDF Documentation</a></li>
+      </ul>
+      <h2>VOC 2007</h2>
+      <ul>
+        <li><a href="http://pjreddie.com/media/files/VOCtrainval_06-Nov-2007.tar">Train/Validation Data (439 MB)</a></li>
+        <li><a href="http://pjreddie.com/media/files/VOCtest_06-Nov-2007.tar">Test Data With Annotations (431 MB)</a></li>
+        <li><a href="http://pjreddie.com/media/files/VOCdevkit_08-Jun-2007.tar">Development Kit</a></li>
+        <li><a href="http://pjreddie.com/media/files/VOC2007_doc.pdf">PDF Documentation</a></li>
+      </ul>
+    </div>
+    
+    
+
+  </body>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <p>Copyright &copy; 이대경 김한섭 강일송 2017 오픈소스SW Team Project</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/grayscale.min.js"></script>
+
+</body>
+
+</html>
