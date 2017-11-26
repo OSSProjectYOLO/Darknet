@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Joseph Redmon">
+  <meta name="msvalidate.01" content="305CD82AE65FC4C9597F80416C1271B7" />
+  <link rel='stylesheet' media='screen' href='base.css' />
+  <link rel='stylesheet' media='screen' href='darknet.css' />
+  <link rel='stylesheet' media='screen' href='index.css' />
+  <link rel='stylesheet' media='screen' href='papers.css' />
+  <link rel='stylesheet' media='screen' href='projects.css' />
+  <link rel='stylesheet' media='screen' href='coqindex.css' />
+  
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Darknet - Yolo API</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/grayscale.min.css" rel="stylesheet">
+  <link rel='icon' type='image/png' href='img/icon.png' />
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37236849-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">OSS Project</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#download">Download</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Intro Header -->
+  <header class="masthead">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-16 mx-auto">
+            <div class="main markdown">
+              <p id=dnlogo>
+                <img class="img-fluid img-centered" src="img/yologo_1.png" alt="">
+              </p>
+            </div>
+            <p><font size="5"> <strong>YOLO(You Only Look Once) 최첨단 실시간 물체 감지 시스템</strong></font>
+              <br>조선대학교 컴퓨터공학과 오픈소스 소프트웨어
+              <br>Team-Project 이대경 김한섭 강일송</P></p>
+
+
+              <a href="#about" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h1>ImageNet Classification</h1>
+            <p>Darknet을 사용하여 1000-Class ImageNet 챌린지에 대한 이미지를 분류 할 수 있습니다<a href="http://image-net.org/challenges/LSVRC/2015/index">ImageNet challenge</a>.
+아직 다크 넷을 설치하지 않았다면  <a href="https://pjreddie.com/darknet/install/">먼저 다크 넷을 설치해야합니다.</a>.</p>
+            <h2><a name="classify"></a>Classifying With Pre-Trained Models</h2>
+            <p>
+다음은 Darknet을 설치하고 분류 가중치 파일을 다운로드하고 이미지에 분류자를 실행하는 명령입니다.</p>
+            <pre><code>git clone https://github.com/pjreddie/darknet.git
+              cd darknet
+              make
+              wget https://pjreddie.com/media/files/extraction.weights
+              ./darknet classifier predict cfg/imagenet1k.data cfg/extraction.cfg extraction.weights data/dog.jpg
+            </code></pre>
+            <p>이 예제에서는 추출 모델을 사용하여 자세한 내용을 볼 수 있습니다.<a href="#extraction">예제</a>. 
+이 명령을 실행하면 다음과 같은 결과가 나타납니다.:</p>
+            <pre><code>0: Convolutional Layer: 224 x 224 x 3 image, 64 filters -&gt; 112 x 112 x 64 image
+              1: Maxpool Layer: 112 x 112 x 64 image, 2 size, 2 stride
+              ...
+              23: Convolutional Layer: 7 x 7 x 512 image, 1024 filters -&gt; 7 x 7 x 1024 image
+              24: Convolutional Layer: 7 x 7 x 1024 image, 1000 filters -&gt; 7 x 7 x 1000 image
+              25: Avgpool Layer: 7 x 7 x 1000 image
+              26: Softmax Layer: 1000 inputs
+              27: Cost Layer: 1000 inputs
+              Loading weights from extraction.weights...Done!
+              298 224
+              data/dog.jpg: Predicted in 3.756339 seconds.
+              malamute: 0.194782
+              Eskimo dog: 0.155007
+              Siberian husky: 0.143937
+              dogsled: 0.020943
+              miniature schnauzer: 0.020566
+            </code></pre>
+            <p>
+Darknet은 구성 파일과 가중치를로드 할 때 정보를 표시 한 다음 이미지를 분류하고 이미지의 상위 10 개 클래스를 인쇄합니다. 우리는 이것을 성공으로 생각합니다!!</p>
+            <p>대머리 독수리 이미지와 같은 다른 이미지로 시도 할 수도 있습니다.:</p>
+            <pre><code>./darknet classifier predict cfg/imagenet1k.data cfg/extraction.cfg extraction.weights data/eagle.jpg
+            </code></pre>
+            <p>Which produces:</p>
+            <pre><code>...
+              data/eagle.jpg: Predicted in 4.036698 seconds.
+              bald eagle: 0.797689
+              kite: 0.185116
+              vulture: 0.006402
+              prairie chicken: 0.001041
+              hen: 0.000888
+            </code></pre>
+            <p>아주 좋습니다!</p>
+            <p>이미지 파일을 지정하지 않으면 런타임에 이미지를 묻는 메시지가 나타납니다. 이렇게하면 전체 모델을 다시로드하지 않고 여러 행을 연속으로 분류 할 수 있습니다.. Use the command:</p>
+            <pre><code>./darknet classifier predict cfg/imagenet1k.data cfg/extraction.cfg extraction.weights
+            </code></pre>
+            <p>그러면 다음과 같은 프롬프트가 나타납니다:</p>
+            <pre><code>....
+              27: Softmax Layer: 1000 inputs
+              28: Cost Layer: 1000 inputs
+              Loading weights from extraction.weights...Done!
+              Enter Image Path:
+            </code></pre>
+            <p>이미지 분류에 지루할 때마다 Ctrl-C <code>Ctrl-C</code> 를 사용하여 프로그램을 종료 할 수 있습니다.</p>
+            <h2>Validating On ImageNet</h2>
+            <p>어디에서나 이러한 유효성 검증 세트 번호가 표시됩니다. 어쩌면이 모델들이 실제로 얼마나 잘 작동하는지 스스로 확인하고 싶을 것입니다. 그것을 해봅시다 !</p>
+            <p>
+먼저 유효성 검사 이미지와 cls-loc 주석을 다운로드해야합니다. 주석은 <a href="http://image-net.org/download-images">여기에서다운가능합니다</a> 
+여기에서 얻을 수는 있지만 계정을 만들어야합니다! 모든 것을 다운로드하고 나면 <code>ILSVRC2012_bbox_val_v3.tgz</code>, 및  <code>ILSVRC2012_img_val.tar</code>. 가있는 디렉토리가 있어야합니다. 먼저 압축을 풉니 다.:</p>
+            <pre><code>tar -xzf ILSVRC2012_bbox_val_v3.tgz
+              mkdir -p imgs &amp;&amp; tar xf ILSVRC2012_img_val.tar -C imgs
+            </code></pre>
+            <p>이제 이미지와 주석이 있지만 Darknet이 예측을 평가할 수 있도록 이미지에 라벨을 지정해야합니다.. 
+이 bash 스크립트 하위 <a href="https://github.com/pjreddie/darknet/blob/master/scripts/imagenet_label.sh">디렉토리를 사용하면됩니다.</a>. 
+이미 <code>스크립트 / 하위 디렉토리/</code> 에 있습니다. 우리는 다시 그것을 얻을 수 있고 그것을 실행할 수 있습니다 :</p>
+            <pre><code>wget https://pjreddie.com/media/files/imagenet_label.sh
+              bash imagenet_label.sh
+            </code></pre>
+            <p>이것은 두 가지를 생성 할 것입니다  <code>labelled/</code> 이미지로의 이름이 변경된 심볼릭 링크를 포함하는 디렉토리와 라벨이 붙은 이미지의 경로 목록을 포함하는 inet.val.list 파일.  이 파일을 <code>inet.val.list</code> 서브 디렉토리로 이동해야합니다.  <code>data/</code> </p>
+            <pre><code>mv inet.val.list &lt;path-to&gt;/darknet/data
+            </code></pre>
+            <p>이제 마침내 모델을 검증 할 준비가되었습니다! 먼저<code>Darknet을 다시 만듭니다</code> . 그런 다음 유효성 검사 루틴을 다음과 같이 실행하십시오.</p>
+            <pre><code>./darknet classifier valid cfg/imagenet1k.data cfg/extraction.cfg extraction.weights
+            </code></pre>
+            <p>Note: OpenCV로 Darknet을 컴파일하지 않으면 ImageNet 이미지 중 일부가 stb_image.h에서 지원되지 않는 별난 형식이기 때문에 이미지 넷 이미지를 모두로드 할 수 없습니다.</code></a>.</p>
+            <p>
+CUDA로 컴파일하지 않으면 ImageNet에서 유효성을 검증 할 수는 있지만 오랜 시간이 걸릴 것입니다. 권장하지 않습니다.</p>
+            <h2><a name="pretrained"></a>Pre-Trained Models</h2>
+            <p>다음은 ImageNet 분류를위한 다양한 사전 교육 모델입니다. 정확도는 ImageNet에서 단일 작물 유효성 검사 정확도로 측정됩니다. GPU 타이밍은 Intel i7-4790K (4GHz)의 CPU 타이밍 인 Titan X에서 측정됩니다.</p>
+            <style>
+            td:first-child {text-align:left;}
+            td {text-align:right; padding:0em .5em;}
+            th {padding:0em .5em;}
+            table {
+              margin:0em auto 3em; font-size:1em;
+            }
+            @media (max-width: 640px) {
+              table {
+                font-size: .75em;
+              }
+              .model {
+                font-size: .5em;
+              }
+            }
+          </style>
+
+          <table>
+            <tr>
+              <th style="text-align:left;">Model</th>
+              <th style="text-align:right;">Top-1</th> 
+              <th style="text-align:right;">Top-5</th>
+              <th style="text-align:right;">Ops</th>
+              <th style="text-align:right; ">GPU</th>
+              <th style="text-align:right; ">CPU</th>
+              <th style="text-align:right; ">Cfg</th>
+              <th style="text-align:right; ">Weights</th>
+            </tr>
+
+            <tr>
+              <td><a href=#alexnet>AlexNet</a></td>
+              <td>57.0</td> 
+              <td>80.3</td>
+              <td>2.27 Bn</td>
+              <td>1.5 ms</td>
+              <td>0.3 s</td>
+              <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/alexnet.cfg>cfg</a></td>
+              <td><a href=https://pjreddie.com/media/files/alexnet.weights>285 MB</a></td>
+            </tr>
+
+            <tr>
+              <td><a href=#reference>Darknet Reference</a></td>
+              <td>61.1</td> 
+              <td>83.0</td>
+              <td style="font-weight:bold;">0.81 Bn</td>
+              <td style="font-weight:bold;">1.5 ms</td>
+              <td style="font-weight:bold;">0.16 s</td>
+              <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/darknet.cfg>cfg</a></td>
+              <td><a href=https://pjreddie.com/media/files/darknet.weights>28 MB</a></td>
+            </tr>
+
+            <tr>
+              <td><a href=#vgg>VGG-16</a></td>
+              <td>70.5</td> 
+              <td>90.0</td>
+              <td>30.94 Bn</td>
+              <td>10.7 ms</td>
+              <td>4.9 s</td>
+              <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/vgg-16.cfg>cfg</a></td>
+              <td><a href=https://pjreddie.com/media/files/vgg-16.weights>528 MB</a></td>
+            </tr>
+
+            <tr>
+              <td><a href=#extraction>Extraction</a></td>
+              <td>72.5</td> 
+              <td>90.8</td>
+              <td>8.52 Bn</td>
+              <td>6.4 ms</td>
+              <td>0.95 s</td>
+              <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/extraction.cfg>cfg</a></td>
+              <td><a href=https://pjreddie.com/media/files/extraction.weights>90 MB</a></td>
+            </tr>
+
+            <tr>
+              <td><a href=#darknet19>Darknet19</a></td>
+              <td>72.9</td> 
+              <td>91.2</td>
+              <td>5.58 Bn</td>
+              <td>6.0 ms</td>
+              <td>0.66 s</td>
+              <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/darknet19.cfg>cfg</a></td>
+              <td><a href=https://pjreddie.com/media/files/darknet19.weights>80 MB</a></td>
+            </tr>
+
+            <tr>
+              <td><a href=#darknet19_448>Darknet19 448x448</a></td>
+              <td>76.4</td> 
+              <td>93.5</td>
+              <td>22.33 Bn</td>
+              <td>11.0 ms</td>
+              <td>2.8 s</td>
+              <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/darknet19_448.cfg>cfg</a></td>
+              <td><a href=https://pjreddie.com/media/files/darknet19_448.weights>80 MB</a></td>
+            </tr>
+
+            <tr>
+              <td><a href=#resnet50>Resnet 50</a></td>
+              <td>75.8</td> 
+              <td>92.9</td>
+              <td>10 Bn</td>
+              <td>7.0 ms</td>
+              <td>?? s</td>
+              <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/resnet50.cfg>cfg</a></td>
+              <td><a href=https://pjreddie.com/media/files/resnet50.weights>87 MB</a></td>
+            </tr>
+
+            <tr>
+              <td><a href=#resnet152>Resnet 152</a></td>
+              <td style="font-weight:bold;">77.6</td> 
+              <td style="font-weight:bold;">93.8</td>
+              <td>29.4 Bn</td>
+              <td>?? ms</td>
+              <td>?? s</td>
+              <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/resnet152.cfg>cfg</a></td>
+              <td><a href=https://pjreddie.com/media/files/resnet152.weights>220 MB</a></td>
+            </tr>
+
+            <tr>
+              <td><a href=#densenet201>Densenet 201</a></td>
+              <td>77.0</td> 
+              <td>93.7</td>
+              <td>10.9 Bn</td>
+              <td>?? ms</td>
+              <td>?? s</td>
+              <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/densenet201.cfg>cfg</a></td>
+              <td><a href=https://pjreddie.com/media/files/densenet201.weights>66 MB</a></td>
+            </tr>
+          </table>
+
+          <h3><a name="alexnet"></a>AlexNet</h3>
+          <p>혁명을 시작한 모델입니다!  <a href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf">원래의 모델</a>은 분할 된 GPU에 미치므로 약간의 후속 작업을 통한 모델입니다.<a href="http://arxiv.org/abs/1404.5997">후속 작업</a>.</p>
+          <ul>
+            <li>Top-1 Accuracy: 57.0%</li>
+            <li>Top-5 Accuracy: 80.3%</li>
+            <li>Forward Timing: 1.5 ms/img</li>
+            <li>CPU Forward Timing: 0.3 s/img</li>
+            <li><a href="https://github.com/pjreddie/darknet/blob/master/cfg/alexnet.cfg">cfg file</a></li>
+            <li><a href="http://pjreddie.com/media/files/alexnet.weights">weight file (285 MB)</a></li>
+          </ul>
+          <h3><a name="reference"></a>Darknet Reference Model</h3>
+          <p>이 모델은 작지만 강력하도록 설계되었습니다. 그것은 AlexNet과 동일한 top-1 및 top-5 성능을 달성하지만 매개 변수의 1/10은 달성합니다. 끝에 대부분 큰 연결 레이어가없는 대부분 길쌈 레이어를 사용합니다. CPU에서 AlexNet보다 약 2 배 빠르기 때문에 일부 비전 응용 프로그램에 더 적합합니다.</p>
+          <ul>
+            <li>Top-1 Accuracy: 61.1%</li>
+            <li>Top-5 Accuracy: 83.0%</li>
+            <li>Forward Timing: 1.5 ms/img</li>
+            <li>CPU Forward Timing: 0.16 s/img</li>
+            <li><a href="https://github.com/pjreddie/darknet/blob/master/cfg/darknet.cfg">cfg file</a></li>
+            <li><a href="http://pjreddie.com/media/files/darknet.weights">weight file (28 MB)</a></li>
+          </ul>
+          <h3><a name="vgg"></a>VGG-16</h3>
+          <p>TOxford의 Visual Geometry Group은 ILSVRC-2014 대회에서 VGG-16 모델을 개발했습니다. 매우 정확하고 분류 및 탐지에 널리 사용됩니다. Caffe의 사전 훈련 된 모델에서이 버전을 수정했습니다. Darknet 고유의 이미지 전처리 (평균 빼기 대신 Darknet이 이미지를 -1과 1 사이에서 조정 함)에 맞추기 위해 추가로 6 개의 신기원을 훈련 받았습니다.</p>
+          <ul>
+            <li>Top-1 Accuracy: 70.5%</li>
+            <li>Top-5 Accuracy: 90.0%</li>
+            <li>Forward Timing: 10.7 ms/img</li>
+            <li>CPU Forward Timing: 4.9 s/img</li>
+            <li><a href="https://github.com/pjreddie/darknet/blob/master/cfg/vgg-16.cfg">cfg file</a></li>
+            <li><a href="http://pjreddie.com/media/files/vgg-16.weights">weight file (528 MB)</a></li>
+          </ul>
+          <h3>Extraction<a name="extraction"></a></h3>
+          <p>나는이 모델을 GoogleNet 모델의 파생물로 개발했습니다. "시작"모듈은 사용하지 않으며 1x1 및 3x3 컨벌루션 계층 만 사용합니.</p>
+          <ul>
+            <li>Top-1 Accuracy: 72.5%</li>
+            <li>Top-5 Accuracy: 90.8%</li>
+            <li>Forward Timing: 6.4 ms/img</li>
+            <li>CPU Forward Timing: 0.95 s/img</li>
+            <li><a href="https://github.com/pjreddie/darknet/blob/master/cfg/extraction.cfg">cfg file</a></li>
+            <li><a href="http://pjreddie.com/media/files/extraction.weights">weight file (90 MB)</a></li>
+          </ul>
+          <h3>Darknet19<a name="Darknet19"></a></h3>
+          <p>추출 네트워크를 더 빠르고 정확하게 수정했습니다. 이 네트워크는 다크 넷 레퍼런스 (Darknet) 레퍼런스 네트워크 및 추출 (Extraction)의 아이디어와 네트워크 인 네트워크 (Network In Network), 개시 및 배치 표준화 (Batch Normalization)와 같은 수많은 출판물의 통합이었습니다.</p>
+          <ul>
+            <li>Top-1 Accuracy: 72.9%</li>
+            <li>Top-5 Accuracy: 91.2%</li>
+            <li>Forward Timing: 6.0 ms/img</li>
+            <li>CPU Forward Timing: 0.66 s/img</li>
+            <li><a href="https://github.com/pjreddie/darknet/blob/master/cfg/darknet19.cfg">cfg file</a></li>
+            <li><a href="http://pjreddie.com/media/files/darknet19.weights">weight file (80 MB)</a></li>
+          </ul>
+          <h3>Darknet19 448x448<a name="darknet19_448"></a></h3>
+          <p>I더 큰 입력 이미지 크기 인 , <code>448x448</code>.으로 10 개의 에포크에 대해 Darknet19를 교육했습니다. 이 모델의 성능은 훨씬 뛰어나지 만 이미지 전체가 더 크기 때문에 속도가 느립니다.</p>
+          <ul>
+            <li>Top-1 Accuracy: 76.4%</li>
+            <li>Top-5 Accuracy: 93.5%</li>
+            <li>Forward Timing: 11.0 ms/img</li>
+            <li>CPU Forward Timing: 2.8 s/img</li>
+            <li><a href="https://github.com/pjreddie/darknet/blob/master/cfg/darknet19_448.cfg">cfg file</a></li>
+            <li><a href="http://pjreddie.com/media/files/darknet19_448.weights">weight file (80 MB)</a></li>
+          </ul>
+          <h3>Resnet 50<a name="resnet50"></a></h3>
+          <p>
+어떤 이유로 사람들은 슬퍼해도이 어떤 사람들은 네트워크를 좋아합니다. <a href="https://arxiv.org/abs/1512.03385">Paper</a></p>
+          <ul>
+            <li>Top-1 Accuracy: 75.8%</li>
+            <li>Top-5 Accuracy: 92.9%</li>
+            <li>Forward Timing: ?? ms/img</li>
+            <li>CPU Forward Timing: ?? s/img</li>
+            <li><a href="https://github.com/pjreddie/darknet/blob/master/cfg/resnet50.cfg">cfg file</a></li>
+            <li><a href="https://pjreddie.com/media/files/resnet50.weights">weight file (87 MB)</a></li>
+          </ul>
+          <h3>Resnet 152<a name="resnet152"></a></h3>
+          <p>어떤 이유로 사람들은 슬퍼해도이 어떤 사람들은 네트워크를 좋아합니다. <a href="https://arxiv.org/abs/1512.03385">Paper</a></p>
+          <ul>
+            <li>Top-1 Accuracy: 77.6%</li>
+            <li>Top-5 Accuracy: 93.8%</li>
+            <li>Forward Timing: ?? ms/img</li>
+            <li>CPU Forward Timing: ?? s/img</li>
+            <li><a href="https://github.com/pjreddie/darknet/blob/master/cfg/resnet152.cfg">cfg file</a></li>
+            <li><a href="https://pjreddie.com/media/files/resnet152.weights">weight file (220 MB)</a></li>
+          </ul>
+          <h3>Densenet 201<a name="densenet201"></a></h3>
+          <p>나는 DenseNets를 좋아합니다! 그들은 너무 깊고 너무 미쳐서 잘 작동합니다. Resnet과 마찬가지로 많은 레이어가 sooooo이기 때문에 여전히 느리지 만 적어도 실제로는 잘 작동합니다!<a href="https://arxiv.org/abs/1608.06993">Paper</a></p>
+          <ul>
+            <li>Top-1 Accuracy: 77.0%</li>
+            <li>Top-5 Accuracy: 93.7%</li>
+            <li>Forward Timing: ?? ms/img</li>
+            <li>CPU Forward Timing: ?? s/img</li>
+            <li><a href="https://github.com/pjreddie/darknet/blob/master/cfg/densenet201.cfg">cfg file</a></li>
+            <li><a href="https://pjreddie.com/media/files/densenet201.weights">weight file (67 MB)</a></li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer>
+      <div class="container text-center">
+        <p>Copyright &copy; 이대경 김한섭 강일송 2017 오픈소스SW Team Project</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/grayscale.min.js"></script>
+
+  </body>
+
+  </html>
