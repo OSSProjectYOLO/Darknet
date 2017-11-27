@@ -99,56 +99,60 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
-           <h1>Installing Darknet</h1>
-           <p>Darknet is easy to install with only two optional dependancies:</p>
+           <h1>DARKNET 설치 방법</h1>
+           <p>Darknet은 다음과 같이 두가지 방식을 사용하면 설치하기 쉽습니다.</p>
            <ul>
-            <li><a href="http://opencv.org/">OpenCV</a> if you want a wider variety of supported image types.</li>
-            <li><a href="https://developer.nvidia.com/cuda-downloads">CUDA</a> if you want GPU computation.</li>
+            <li><a href="http://opencv.org/">OpenCV</a> : 다양하게 지원되는 이미지 유형을 원할 경우</li>
+            <li><a href="https://developer.nvidia.com/cuda-downloads">CUDA</a> : CPU 계산을 원할 경우</li>
           </ul>
-          <p>Both are optional so lets start by just installing the base system. I've only tested this on Linux and Mac computers. If it doesn't work for you, email me or something?</p>
-          <h2>Installing The Base System</h2>
-          <p>First clone the Darknet git repository <a href="https://github.com/pjreddie/darknet">here</a>. This can be accomplished by:</p>
-          <pre><code>git clone https://github.com/pjreddie/darknet.git
+          <p>둘 다 선택 사항이므로 기본 시스템을 설치하는 것만으로 시작할 수 있으며 테스트 환경은 리눅스와 맥 환경에서만 실시하였습니다.</p>
+          <h2>기본 시스템 설치</h2>
+          <p>첫째로. Darknet git 저장소를 <a href="https://github.com/pjreddie/darknet">여기서</a> 다운해 주세요. 다음 명령어들을 참고하시면 됩니다.</p>
+           <pre><span style="color:white"><code>git clone https://github.com/pjreddie/darknet.git
             cd darknet
             make
-          </code></pre>
-          <p>If this works you should see a whole bunch of compiling information fly by:</p>
-          <pre><code>mkdir -p obj
+          </code></span></pre>
+          <p>이러한 작업을 수행하면 다음과 같은 많은 수집 정보를 모아야 합니다.
+          </p>
+          <pre><span style="color:white"><code>mkdir -p obj
             gcc -I/usr/local/cuda/include/  -Wall -Wfatal-errors  -Ofast....
             gcc -I/usr/local/cuda/include/  -Wall -Wfatal-errors  -Ofast....
             gcc -I/usr/local/cuda/include/  -Wall -Wfatal-errors  -Ofast....
             .....
             gcc -I/usr/local/cuda/include/  -Wall -Wfatal-errors  -Ofast -lm....
-          </code></pre>
-          <p>If you have any errors, try to fix them? If everything seems to have compiled correctly, try running it!</p>
-          <pre><code>./darknet
-          </code></pre>
-          <p>You should get the output:</p>
-          <pre><code>usage: ./darknet &lt;function&gt;
-          </code></pre>
-          <p>Great! Now check out the cool things you can do with darknet <a href="https://pjreddie.com/darknet/">here</a>.</p>
-          <h2><a name="cuda"></a>Compiling With CUDA</h2>
-          <p>Darknet on the CPU is fast but it's like 500 times faster on GPU! You'll have to have an <a href="https://developer.nvidia.com/cuda-gpus">Nvidia GPU</a> and you'll have to install <a href="https://developer.nvidia.com/cuda-downloads">CUDA</a>. I won't go into CUDA installation in detail because it is terrifying.</p>
-          <p>Once you have CUDA installed, change the first line of the <code>Makefile</code> in the base directory to read:</p>
-          <pre><code>GPU=1
-          </code></pre>
-          <p>Now you can <code>make</code> the project and CUDA will be enabled. By default it will run the network on the 0th graphics card in your system (if you installed CUDA correctly you can list your graphics cards using <code>nvidia-smi</code>). If you want to change what card Darknet uses you can give it the optional command line flag <code>-i &lt;index&gt;</code>, like:</p>
-          <pre><code>./darknet -i 1 imagenet test cfg/alexnet.cfg alexnet.weights
-          </code></pre>
-          <p>If you compiled using CUDA but want to do CPU computation for whatever reason you can use <code>-nogpu</code> to use the CPU instead:</p>
-          <pre><code>./darknet -nogpu imagenet test cfg/alexnet.cfg alexnet.weights
-          </code></pre>
+          </code></span></pre>
+          <p>모든 수집 정보들을 모은것이 확인됬다면 프로그램을 실행해 보세요!
+          </p>
+          <pre><span style="color:white"><code>./darknet
+          </code></span></pre>
+          <p>다음과 같은 출력 결과를 얻어야합니다.</p>
+          <pre><span style="color:white"><code>usage: ./darknet &lt;function&gt;
+          </code></span></pre>
+          <p>좋습니다! 이제 
+            <a href="https://pjreddie.com/darknet/">여기서</a>
+            여러분이 할 수 있는 일들을 확인해 보세요.</p>
+          <h2><a name="cuda"></a>CUDA와 협업</h2>
+          <p>CPU에 있는 Darknet은 빠르지만 GPU에서 500배 더 빠릅니다! 그러기에 <a href="https://developer.nvidia.com/cuda-gpus">Nvidia GPU</a> 와 <a href="https://developer.nvidia.com/cuda-downloads">CUDA</a> 설치해야 합니다. CUDA 설치에 관해서는 복잡한 내용이기에 깊게 다루지는 않겠습니다.</p>
+          <p>CUDA가 설치되어 있다면, 기본 디렉토리에서 <code>Makefile</code>의 첫번째 행을 읽기 전용으로 바꿔줍니다.</p>
+          <pre><span style="color:white"><code>GPU=1
+          </code></span></pre>
+          <p>이제 여러분은 <code>make</code> 입력하면 프로젝트를 생성하고 CUDA를 활성화 할 수 있습니다. 기본적으로 시스템의 우선 순위로 그래픽 카드를 네트워크에서 실행합니다 (만약 CUDA가 올바르게 설치됬다면 <code>nvidia-smi</code> 이용하여 당신의 그래픽 카드 리스트를 확인할 수 있습니다). 만약 당신이 Darknet을 이용하는데 카드를 바꾸기를 원한다면 명령어 줄의 플래그 <code>-i &lt;index&gt;</code>를 아래를 참고하여 바꾸시면 됩니다.</p>
+          <pre><span style="color:white"><code>./darknet -i 1 imagenet test cfg/alexnet.cfg alexnet.weights
+          </code></span></pre>
+          <p>만약 여러분이 CUDA를 사용하여 컴파일 할 수 있지만 어떤 이유로든 사용할 수 있는 CPU계산을 위해 CPU를 대신하여<code>-nogpu</code> 명령어를 사용하세요.</p>
+          <pre><span style="color:white"><code>./darknet -nogpu imagenet test cfg/alexnet.cfg alexnet.weights
+          </code></span></pre>
           <p>Enjoy your new, super fast neural networks!</p>
-          <h2><a name="opencv"></a>Compiling With OpenCV</h2>
-          <p>By default, Darknet uses <a href="https://github.com/nothings/stb/blob/master/stb_image.h"><code>stb_image.h</code></a> for image loading. If you want more support for weird formats (like CMYK jpegs, thanks Obama) you can use <a href="http://opencv.org/">OpenCV</a> instead! OpenCV also allows you to view images and detections without having to save them to disk.</p>
-          <p>First install OpenCV. If you do this from source it will be long and complex so try to get a package manager to do it for you.</p>
-          <p>Next, change the 2nd line of the <code>Makefile</code> to read:</p>
-          <pre><code>OPENCV=1
-          </code></pre>
-          <p>You're done! To try it out, first re-<code>make</code> the project. Then use the <code>imtest</code> routine to test image loading and displaying:</p>
-          <pre><code>./darknet imtest data/eagle.jpg
-          </code></pre>
-          <p>If you get a bunch of windows with eagles in them you've succeeded! They may look like:</p>
+          <h2><a name="opencv"></a>OpenCV를 이용한 컴파일</h2>
+          <p>기본적으로 Darknet은 이미지 로딩을 위해 <a href="https://github.com/nothings/stb/blob/master/stb_image.h"><code>stb_image.h</code></a> 를 사용합니다. 또한 <a href="http://opencv.org/">OpenCV</a>를 사용하면 디스크에 저장하지 않아도 이미지와 탐지 기능을 볼 수 있습니다.</p>
+          <p>우선 OpenCV를 먼저 설치하세요. 소스에서 이 작업을 수행하면 오래걸리고 복잡하므로 패키지 매니저를 사용하여 수행할 수 있습니다.</p>
+          <p>다음으로 <code>Makefile</code>의 두번째 줄을 변경합니다.</p>
+          <pre><span style="color:white"><code>OPENCV=1
+          </code></span></pre>
+          <p>다 끝났습니다! 실행하기 전, 우선 다시 <code>make</code>를 사용해 프로젝트를 다시 시작하세요. 그 다음 <code>imtest</code> 사용하여 영상 로드를 테스트하고 다음을 표시합니다.</p>
+          <pre><span style="color:white"><code>./darknet imtest data/eagle.jpg
+          </code></span></pre>
+          <p>지금까지의 절차대로 정상적으로 동작한다면 아래와 같이 보일 것입니다.</p>
           <p><img alt="" src="/media/image/Screen_Shot_2015-06-10_at_2.47.08_PM.png" /></p>
         </div>
         
