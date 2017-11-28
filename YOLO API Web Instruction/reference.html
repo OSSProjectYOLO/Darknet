@@ -99,88 +99,143 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
+              <div style="text-align:left">                                  
             <h1>ImageNet Classification</h1>
             <p>Darknet을 사용하여 1000-Class ImageNet 챌린지에 대한 이미지를 분류 할 수 있습니다<a href="http://image-net.org/challenges/LSVRC/2015/index">ImageNet challenge</a>.
-아직 다크 넷을 설치하지 않았다면  <a href="https://pjreddie.com/darknet/install/">먼저 다크 넷을 설치해야합니다.</a>.</p>
+아직 다크 넷을 설치하지 않았다면  <a href="https://pjreddie.com/darknet/install/">먼저 다크 넷을 설치해야합니다.</a></p>
             <h2><a name="classify"></a>Classifying With Pre-Trained Models</h2>
             <p>
 다음은 Darknet을 설치하고 분류 가중치 파일을 다운로드하고 이미지에 분류자를 실행하는 명령입니다.</p>
-            <pre><span style="color:#0f0"><span style="text-align:left"><code>git clone https://github.com/pjreddie/darknet.git
-              cd darknet
-              make
-              wget https://pjreddie.com/media/files/extraction.weights
-              ./darknet classifier predict cfg/imagenet1k.data cfg/extraction.cfg extraction.weights data/dog.jpg
-            </code></span></span></pre>
-            <p>이 예제에서는 추출 모델을 사용하여 자세한 내용을 볼 수 있습니다.<a href="#extraction">예제</a>. 
-이 명령을 실행하면 다음과 같은 결과가 나타납니다.:</p>
-            <pre><code>0: Convolutional Layer: 224 x 224 x 3 image, 64 filters -&gt; 112 x 112 x 64 image
-              1: Maxpool Layer: 112 x 112 x 64 image, 2 size, 2 stride
-              ...
-              23: Convolutional Layer: 7 x 7 x 512 image, 1024 filters -&gt; 7 x 7 x 1024 image
-              24: Convolutional Layer: 7 x 7 x 1024 image, 1000 filters -&gt; 7 x 7 x 1000 image
-              25: Avgpool Layer: 7 x 7 x 1000 image
-              26: Softmax Layer: 1000 inputs
-              27: Cost Layer: 1000 inputs
-              Loading weights from extraction.weights...Done!
-              298 224
-              data/dog.jpg: Predicted in 3.756339 seconds.
-              malamute: 0.194782
-              Eskimo dog: 0.155007
-              Siberian husky: 0.143937
-              dogsled: 0.020943
-              miniature schnauzer: 0.020566
-            </code></pre>
-            <p>
+        </div>
+        <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+            <br>&nbsp&nbsp cd darknet
+            <br>&nbsp&nbsp make
+            <br>&nbsp&nbsp make
+            <br>&nbsp&nbsp wget https://pjreddie.com/media/files/extraction.weights
+            <br>&nbsp&nbsp ./darknet classifier predict cfg/imagenet1k.data cfg/extraction.cfg extraction.weights data/dog.jpg
+            <br>&nbsp 
+            
+          </p>
+          
+            <p style="text-align: left"> 이 예제에서는 추출 모델을 사용하여 자세한 내용을 볼 수 있습니다.<a href="#extraction">예제</a>. 
+이 명령을 실행하면 다음과 같은 결과가 나타납니다.</p>
+<p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+    <br>&nbsp&nbsp 0: Convolutional Layer: 224 x 224 x 3 image, 64 filters -&gt; 112 x 112 x 64 image
+    <br>&nbsp&nbsp 1: Maxpool Layer: 112 x 112 x 64 image, 2 size, 2 stride
+    <br>&nbsp&nbsp ...
+    <br>&nbsp&nbsp 23: Convolutional Layer: 7 x 7 x 512 image, 1024 filters -&gt; 7 x 7 x 1024 image
+    <br>&nbsp&nbsp 24: Convolutional Layer: 7 x 7 x 1024 image, 1000 filters -&gt; 7 x 7 x 1000 image
+    <br>&nbsp&nbsp 25: Avgpool Layer: 7 x 7 x 1000 image
+    <br>&nbsp&nbsp 26: Softmax Layer: 1000 inputs
+    <br>&nbsp&nbsp 27: Cost Layer: 1000 inputs
+    <br>&nbsp&nbsp Loading weights from extraction.weights...Done!
+    <br>&nbsp&nbsp 298 224
+    <br>&nbsp&nbsp data/dog.jpg: Predicted in 3.756339 seconds.
+    <br>&nbsp&nbsp malamute: 0.194782
+    <br>&nbsp&nbsp Eskimo dog: 0.155007
+    <br>&nbsp&nbsp Siberian husky: 0.143937
+    <br>&nbsp&nbsp dogsled: 0.020943
+    <br>&nbsp&nbsp miniature schnauzer: 0.020566
+    <br>&nbsp 
+    
+  </p>
+
+          
+            <p style="text-align: left">
 Darknet은 구성 파일과 가중치를로드 할 때 정보를 표시 한 다음 이미지를 분류하고 이미지의 상위 10 개 클래스를 인쇄합니다. 우리는 이것을 성공으로 생각합니다!!</p>
-            <p>대머리 독수리 이미지와 같은 다른 이미지로 시도 할 수도 있습니다.:</p>
-            <pre><code>./darknet classifier predict cfg/imagenet1k.data cfg/extraction.cfg extraction.weights data/eagle.jpg
-            </code></pre>
-            <p>Which produces:</p>
-            <pre><code>...
-              data/eagle.jpg: Predicted in 4.036698 seconds.
-              bald eagle: 0.797689
-              kite: 0.185116
-              vulture: 0.006402
-              prairie chicken: 0.001041
-              hen: 0.000888
-            </code></pre>
-            <p>아주 좋습니다!</p>
-            <p>이미지 파일을 지정하지 않으면 런타임에 이미지를 묻는 메시지가 나타납니다. 이렇게하면 전체 모델을 다시로드하지 않고 여러 행을 연속으로 분류 할 수 있습니다.. Use the command:</p>
-            <pre><code>./darknet classifier predict cfg/imagenet1k.data cfg/extraction.cfg extraction.weights
-            </code></pre>
-            <p>그러면 다음과 같은 프롬프트가 나타납니다:</p>
-            <pre><code>....
-              27: Softmax Layer: 1000 inputs
-              28: Cost Layer: 1000 inputs
-              Loading weights from extraction.weights...Done!
-              Enter Image Path:
-            </code></pre>
-            <p>이미지 분류에 지루할 때마다 Ctrl-C <code>Ctrl-C</code> 를 사용하여 프로그램을 종료 할 수 있습니다.</p>
-            <h2>Validating On ImageNet</h2>
-            <p>어디에서나 이러한 유효성 검증 세트 번호가 표시됩니다. 어쩌면이 모델들이 실제로 얼마나 잘 작동하는지 스스로 확인하고 싶을 것입니다. 그것을 해봅시다 !</p>
-            <p>
+            <p style="text-align: left">대머리 독수리 이미지와 같은 다른 이미지로 시도 할 수도 있습니다.</p>
+            <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                <br>&nbsp&nbsp ./darknet classifier predict cfg/imagenet1k.data cfg/extraction.cfg extraction.weights data/eagle.jpg
+              
+                <br>&nbsp 
+              </p>
+           
+            <p style="text-align: left">실행시 아래와 같은 과정을 확인할 수 있습니다.</p>
+
+            <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                <br>&nbsp&nbsp ...
+                <br>&nbsp&nbsp data/eagle.jpg: Predicted in 4.036698 seconds.
+                <br>&nbsp&nbsp bald eagle: 0.797689
+                <br>&nbsp&nbsp kite: 0.185116
+                <br>&nbsp&nbsp vulture: 0.006402
+                <br>&nbsp&nbsp prairie chicken: 0.001041
+                <br>&nbsp&nbsp hen: 0.000888
+                <br>&nbsp 
+              </p>
+           
+            <p style="text-align: left">아주 좋습니다!</p>
+            <p style="text-align: left">이미지 파일을 지정하지 않으면 런타임에 이미지를 묻는 메시지가 나타납니다. 이렇게하면 전체 모델을 다시로드하지 않고 여러 행을 연속으로 분류 할 수 있으며 다음과 같은 명령어를 사용합니다.</p>
+            
+            <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                <br>&nbsp&nbsp ./darknet classifier predict cfg/imagenet1k.data cfg/extraction.cfg extraction.weights
+              
+                <br>&nbsp 
+              </p>
+            
+           
+            <p style="text-align: left">그러면 다음과 같은 프롬프트가 나타납니다:</p>
+
+            <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                <br>&nbsp&nbsp ....
+                <br>&nbsp&nbsp 27: Softmax Layer: 1000 inputs
+                <br>&nbsp&nbsp 28: Cost Layer: 1000 inputs
+                <br>&nbsp&nbsp Enter Image Path:
+            
+                <br>&nbsp 
+              </p>
+
+           
+            <p style="text-align: left">이미지 분류에 지루할 때마다 Ctrl-C <code>Ctrl-C</code> 를 사용하여 프로그램을 종료 할 수 있습니다.</p>
+            <h2 style="text-align: left">Validating On ImageNet</h2>
+            <p style="text-align: left">어디에서나 이러한 유효성 검증 세트 번호가 표시됩니다. 어쩌면이 모델들이 실제로 얼마나 잘 작동하는지 스스로 확인하고 싶을 것입니다. 그것을 해봅시다 !</p>
+            <p style="text-align: left">
 먼저 유효성 검사 이미지와 cls-loc 주석을 다운로드해야합니다. 주석은 <a href="http://image-net.org/download-images">여기에서다운가능합니다</a> 
-여기에서 얻을 수는 있지만 계정을 만들어야합니다! 모든 것을 다운로드하고 나면 <code>ILSVRC2012_bbox_val_v3.tgz</code>, 및  <code>ILSVRC2012_img_val.tar</code>. 가있는 디렉토리가 있어야합니다. 먼저 압축을 풉니 다.:</p>
-            <pre><code>tar -xzf ILSVRC2012_bbox_val_v3.tgz
-              mkdir -p imgs &amp;&amp; tar xf ILSVRC2012_img_val.tar -C imgs
-            </code></pre>
-            <p>이제 이미지와 주석이 있지만 Darknet이 예측을 평가할 수 있도록 이미지에 라벨을 지정해야합니다.. 
-이 bash 스크립트 하위 <a href="https://github.com/pjreddie/darknet/blob/master/scripts/imagenet_label.sh">디렉토리를 사용하면됩니다.</a>. 
-이미 <code>스크립트 / 하위 디렉토리/</code> 에 있습니다. 우리는 다시 그것을 얻을 수 있고 그것을 실행할 수 있습니다 :</p>
-            <pre><code>wget https://pjreddie.com/media/files/imagenet_label.sh
-              bash imagenet_label.sh
-            </code></pre>
-            <p>이것은 두 가지를 생성 할 것입니다  <code>labelled/</code> 이미지로의 이름이 변경된 심볼릭 링크를 포함하는 디렉토리와 라벨이 붙은 이미지의 경로 목록을 포함하는 inet.val.list 파일.  이 파일을 <code>inet.val.list</code> 서브 디렉토리로 이동해야합니다.  <code>data/</code> </p>
-            <pre><code>mv inet.val.list &lt;path-to&gt;/darknet/data
-            </code></pre>
-            <p>이제 마침내 모델을 검증 할 준비가되었습니다! 먼저<code>Darknet을 다시 만듭니다</code> . 그런 다음 유효성 검사 루틴을 다음과 같이 실행하십시오.</p>
-            <pre><code>./darknet classifier valid cfg/imagenet1k.data cfg/extraction.cfg extraction.weights
-            </code></pre>
-            <p>Note: OpenCV로 Darknet을 컴파일하지 않으면 ImageNet 이미지 중 일부가 stb_image.h에서 지원되지 않는 별난 형식이기 때문에 이미지 넷 이미지를 모두로드 할 수 없습니다.</code></a>.</p>
-            <p>
+여기에서 얻을 수는 있지만 계정을 만들어야합니다! 모든 것을 다운로드하고 나면 <code>ILSVRC2012_bbox_val_v3.tgz</code>, 및  <code>ILSVRC2012_img_val.tar</code>. 가있는 디렉토리가 있어야합니다. 먼저 압축을 해제합니다.</p>
+            
+<p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+    <br>&nbsp&nbsp tar -xzf ILSVRC2012_bbox_val_v3.tgz
+    <br>&nbsp&nbsp mkdir -p imgs &amp;&amp; tar xf ILSVRC2012_img_val.tar -C imgs
+    
+
+    <br>&nbsp 
+  </p>
+
+           
+            <p style="text-align: left">이제 이미지와 주석이 있지만 Darknet이 예측을 평가할 수 있도록 이미지에 라벨을 지정해야합니다.. 
+이 bash 스크립트 하위 <a href="https://github.com/pjreddie/darknet/blob/master/scripts/imagenet_label.sh">디렉토리를 사용하면됩니다.</a>
+이미 <code>스크립트 / 하위 디렉토리/</code> 에 있습니다. 우리는 다시 그것을 얻을 수 있고 그것을 실행할 수 있습니다.</p>
+
+<p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+    <br>&nbsp&nbsp wget https://pjreddie.com/media/files/imagenet_label.sh
+    <br>&nbsp&nbsp bash imagenet_label.sh
+    
+
+    <br>&nbsp 
+  </p>
+            
+            <p style="text-align: left">이것은 두 가지를 생성 할 것입니다  
+              
+              <code>labelled/</code> 이미지로의 이름이 변경된 심볼릭 링크를 포함하는 디렉토리와 라벨이 붙은 이미지의 경로 목록을 포함하는 inet.val.list 파일.  이 파일을 <code>inet.val.list</code> 서브 디렉토리로 이동해야합니다.  <code>data/</code> </p>
+              <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                  <br>&nbsp&nbsp mv inet.val.list &lt;path-to&gt;/darknet/data
+                 
+                  <br>&nbsp 
+                </p>
+            
+            
+            <p style="text-align: left">이제 마침내 모델을 검증 할 준비가되었습니다! 먼저<code>Darknet을 다시 만듭니다</code> . 그런 다음 유효성 검사 루틴을 다음과 같이 실행하십시오.</p>
+            <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
+                <br>&nbsp&nbsp ./darknet classifier valid cfg/imagenet1k.data cfg/extraction.cfg extraction.weights
+               
+                <br>&nbsp 
+              </p>
+            
+         
+            <p style="text-align: left">Note: OpenCV로 Darknet을 컴파일하지 않으면 ImageNet 이미지 중 일부가 stb_image.h에서 지원되지 않는 별난 형식이기 때문에 이미지 넷 이미지를 모두로드 할 수 없습니다.</code></a>.</p>
+            <p style="text-align: left">
 CUDA로 컴파일하지 않으면 ImageNet에서 유효성을 검증 할 수는 있지만 오랜 시간이 걸릴 것입니다. 권장하지 않습니다.</p>
-            <h2><a name="pretrained"></a>Pre-Trained Models</h2>
-            <p>다음은 ImageNet 분류를위한 다양한 사전 교육 모델입니다. 정확도는 ImageNet에서 단일 작물 유효성 검사 정확도로 측정됩니다. GPU 타이밍은 Intel i7-4790K (4GHz)의 CPU 타이밍 인 Titan X에서 측정됩니다.</p>
+            <h2 style="text-align: left"><a name="pretrained"></a>Pre-Trained Models</h2>
+            <p style="text-align: left">다음은 ImageNet 분류를위한 다양한 사전 교육 모델입니다. 정확도는 ImageNet에서 단일 작물 유효성 검사 정확도로 측정됩니다. GPU 타이밍은 Intel i7-4790K (4GHz)의 CPU 타이밍 인 Titan X에서 측정됩니다.</p>
             <style>
             td:first-child {text-align:left;}
             td {text-align:right; padding:0em .5em;}
@@ -212,6 +267,7 @@ CUDA로 컴파일하지 않으면 ImageNet에서 유효성을 검증 할 수는 
 
             <tr>
               <td><a href=#alexnet>AlexNet</a></td>
+            
               <td>57.0</td> 
               <td>80.3</td>
               <td>2.27 Bn</td>
@@ -220,7 +276,6 @@ CUDA로 컴파일하지 않으면 ImageNet에서 유효성을 검증 할 수는 
               <td><a href=https://github.com/pjreddie/darknet/blob/master/cfg/alexnet.cfg>cfg</a></td>
               <td><a href=https://pjreddie.com/media/files/alexnet.weights>285 MB</a></td>
             </tr>
-
             <tr>
               <td><a href=#reference>Darknet Reference</a></td>
               <td>61.1</td> 
@@ -309,7 +364,8 @@ CUDA로 컴파일하지 않으면 ImageNet에서 유효성을 검증 할 수는 
               <td><a href=https://pjreddie.com/media/files/densenet201.weights>66 MB</a></td>
             </tr>
           </table>
-
+       
+<div style = "text-align: left" >
           <h3><a name="alexnet"></a>AlexNet</h3>
           <p>혁명을 시작한 모델입니다!  <a href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf">원래의 모델</a>은 분할 된 GPU에 미치므로 약간의 후속 작업을 통한 모델입니다.<a href="http://arxiv.org/abs/1404.5997">후속 작업</a>.</p>
           <ul>
@@ -402,8 +458,7 @@ CUDA로 컴파일하지 않으면 ImageNet에서 유효성을 검증 할 수는 
             <li><a href="https://pjreddie.com/media/files/densenet201.weights">weight file (67 MB)</a></li>
           </ul>
         </div>
-
-        
+        </div>
       </div>
     </section>
 
