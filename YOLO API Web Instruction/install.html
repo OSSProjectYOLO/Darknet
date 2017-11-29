@@ -152,7 +152,7 @@
             여러분이 할 수 있는 일들을 확인해 보세요.</p>
           <h2><a name="cuda"></a>CUDA와 협업</h2>
           <p>CPU에 있는 Darknet은 빠르지만 GPU에서 500배 더 빠릅니다! 그러기에 <a href="https://developer.nvidia.com/cuda-gpus">Nvidia GPU</a> 와 <a href="https://developer.nvidia.com/cuda-downloads">CUDA</a> 설치해야 합니다. CUDA 설치에 관해서는 복잡한 내용이기에 깊게 다루지는 않겠습니다.</p>
-          <p>CUDA가 설치되어 있다면, 기본 디렉토리에서 <code>Makefile</code>의 첫번째 행을 읽기 전용으로 바꿔줍니다.</p>
+          <p>CUDA가 설치되어 있다면, 기본 디렉토리에서 <font color="#00FFF5">Makefile</font>의 첫번째 행을 읽기 전용으로 바꿔줍니다.</p>
         </div>
 
         <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
@@ -161,14 +161,14 @@
             <br>&nbsp 
           </p>
          
-          <p style="text-align: left">이제 여러분은 <code>make</code> 입력하면 프로젝트를 생성하고 CUDA를 활성화 할 수 있습니다. 기본적으로 시스템의 우선 순위로 그래픽 카드를 네트워크에서 실행합니다 (만약 CUDA가 올바르게 설치됬다면 <code>nvidia-smi</code> 이용하여 당신의 그래픽 카드 리스트를 확인할 수 있습니다). 만약 당신이 Darknet을 이용하는데 카드를 바꾸기를 원한다면 명령어 줄의 플래그 <code>-i &lt;index&gt;</code>를 아래를 참고하여 바꾸시면 됩니다.</p>
+          <p style="text-align: left">이제 여러분은 <font color="#00FFF5">make</font> 입력하면 프로젝트를 생성하고 CUDA를 활성화 할 수 있습니다. 기본적으로 시스템의 우선 순위로 그래픽 카드를 네트워크에서 실행합니다 (만약 CUDA가 올바르게 설치됬다면 <font color="#00FFF5">nvidia-smi</font> 이용하여 당신의 그래픽 카드 리스트를 확인할 수 있습니다). 만약 당신이 Darknet을 이용하는데 카드를 바꾸기를 원한다면 명령어 줄의 플래그 <font color="#00FFF5">-i &lt;index&gt;</font>를 아래를 참고하여 바꾸시면 됩니다.</p>
           <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
               <br>&nbsp&nbsp ./darknet -i 1 imagenet test cfg/alexnet.cfg alexnet.weights
             
               <br>&nbsp 
             </p>
           
-          <p style="text-align: left">만약 여러분이 CUDA를 사용하여 컴파일 할 수 있지만 어떤 이유로든 사용할 수 있는 CPU계산을 위해 CPU를 대신하여<code>-nogpu</code> 명령어를 사용하세요.</p>
+          <p style="text-align: left">만약 여러분이 CUDA를 사용하여 컴파일 할 수 있지만 어떤 이유로든 사용할 수 있는 CPU계산을 위해 CPU를 대신하여<font color="#00FFF5">-nogpu</font> 명령어를 사용하세요.</p>
           <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
               <br>&nbsp&nbsp ./darknet -nogpu imagenet test cfg/alexnet.cfg alexnet.weights
             
@@ -179,7 +179,7 @@
           <h2><a name="opencv"></a>OpenCV를 이용한 컴파일</h2>
           <p>기본적으로 Darknet은 이미지 로딩을 위해 <a href="https://github.com/nothings/stb/blob/master/stb_image.h"><code>stb_image.h</code></a> 를 사용합니다. 또한 <a href="http://opencv.org/">OpenCV</a>를 사용하면 디스크에 저장하지 않아도 이미지와 탐지 기능을 볼 수 있습니다.</p>
           <p>우선 OpenCV를 먼저 설치하세요. 소스에서 이 작업을 수행하면 오래걸리고 복잡하므로 패키지 매니저를 사용하여 수행할 수 있습니다.</p>
-          <p>다음으로 <code>Makefile</code>의 두번째 줄을 변경합니다.</p>
+          <p>다음으로 <font color="#00FFF5">Makefile</font>의 두번째 줄을 변경합니다.</p>
           </div>
           <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
               <br>&nbsp&nbsp OPENCV=1
@@ -187,7 +187,7 @@
               <br>&nbsp 
             </p>
        
-          <p style="text-align: left">다 끝났습니다! 실행하기 전, 우선 다시 <code>make</code>를 사용해 프로젝트를 다시 시작하세요. 그 다음 <code>imtest</code> 사용하여 영상 로드를 테스트하고 다음을 표시합니다.</p>
+          <p style="text-align: left">다 끝났습니다! 실행하기 전, 우선 다시 <font color="#00FFF5">make</font>를 사용해 프로젝트를 다시 시작하세요. 그 다음 <font color="#00FFF5">imtest</font> 사용하여 영상 로드를 테스트하고 다음을 표시합니다.</p>
           <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
               <br>&nbsp&nbsp ./darknet imtest data/eagle.jpg
             
