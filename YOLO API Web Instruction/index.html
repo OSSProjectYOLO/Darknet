@@ -246,7 +246,7 @@
               <p style="text-align: left">YOLOv2는 트레이닝을 개선하고 성능을 향상시키기 위해 몇 가지 트릭을 사용합니다. Overfeat과 SSD 처럼 심층 신경망인 Fully-Convolutional 신경망 모델을 사용하지만 Hard-Negatives 정보가 아닌 전체 이미지를 계속 학습합니다. x, y좌표를 직접 예측하는데 전체 내용은 해당  <a href="https://arxiv.org/abs/1612.08242">논문</a>에 있습니다.</p>
               <h2 style="text-align: left">사전에 학습된 모델을 사용한 탐지 기법</h2>
               <p style="text-align: left">이후 부터는 사전 훈련 된 모델을 사용하여 YOLO 시스템으로 물체를 탐지 하는 방법을 설명합니다.
-                <br>Darknet을 아직 설치 하지 않았다면 먼저 <a href="https://pjreddie.com/darknet/install/">설치</a> 해야합니다.</p>
+                <br>Darknet을 아직 설치 하지 않았다면 먼저 <a href="http://khseob0715.dothome.co.kr/YOLO/install.html">설치</a> 해야합니다.</p>
                 <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
                   <br>&nbsp&nbsp .git clone https://github.com/pjreddie/darknet
                   <br>&nbsp&nbsp cd darknet
@@ -321,7 +321,7 @@
                               <img class="img-fluid img-centered" src="img/Screen_Shot_2016-11-17_at_12.03.22_PM.png" alt="">
                               <p style="text-align: left;">따라서 모델별로 임계값을 제어하는 값을 다른 값으로 설정할 수 있습니다. <br>그러나 이것이 유용하다고 명백하게 말하기는 힘듭니다.</p>
                               <h2 style="text-align: left;"><a id=tiny></a>Tiny YOLO</h2>
-                              <p style="text-align: left;">Tiny YOLO 시스템은<a href="https://pjreddie.com/darknet/imagenet/#r채eference">Darknet reference network</a>를 기반으로 작동하며 일반 YOLO모델보다 훨씬 빠르지만 정확성이 떨어집니다.
+                              <p style="text-align: left;">Tiny YOLO 시스템은<a href="http://khseob0715.dothome.co.kr/YOLO/reference.html">Darknet reference network</a>를 기반으로 작동하며 일반 YOLO모델보다 훨씬 빠르지만 정확성이 떨어집니다.
                                 <br>VOC에 대한 교육 버전을 사용하려면 다음을 수행하시기 바랍니다.</p>
                                 <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
                                   <br>&nbsp&nbsp wget https://pjreddie.com/media/files/tiny-yolo-voc.weights
@@ -334,7 +334,7 @@
                                 <h2 style="text-align:left;"><a id=demo></a>Webcam에서의 실시간 탐지</h2>
                                 <p style="text-align: left;">테스트 데이터에서 YOLO 시스템을 실행하면 결과를 볼 수 없어 흥미롭지 않습니다. 
                                   <br>막대한 이미지 대신 웹캠의 입력으로 실행해 볼 수 있습니다.</p>
-                                  <p style="text-align: left;"> Darkent은 CUDA와 OpenCV를 함께 사용하며 이 데모 실행을 위한 <a href="https://pjreddie.com/darknet/install/#cuda">컴파일</a>을 해야됩니다. <br>다음 명령어를 실행하시기 바랍니다.</p>
+                                  <p style="text-align: left;"> Darkent은 CUDA와 OpenCV를 함께 사용하며 이 데모 실행을 위한 <a href="http://khseob0715.dothome.co.kr/YOLO/install.html">컴파일</a>을 해야됩니다. <br>다음 명령어를 실행하시기 바랍니다.</p>
                                   <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
                                     <br>&nbsp&nbsp./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights
                                     <br>&nbsp&nbsp
@@ -354,7 +354,7 @@
                                     <h2 style="text-align:left;"><a id=train-voc></a>VOC에서의 YOLO 훈련</h2>
                                     <p style="text-align: left;">다른 훈련체계와 Hyper-Parameters 또는 데이터 셋으로 훈련을 하고 싶다면 YOLO를 처음부터 교육 할 수 있습니다. <br>Pascal VOC 데이터 세트에서 작업하는 방법은 다음과 같습니다.</p>
                                     <h3 style="text-align:left;">Pascal VOC Data 얻어오기</h3>
-                                    <p style="text-align: left;">YOLO 시스템을 훈련 시키려면 2007 년부터 2012 년까지의 모든 VOC 데이터가 필요합니다. <br>여기에서 데이터에 대한 <a href="https://pjreddie.com/projects/pascal-voc-dataset-mirror/">링크</a>를 찾을 수 있습니다.
+                                    <p style="text-align: left;">YOLO 시스템을 훈련 시키려면 2007 년부터 2012 년까지의 모든 VOC 데이터가 필요합니다. <br>여기에서 데이터에 대한 <a href="http://khseob0715.dothome.co.kr/YOLO/here.html">링크</a>를 찾을 수 있습니다.
                                       <br> 모든 데이터를 가져 오려면 모든 디렉토리를 저장하고 해당 디렉토리에서 다음을 실행하시기 바랍니다.
                                     </p>
                                     <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
@@ -410,12 +410,12 @@
                                     <p style="text-align:left;"><font style="color: rgb(0, 255, 245);">
                                     &lt;path-to-voc&gt;</font> 을 VOC 데이터를 저장 한 디렉토리로 대체해야합니다.</p>
                                     <h3 style="text-align:left;">사전 훈련된 Convolutional 가중치 다운로드</h3>
-                                    <p style="text-align:left;">교육을 위해 우리는 Imagenet에서 사전 훈련 된 <a href="https://pjreddie.com/darknet/imagenet/#extraction">Extraction model</a>의 가중치를 사용합니다.<br> 여기서 레이어의 가중치를 다운로드 할 수 있습니다 <a href="https://pjreddie.com/media/files/darknet19_448.conv.23">here (76 MB)</a>.</p>
+                                    <p style="text-align:left;">교육을 위해 우리는 Imagenet에서 사전 훈련 된 <a href="http://khseob0715.dothome.co.kr/YOLO/reference.html/">Extraction model</a>의 가중치를 사용합니다.<br> 여기서 레이어의 가중치를 다운로드 할 수 있습니다 <a href="https://pjreddie.com/media/files/darknet19_448.conv.23">here (76 MB)</a>.</p>
                                     <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
                                       <br>&nbsp&nbspwget https://pjreddie.com/media/files/darknet19_448.conv.23
                                       <br>&nbsp&nbsp
                                     </p>
-                                    <p style="text-align:left;">사전 훈련 된 가중치를 직접 생성하려면 사전 교육 된 <a href="https://pjreddie.com/darknet/imagenet/#darknet19_448">Darknet19 448x448 model</a> 의 다음 명령을 실행하십시오.</p>
+                                    <p style="text-align:left;">사전 훈련 된 가중치를 직접 생성하려면 사전 교육 된 <a href="http://khseob0715.dothome.co.kr/YOLO/reference.html/">Darknet19 448x448 model</a> 의 다음 명령을 실행하십시오.</p>
                                     <p style="background-color: #205; color:#0f0; overflow: scroll; text-align: left;">
                                       <br>&nbsp&nbsp./darknet partial cfg/darknet19_448.cfg darknet19_448.weights darknet19_448.conv.23 23
                                       <br>&nbsp&nbsp
@@ -503,18 +503,8 @@
                           <section id="download" class="download-section content-section text-center">
                             <div class="container">
                               <div class="col-lg-8 mx-auto">
-                               <h2>Darknet YOLO API 홈페이지</h2>
-                               <a href="https://pjreddie.com/darknet/yolo/" class="btn btn-default btn-lg">Visit Page</a>
-                             </div>
-                           </div>
-                         </section>
-
-                         <!-- Contact Section -->
-                         <section id="contact" class="content-section text-center">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-lg-16 mx-auto">
-                                <P>저희가 직접 작성한 YOLO API의 소스코드에 대한 한글 매뉴얼은 아래의 Github Repository에 올려 놓았습니다. </P>
+                                <P>저희가 직접 작성한 YOLO API의 소스코드에 대한 한글 매뉴얼은<br>
+                                아래의 Github Repository에 올려 놓았습니다. </P>
                                 <ul class="list-inline banner-social-buttons">
 
                                   <li class="list-inline-item">
@@ -523,32 +513,27 @@
                                       <span class="network-name">Github</span>
                                     </a>
                                   </li>
-
-                                </ul>
+                                </div>
                               </div>
-                            </div>
-                          </div>
-                        </section>
+                            </section>
 
+                            <!-- Footer -->
+                            <footer>
+                              <div class="container text-center">
+                                <p>Copyright &copy; 이대경 김한섭 강일송 2017 오픈소스SW Team Project</p>
+                              </div>
+                            </footer>
 
+                            <!-- Bootstrap core JavaScript -->
+                            <script src="vendor/jquery/jquery.min.js"></script>
+                            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-                        <!-- Footer -->
-                        <footer>
-                          <div class="container text-center">
-                            <p>Copyright &copy; 이대경 김한섭 강일송 2017 오픈소스SW Team Project</p>
-                          </div>
-                        </footer>
+                            <!-- Plugin JavaScript -->
+                            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-                        <!-- Bootstrap core JavaScript -->
-                        <script src="vendor/jquery/jquery.min.js"></script>
-                        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                            <!-- Custom scripts for this template -->
+                            <script src="js/grayscale.min.js"></script>
 
-                        <!-- Plugin JavaScript -->
-                        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+                          </body>
 
-                        <!-- Custom scripts for this template -->
-                        <script src="js/grayscale.min.js"></script>
-
-                      </body>
-
-                      </html>
+                          </html>
