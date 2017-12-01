@@ -44,14 +44,14 @@ YOLO 시스템은 분류 기반의 시스템에 비해 몇 가지 장점을 가�
 Darknet을 아직 설치 하지 않았다면 먼저 설치 해야합니다. \\
 이제부터 아래의 명령어를 실행하시기바랍니다.\\
 \begin{lstlisting}.
-git clone https://github.com/pjreddie/darknet
-cd darknet 
-make
+ git clone https://github.com/pjreddie/darknet
+ cd darknet 
+ make
 \end{lstlisting}
 실행 후 cfg/ 서브디렉토리에 YOLO에 대한 설정 파일이 존재합니다. 
 \\사전 훈련된 가중치를 다운로드한 뒤
 \begin{lstlisting}
-wget https://pjreddie.com/media/files/yolo.wegith
+ wget https://pjreddie.com/media/files/yolo.wegith
 \end{lstlisting}
 다음을 실행하시기 바랍니다.
 \begin{lstlisting}
@@ -91,7 +91,7 @@ Darknet은 탐지한 객체와 일치도, 발견하는데 소요된 시간을 �
 detect명령은 보다 일반적인 명령어 버전의 줄임말이며 다음 명령어와 동일합니다.
 
 \begin{lstlisting}
-./darknet detector test cfg/coco.data cfg/yolo.cfg yolo.weights data/dog.jpg 
+ ./darknet detector test cfg/coco.data cfg/yolo.cfg yolo.weights data/dog.jpg 
 \end{lstlisting}
 
 하나의 이미지에서 탐지를 실행하는 시스템이지만 
@@ -134,6 +134,105 @@ YOLO 시스템의 신뢰도는 기본값이 0.25이며 객체의 탐색 일치�
 \label{fig:eximg}
 \end{figure}
 
+모델별로 임계값을 제어하는 값을 다른 값으로 설정할 수 있습니다. 
+그러나 이것이 유용하다고 명백하게 말하기는 힘듭니다.
+
+\section{TINY YOLO}
+Tiny YOLO 시스템은 Darknet reference network를 기반으로 작동하며 일반 YOLO모델보다 훨씬 빠르지만 정확성이 떨어집니다.
+VOC에 대한 교육 버전을 사용하려면 다음을 수행하시기 바랍니다.
+\begin{lstlisting}
+ wget https://pjreddie.com/media/files/tiny-yolo-voc.weights 
+ ./darknet detector test cfg/voc.data cfg/tiny-yolo-voc.cfg tiny-yolo-voc.weights data/dog.jpg 
+\end{lstlisting}
+
+어느 것이 좋고 완벽하다고 자신할 수 없지만 Tiny YOLO 시스템은 확실히 빠릅니다. 
+GPU에서는 200 FPS 이상에서 실행이됩니다.
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.15]{tinyyolo.png}
+\caption{임계값 0 탐색결과 }
+\label{fig:tinyimg}
+\end{figure}
+
+\section{WEBCAM에서의 실시간 탐지}
+
+테스트 데이터에서 YOLO 시스템을 실행하면 결과를 볼 수 없어 흥미롭지 않습니다. 
+막대한 이미지 대신 웹캠의 입력으로 실행해 볼 수 있습니다.
+Darkent은 CUDA와 OpenCV를 함께 사용하며 이 데모 실행을 위한 컴파일을 해야됩니다. 
+다음 명령어를 실행하시기 바랍니다.
+\begin{lstlisting}
+ ./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights  
+\end{lstlisting}
+YOLO 시스템은 현재 FPS 및 예상 클래스뿐만 아니라 임계영역이 그려진 이미지를 표시합니다.
+OpenCV가 연결할 수있는 컴퓨터에 웹캠이 연결되어 있어야합니다. 그렇지 않으면 작동하지 않습니다. 
+여러 웹캠이 연결되어 있고 사용할 웹캠을 선택하려는 경우 -c <num> 입력해 플래그를 전달할 수 있습니다. 
+(OpenCV가 사용하는 웹캠의 기본값은 0입니다.) OpenCV가 비디오를 읽을 수 있으면 비디오 파일에서도 실행할 수 있습니다
+
+\begin{lstlisting}
+ ./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights <video file> 
+\end{lstlisting}
+이것이 YOLO 시스템이 위의 YouTube 동영상을 만든 방법입니다
+
+\section{VOC에서의 YOLO 훈련}
+다른 훈련체계와 Hyper-Parameters 또는 데이터 셋으로 훈련을 하고 싶다면 YOLO를 처음부터 교육 할 수 있습니다. Pascal VOC 데이터 세트에서 작업하는 방법은 다음과 같습니다.
+
+\section{PASCAL VOC DATA 얻어오기}
+YOLO 시스템을 훈련 시키려면 2007 년부터 2012 년까지의 모든 VOC 데이터가 필요합니다. 
+여기에서 데이터에 대한 링크(http://khseob0715.dothome.co.kr/YOLO/here.html)를 찾을 수 있습니다. 
+모든 데이터를 가져 오려면 모든 디렉토리를 저장하고 해당 디렉토리에서 다음을 실행하시기 바랍니다.
+\begin{lstlisting}
+  wget https://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar 
+  wget https://pjreddie.com/media/files/VOCtrainval_06-Nov-2007.tar 
+  wget https://pjreddie.com/media/files/VOCtest_06-Nov-2007.tar 
+  tar xf VOCtrainval_11-May-2012.tar 
+  tar xf VOCtrainval_06-Nov-2007.tar 
+  tar xf VOCtest_06-Nov-2007.tar 
+\end{lstlisting}
+이제 VOCdevkit/ 하위 디렉토리에 모든 VOC 교육 데이터가 포함되어 있습니다.
+
+\section{VOC에 대한 LABEL 생성}
+이제 Darknet이 사용하는 레이블 파일을 생성해야합니다. 
+Darknet.txt file with a line for each ground truth object in the image that looks like을 원합니다.
+\begin{lstlisting}
+  <object-class> <x> <y> <width> <height> 
+\end{lstlisting}
+
+여기서 x, y, width, and height 는 이미지의 높이와 너비를 기준으로. 이 파일을 생성하기 위해서
+voc label.py Darknet의 스크립트 안에 scripts/ 디렉토리에 있습니다.
+그냥 다시 다운로드하는게 안귀찮고 편합니다.
+Darknet.txt with a line for each ground truth object in the image that looks like을 원합니다.
+\begin{lstlisting}
+ wget https://pjreddie.com/media/files/voc_label.py 
+ python voc_label.py 
+\end{lstlisting}
+몇 분 후에이 스크립트는 필요한 모든 파일을 생성합니다. 대부분의 많은 파일 라벨들이 VOCdevkit/VOC2007/labels/ 그리고 VOCdevkit/VOC2012/labels/. 당신의 디렉토리에 가지고 있습니다.
+\begin{lstlisting}
+ ls 
+ 2007_test.txt VOCdevkit 
+ 2007_train.txt voc_label.py 
+ 2007_val.txt VOCtest_06-Nov-2007.tar 
+ 2012_train.txt VOCtrainval_06-Nov-2007.tar 
+ 2012_val.txt VOCtrainval_11-May-2012.tar 
+\end{lstlisting}
+The text files like 2007 train.txt 와 같은 텍스트 파일은 해당 연도의 이미지 파일과 이미지 세트를 나열합니다. 
+DarkNet은 당신이 훈련시키고자 하는 모든 이미지를 가진 하나의 텍스트 파일을 필요로합니다. 이 예제에서
+우리 모델을 테스트 할 수 있도록 2007 테스트 세트를 제외한 모든 것을 훈련시켜 봅시다
+\begin{lstlisting}
+ cat 2007_train.txt 2007_val.txt 2012_*.txt > train.txt 
+\end{lstlisting}
+
+이제 우리는 모든 2007 년형 trainval 과 2012 년형 trainval을 하나의 큰 목록에 포함 시켰습니다. 그것이 데이터 설정을 위해해야 할 모든 것입니다!
+\section{MODIFY CFG FOR PASCAL DATA}
+이제 Darknet 디렉토리로 가십시오. 데이터를 가리 키도록 cfg/voc.data구성 파일을 변경해야합니다.
+\begin{lstlisting}
+ 1 classes= 20 
+ 2 train = <path-to-voc>/train.txt 
+ 3 valid = <path-to-voc>2007_test.txt 
+ 4 names = data/voc.names 
+ 5 backup = backup 
+\end{lstlisting}
+<path-to-voc> 을 VOC 데이터를 저장 한 디렉토리로 대체해야합니다.
+\section{사전 훈련된 CONVOLUTIONAL 가중치 다운로드}
 
 \bibliographystyle{plain}
 \bibliography{references}
