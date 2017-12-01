@@ -142,7 +142,8 @@ Tiny YOLO 시스템은 Darknet reference network를 기반으로 작동하며 �
 VOC에 대한 교육 버전을 사용하려면 다음을 수행하시기 바랍니다.
 \begin{lstlisting}
  wget https://pjreddie.com/media/files/tiny-yolo-voc.weights 
- ./darknet detector test cfg/voc.data cfg/tiny-yolo-voc.cfg tiny-yolo-voc.weights data/dog.jpg 
+ ./darknet detector test cfg/voc.data cfg/tiny-yolo-voc.cfg 
+                                             tiny-yolo-voc.weights data/dog.jpg 
 \end{lstlisting}
 
 어느 것이 좋고 완벽하다고 자신할 수 없지만 Tiny YOLO 시스템은 확실히 빠릅니다. 
@@ -233,7 +234,78 @@ DarkNet은 당신이 훈련시키고자 하는 모든 이미지를 가진 하나
 \end{lstlisting}
 <path-to-voc> 을 VOC 데이터를 저장 한 디렉토리로 대체해야합니다.
 \section{사전 훈련된 CONVOLUTIONAL 가중치 다운로드}
+교육을 위해 우리는 Imagenet에서 사전 훈련 된 Extraction model의 가중치를 사용합니다.
+레이어 가중치 다운로드 
+\begin{lstlisting}
+ wget https://pjreddie.com/media/files/darknet19_448.conv.23 
+\end{lstlisting}
+사전 훈련 된 가중치를 직접 생성하려면 사전 교육 된 Darknet19 448x448 model 의 다음 명령을 실행하십시오.
+\begin{lstlisting}
+ ./darknet partial cfg/darknet19_448.cfg darknet19_448.weights 
+                                                      darknet19_448.conv.23 23 
+\end{lstlisting}
+하지만 가중치 파일을 다운로드하면 더 쉽게 사용할 수 있습니다.
+\section{모델 훈련}
+아래의 명령어를 이용해 훈련을 시킬 수 있습니다.
+\begin{lstlisting}
+ ./darknet detector train cfg/voc.data cfg/yolo-voc.cfg 
+                                                      darknet19_448.conv.23 
+\end{lstlisting}
 
+\section{COCO에서의 YOLO 훈련}
+만약 다른 훈련체계, Hyper-Parameters 또는 데이터셋을 사용하고 싶다면 YOLO를 처음부터 훈련 시킬 수 있습니다. 
+COCO 데이터셋(http://cocodataset.org)에서 작업을 하는 방법은 다음과 같습니다.
+
+\section{COCO DATA 얻어오기}
+YOLO 시스템을 훈련시키기 위해서는 모든 COCO의 데이터와 라벨이 필요합니다. 
+scripts/get coco dataset.sh 이 스크립트가 해당 작업을 수행합니다. 
+COCO 데이터를 넣고 다운로드 하려면 아래를 참고하시면 됩니다.
+\begin{lstlisting}
+ cp scripts/get_coco_dataset.sh data 
+ cd data 
+ bash get_coco_dataset.sh 
+\end{lstlisting}
+이제 Darknet에 모든 데이터와 라벨을 생성해야 합니다.
+
+\section{COCO의 CFG 수정}
+이제 Darknet 폴더로 이동합니다. 
+cfg/coco.data를 가리키도록 config 파일을 변경해야 합니다.
+\begin{lstlisting}
+  1 classes= 80 
+  2 train = <path-to-coco>/trainvalno5k.txt 
+  3 valid = <path-to-coco>/5k.txt 
+  4 names = data/coco.names 
+  5 backup = backup 
+\end{lstlisting}
+COCO 데이터를 저장하는 디렉토리로 <path-to-coco>를 대체해야합니다.
+또한 cfg를 테스팅 용이 아닌 훈련용으로 수정해야합니다. 
+cfg/yolo.cfg가 아래와 같아야 합니다.
+\begin{lstlisting}
+  [net] 
+  # Testing 
+  # batch=1 
+  # subdivisions=1 
+  # Training 
+  batch=64 
+  subdivisions=8 
+  .... 
+\end{lstlisting}
+\section{모델 훈련}
+이제부터 모델 훈련을 위해 아래 명령어를 실행하시기 바랍니다.
+\begin{lstlisting}
+ ./darknet detector train cfg/coco.data cfg/yolo.cfg 
+                                              darknet19_448.conv.23 
+\end{lstlisting}
+만약 여러개의 GPU를 사용한다면 다음 명령어를 실행하시기 바랍니다.
+\begin{lstlisting}
+ ./darknet detector train cfg/coco.data cfg/yolo.cfg 
+                                              darknet19_448.conv.23 -gpus 0,1,2,3 
+\end{lstlisting}
+만약 Checkpoint에서 훈련을 중지하고 다시 시작하기 위해서는 다음 명령어를 실행하시기 바랍니다.
+\begin{lstlisting}
+ ./darknet detector train cfg/coco.data cfg/yolo.cfg 
+                                              backup/yolo.backup -gpus 0,1,2,3
+\end{lstlisting}
 \bibliographystyle{plain}
 \bibliography{references}
 \end{document}
