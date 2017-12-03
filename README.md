@@ -31,7 +31,7 @@ Python 프로그래밍과 OpenCV, Computer Vision 분야에 대해서 함께 Stu
 
 ## 3. 구성
 * Latex 매뉴얼 작성 - YOLO API Web Instruction/darknet_YOLO 폴더 
-                     https://github.com/OSSProjectYOLO/Darknet/tree/master/YOLO%20API%20Web%20Instruction/darknet_YOLO
+                     https://github.com/OSSProjectYOLO/Darknet/tree/master/darknet_YOLO
 * 해당 README.md는 Markdown으로 작성하였습니다.
 * 웹사이트 제작 : http://khseob0715.dothome.co.kr/YOLO/
 
