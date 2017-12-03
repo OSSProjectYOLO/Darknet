@@ -18,20 +18,22 @@ YOLO API의 통합된 아키텍쳐는 매우 빠르게 수행이 되는데 45 FP
 
 ## 2. YOLO API를 선택한 이유 
 팀원 중 한명이 Computer vision 분야에 대한 관심이 많아 예전부터 알고 있던 API였습니다. <br>
-하지만 당시 해당 팀원은 Python으로 구현된 프로그램과 수업 이전 Github 사용법을 몰랐기 때문에 
+하지만 당시 해당 팀원은 Python으로 구현된 프로그램과 수업 이전 Github 사용법을 몰랐기 때문에 <br>
 YOLO API가 어렵게만 느껴져 해당 API를 전혀 활용해보지 못했다는 이야기를 들었습니다. <br>
-그렇기에 아쉬움이 남는다고 하여 저희 팀은 이 YOLO API를 선택하게 되었고
+그렇기에 아쉬움이 남는다고 하여 저희 팀은 이 YOLO API를 선택하게 되었고 <br>
 Python 프로그래밍과 OpenCV, Computer Vision 분야에 대해서 함께 Study를 하기로 하였습니다. <br>
+
 그렇지만 무엇보다도 API의 이름이 너무 마음에 들었습니다.  <br>
 요즘 라이프스타일 트렌드인 YOLO(You Only Live One)와 이름이 비슷한 **You Only Look Once인 YOLO API!**<br>
+
 팀 프로젝트를 팀원들 모두 **재미있게 즐기면서 하자**는 의미에서 선택을 하였습니다. 
 
 
 ## 3. 구성
-* 웹사이트 제작 : http://khseob0715.dothome.co.kr/YOLO/
 * Latex 매뉴얼 작성 - YOLO API Web Instruction/darknet_YOLO 폴더 
                      https://github.com/OSSProjectYOLO/Darknet/tree/master/YOLO%20API%20Web%20Instruction/darknet_YOLO
 * 해당 README.md는 Markdown으로 작성하였습니다.
+* 웹사이트 제작 : http://khseob0715.dothome.co.kr/YOLO/
 
 ## 4. 참고문헌
 * Ali Farhadi Joseph Redmon.YOLO9000: Better, Faster, Stronger.  San Val, 2016 : https://arxiv.org/abs/1612.08242
