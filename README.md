@@ -40,6 +40,6 @@ Python 프로그래밍과 OpenCV, Computer Vision 분야에 대해서 함께 Stu
 
 | 팀원        | 학번      | GitHub아이디  |
 | :----      | :----     | :----         | 
-| 이대경(팀장)| Data      | cocobino      |
+| 이대경(팀장)| 20124956  | cocobino      |
 | 강일송      | 20134845  | Borngroundg  |
 | 김한섭      | 20134822  | khseob0715(master 계정)  |
