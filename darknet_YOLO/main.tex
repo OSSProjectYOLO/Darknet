@@ -14,6 +14,8 @@
 \usepackage{hyperref} \hypersetup{ 
 colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan, }
 
+\usepackage{ textcomp }
+
 
 \title{Darknet YOLO API}
 \author{이대경, 김한섭, 강일송 }
@@ -126,7 +128,7 @@ data/horses.jpg이미지의 경로를 입력하면 해당 이미지의 경계 �
 Ctrl-C를 사용해 프로그램을 종료하시면 됩니다.
 \section{탐색의 임계값 변경}
 YOLO 시스템의 신뢰도는 기본값이 0.25이며 객체의 탐색 일치도가 0.25 이상인 객체만을 표시하여 사용자에게 보여줍니다.
-이러한 임계값은 -thresh <val> 명령어 플래그를 이용하여 임계값을 변경 할 수 있습니다. 
+이러한 임계값은 -thresh \textlangle val\textrangle 명령어 플래그를 이용하여 임계값을 변경 할 수 있습니다. 
 아래의 예시는 탐색된 모든 객체를 표시하기 위하여 임계값을 0으로 설정한 것입니다. 예시 이미지를 참고하시기 바랍니다.
 \begin{lstlisting}
  ./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg -thresh 0 
@@ -142,7 +144,7 @@ YOLO 시스템의 신뢰도는 기본값이 0.25이며 객체의 탐색 일치�
 그러나 이것이 유용하다고 명백하게 말하기는 힘듭니다.
 
 \section{TINY YOLO}
-Tiny YOLO 시스템은 Darknet reference network를 기반으로 작동하며 일반 YOLO모델보다 훨씬 빠르지만 정확성이 떨어집니다.
+Tiny YOLO 시스템은 \href{http://khseob0715.dothome.co.kr/YOLO/reference.html}{Darknet reference network}를 기반으로 작동하며 일반 YOLO모델보다 훨씬 빠르지만 정확성이 떨어집니다.
 VOC에 대한 교육 버전을 사용하려면 다음을 수행하시기 바랍니다.
 \begin{lstlisting}
  wget https://pjreddie.com/media/files/tiny-yolo-voc.weights 
@@ -183,7 +185,7 @@ OpenCV가 연결할 수있는 컴퓨터에 웹캠이 연결되어 있어야합�
 
 \section{PASCAL VOC DATA 얻어오기}
 YOLO 시스템을 훈련 시키려면 2007 년부터 2012 년까지의 모든 VOC 데이터가 필요합니다. 
-여기에서 데이터에 대한 링크(http://khseob0715.dothome.co.kr/YOLO/here.html)를 찾을 수 있습니다. 
+여기에서 데이터에 대한  \href{http://khseob0715.dothome.co.kr/YOLO/here.html}{링크}를 찾을 수 있습니다. 
 모든 데이터를 가져 오려면 모든 디렉토리를 저장하고 해당 디렉토리에서 다음을 실행하시기 바랍니다.
 \begin{lstlisting}
   wget https://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar 
@@ -258,7 +260,7 @@ DarkNet은 당신이 훈련시키고자 하는 모든 이미지를 가진 하나
 
 \section{COCO에서의 YOLO 훈련}
 만약 다른 훈련체계, Hyper-Parameters 또는 데이터셋을 사용하고 싶다면 YOLO를 처음부터 훈련 시킬 수 있습니다. 
-COCO 데이터셋(http://cocodataset.org)에서 작업을 하는 방법은 다음과 같습니다.
+\href{http://cocodataset.org}{COCO 데이터셋}에서 작업을 하는 방법은 다음과 같습니다.
 
 \section{COCO DATA 얻어오기}
 YOLO 시스템을 훈련시키기 위해서는 모든 COCO의 데이터와 라벨이 필요합니다. 
