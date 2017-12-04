@@ -11,6 +11,10 @@
 % 이 파일로 돌아와서 해당 부분에 \citep[이름] 코드를 붙여야합니다. 
 % 사진의 경우 import 후 30번째 줄을 참고하시면 됩니다. 
 
+\usepackage{hyperref} \hypersetup{ 
+colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan, }
+
+
 \title{Darknet YOLO API}
 \author{이대경, 김한섭, 강일송 }
 \date{2017학년도 2학기 오픈소스 Team Project}
@@ -306,6 +310,112 @@ cfg/yolo.cfg가 아래와 같아야 합니다.
  ./darknet detector train cfg/coco.data cfg/yolo.cfg 
                                               backup/yolo.backup -gpus 0,1,2,3
 \end{lstlisting}
+
+
+\section{DARKNET 설치 방법}
+Darknet은 다음과 같이 두가지 방식을 사용하면 설치하기 쉽습니다.
+
+\begin{verbatim}
+OpenCV:다양하게 지원되는 이미지 유형을 원할 경우  
+CUDA:CPU계산을 원할 경우
+\end{verbatim} 
+둘 다 선택 사항이므로 기본 시스템을 설치하는 것만으로 시작할 수 있으며 테스트 환경은 리눅스와 맥 환경에서만 실시하였습니다.
+
+\section{기본 시스템 설치}
+\begin{verbatim}
+기본 시스템을 설치합니다. 
+\end{verbatim}
+Darknet git 저장소를  다운하시기 바랍니다. 다음 명령어들을 참고하시면 됩니다.
+\begin{verbatim}
+1. git clone https://github.com/pjreddie/darknet.git 
+2. cd darknet 
+3. make 
+\end{verbatim}
+이러한 작업을 수행하면 다음과 같은 많은 정보를 수집해야합니다.
+\begin{verbatim}
+1. gcc -I/usr/local/cuda/include/ -Wall -Wfatal-errors -Ofast.... 
+2. gcc -I/usr/local/cuda/include/ -Wall -Wfatal-errors -Ofast.... 
+3. gcc -I/usr/local/cuda/include/ -Wall -Wfatal-errors -Ofast.... 
+   .... 
+n. gcc -I/usr/local/cuda/include/ -Wall -Wfatal-errors -Ofast -lm.... 
+\end{verbatim}
+모든 수집 정보들을 모은 것이 확인됬다면 프로그램을 실행하시기 바랍니다.
+
+\begin{verbatim}
+  ./darknet 
+\end{verbatim}
+다음과 같은 출력 결과를 얻어야합니다.
+\begin{verbatim}
+ usage: ./darknet <function>
+
+\end{verbatim}
+얻어졋다면 이제 \href{http://www.sharelatex.com}{여기서} 여러분이 
+할 수 있는 일들을 확인하시기 바랍니다.
+
+\section{CUDA와 협업}
+
+\begin{verbatim}
+  ./darknet 
+\end{verbatim}
+CPU에 있는 Darknet은 빠르지만 GPU에서 500배 더 빠릅니다! 그러기에  \href{http://www.sharelatex.com}{Nvidia GPU} 와 \href{http://www.sharelatex.com}{CUDA} 설치해야 합니다. 
+CUDA 설치에 관해서는 복잡한 내용이기에 깊게 다루지는 않겠습니다.
+
+\begin{verbatim}
+CUDA가 설치되어 있다면 기본 디렉토리에서 Makefile의 첫번째 행을 읽기 전용으로 바꿔줍니다.
+\end{verbatim}
+ GPU=1 
+
+\begin{verbatim}
+이제 여러분은 make 입력하면 프로젝트를 생성하고 CUDA를 활성화 할 수 있습니다. 
+CUDA가 올바르게 설치됬다면 nvidia-smi 명령어를 이용해 당신의 그래픽 카드 리스트를 확인할 수 있으며 기본적으로 시스템의 우선 순위로 그래픽 카드를 네트워크에서 실행합니다. 
+또한 당신이 Darknet을 이용하는데 그래픽 카드를 바꾸기를 원한다면
+명령어 줄의 flag -i <index>를 아래를 참고하여 바꾸시면 됩니다.
+\end{verbatim}
+  ./darknet -i 1 imagenet test cfg/alexnet.cfg alexnet.weights 
+ 
+\begin{verbatim}
+만약 여러분이 CUDA를 사용하여 컴파일 할 수 있지만 어떤 이유로든 
+사용할 수 있는 CPU계산을 위해 CPU를 대신하여-nogpu 명령어를 사용하세요.
+\end{verbatim}
+   ./darknet -nogpu imagenet test cfg/alexnet.cfg alexnet.weights 
+
+\section{OPENCV를 이용한 컴파일}
+
+\begin{verbatim}
+기본적으로 Darknet은 이미지 로딩을 위해 stb_image.h 를 사용합니다. 또한 OpenCV를 사용하면 디스크에 저장하지 않아도 이미지와 탐지 기능을 볼 수 있습니다.
+\end{verbatim}
+우선 OpenCV를 먼저 설치하세요.
+소스에서 이 작업을 수행하면 오래걸리고 복잡하므로 패키지 매니저를 사용하여 수행할 수 있습니다.
+
+\begin{verbatim}
+다음으로 Makefile의 두번째 줄을 변경합니다.
+\end{verbatim}
+ OPENCV=1 
+ 
+\begin{verbatim}
+다 끝났습니다! 실행하기 전, 우선 다시 make를 사용해 프로젝트를 다시 시작하세요. 그 다음 imtest 사용하여 영상 로드를 테스트하고 다음을 표시합니다.
+\end{verbatim}
+ ./darknet imtest data/eagle.jpg 
+ 
+ \begin{verbatim}
+지금까지의 절차대로 정상적으로 동작한다면 사진과 같이 보일 것입니다.
+\end{verbatim}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.2]{egle.png}
+\caption{출력 결과}
+\label{fig:detect}
+\end{figure}
+ 
+  
+
+
 \bibliographystyle{plain}
 \bibliography{references}
+
+
+
+
 \end{document}
+
+
