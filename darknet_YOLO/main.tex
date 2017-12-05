@@ -444,6 +444,29 @@ MSVS2015를 실행하고 build\darknet\darknet.sln 의 설정을 x64, Release �
 \end{verbatim}
 
 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.2]
+{how/setting_darknet.jpg}
+\caption{opencv를 이용한 setting}
+\label{fig:detect}
+\end{figure}
+
+\begin{verbatim}
+3. 다른 버전의 CUDA (8.0 아님)를 가지고 있다면 메모장을 사용하여 build \ darknet \ darknet.vcxproj를 열고 "CUDA 8.0"으로 2 곳을 찾아 CUDA- 버전으로 변경 한 다음 1 단계를 수행하십시오
+
+
+4. MSVS 2015 및 OpenCV 3.0 (경로 : C : \ opencv_3.0 \ opencv \ build \ include 
+및 C : \ opencv_3.0 \ opencv \ build \ x64 \ vc14 \ lib)
+에있는 경우 MSVS를 시작하고 
+
+build \ darknet \ darknet_no_gpu.sln을 열고 x64 및 Release를 설정하고 다음을 수행하시면됩니다.
+그리고 빌드설정은 빌드 -> 빌드 darknet 로 하면 됩니다.
+\end{verbatim}
+
+
+
 \end{document}
 
 
