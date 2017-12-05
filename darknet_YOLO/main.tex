@@ -432,6 +432,16 @@ YOLO 윈도우 버전 :: \href{https://github.com/AlexeyAB/darknet/}{https://git
 
 순서는 다음과 같습니다.
 
+\begin{verbatim}
+1. MSVS2015, CUDA8.0, OpenCV3.0 을 이미 설치하고 있다면 
+
+(경로설정을 C:\opencv3.0\opencv\build\include & C:\opencv3.0\opencv\build\x64\vc14\lib ) 으로 해줍니다 그후에
+MSVS2015를 실행하고 build\darknet\darknet.sln 의 설정을 x64, Release 설정은 Build -> Build 로 바꾸어 줍니다.
+
+
+2. C : \ opencv_3.0 \ opencv \ build \ x64 \ vc14 \ bin에있는 opencv_world320.dll
+및 opencv_ffmpeg320_64.dll 파일을 찾아 darknet.exe 파일과 함께 둡니다.
+\end{verbatim}
 
 
 \end{document}
