@@ -465,6 +465,46 @@ build \ darknet \ darknet_no_gpu.sln을 열고 x64 및 Release를 설정하고 �
 그리고 빌드설정은 빌드 -> 빌드 darknet 로 하면 됩니다.
 \end{verbatim}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.2]
+{how/setting2.jpg}
+\caption{opencv를 이용한 setting2}
+\label{fig:detect}
+\end{figure}
+
+\begin{verbatim}
+5. 3.0 대신 OpenCV 2.4.13을 사용하고 있다면 \ darknet.sln을 연 후 pathes를 변경해야합니다
+
+- (우측클릭 속성) -> 속성(properties) -> C/C++ -> General -> Additional Include Directories:
+C:\opencv_2.4.13\opencv\build\include
+
+- (우측클릭 속성) -> 속성(properties) -> Linker -> General -> Additional Library Directories:
+C:\opencv_2.4.13\opencv\build\x64\vc14\lib
+
+
+6. 속도 향상을 위해 CUDNN으로 빌드하려면 다음을 수행하십시오.
+
+-download and install cuDNN 6.0 for CUDA 8.0: https://developer.nvidia.com/cudnn
+
+-add Windows system variable cudnn with path to CUDNN: https://hsto.org/files/
+a49/3dc/fc4/a493dcfc4bd34a1295fd15e0e2e01f26.jpg
+
+-open \darknet.sln -> (right click on project) -> properties -> C/C++ -> Preprocessor
+-> Preprocessor Definitions, and add at the beginning of line: CUDNN;
+
+
+
+
+
+
+
+
+
+
+
+\end{verbatim}
+
 
 
 \end{document}
