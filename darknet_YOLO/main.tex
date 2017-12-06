@@ -10,6 +10,7 @@
 % 논문 링크는 references.bib에서 수정한 후에 
 % 이 파일로 돌아와서 해당 부분에 \citep[이름] 코드를 붙여야합니다. 
 % 사진의 경우 import 후 30번째 줄을 참고하시면 됩니다. 
+\usepackage{color} % 컬러 패키지 입니다 
 
 \usepackage{hyperref} \hypersetup{ 
 colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan, }
@@ -351,7 +352,7 @@ n. gcc -I/usr/local/cuda/include/ -Wall -Wfatal-errors -Ofast -lm....
  usage: ./darknet <function>
 
 \end{verbatim}
-얻어졋다면 이제 \href{http://www.sharelatex.com}{여기서} 여러분이 
+얻어졋다면 이제 \href{https://pjreddie.com/darknet/}{여기서} 여러분이 
 할 수 있는 일들을 확인하시기 바랍니다.
 
 \section{CUDA와 협업}
@@ -359,7 +360,7 @@ n. gcc -I/usr/local/cuda/include/ -Wall -Wfatal-errors -Ofast -lm....
 \begin{verbatim}
   ./darknet 
 \end{verbatim}
-CPU에 있는 Darknet은 빠르지만 GPU에서 500배 더 빠릅니다! 그러기에  \href{http://www.sharelatex.com}{Nvidia GPU} 와 \href{http://www.sharelatex.com}{CUDA} 설치해야 합니다. 
+CPU에 있는 Darknet은 빠르지만 GPU에서 500배 더 빠릅니다! 그러기에  \href{https://developer.nvidia.com/cuda-gpus}{Nvidia GPU} 와 \href{https://developer.nvidia.com/cuda-downloads}{CUDA} 설치해야 합니다. 
 CUDA 설치에 관해서는 복잡한 내용이기에 깊게 다루지는 않겠습니다.
 
 \begin{verbatim}
@@ -416,6 +417,132 @@ CUDA가 올바르게 설치됬다면 nvidia-smi 명령어를 이용해 당신의
 \bibliography{references}
 
 
+\section{YOLO OSS 구현하기}
+
+\author{Window 환경 }
+
+\begin{verbatim}
+YOLO OSS는 구현 기반이 Linux 기반으로 구성되어 있습니다. 따라서 Windows 환경에서는 구현내용이 다소 복잡하고 어려울수 있으나 아래내용을 따라하게 되면 누구나 쉽게 이용하실수 있습니다!
+
+\end{verbatim}
+
+YOLO 윈도우 버전 :: \href{https://github.com/AlexeyAB/darknet/}{https://github.com/AlexeyAB/darknet/}
+
+첫번째 사이트(AlexeyAB)에 가면 YOLO 윈도우 버전을 다운받을 수 있습니다. 또한 설치, 컴파일, 실행 방법까지 상세하게 설명되어 있습니다. 따라서 설명만 따르면 어렵지 않게 빌드 및 테스트가 가능합니다.
+
+순서는 다음과 같습니다.
+
+\begin{verbatim}
+1. MSVS2015, CUDA8.0, OpenCV3.0 을 이미 설치하고 있다면 
+
+(경로설정을 C:\opencv3.0\opencv\build\include & C:\opencv3.0\opencv\build\x64\vc14\lib ) 으로 해줍니다 그후에
+MSVS2015를 실행하고 build\darknet\darknet.sln 의 설정을 x64, Release 설정은 Build -> Build 로 바꾸어 줍니다.
+
+
+2. C : \ opencv_3.0 \ opencv \ build \ x64 \ vc14 \ bin에있는 opencv_world320.dll
+및 opencv_ffmpeg320_64.dll 파일을 찾아 darknet.exe 파일과 함께 둡니다.
+\end{verbatim}
+
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.2]
+{how/setting_darknet.jpg}
+\caption{opencv를 이용한 setting}
+\label{fig:detect}
+\end{figure}
+
+\begin{verbatim}
+3. 다른 버전의 CUDA (8.0 아님)를 가지고 있다면 메모장을 사용하여 build \ darknet \ darknet.vcxproj를 열고 "CUDA 8.0"으로 2 곳을 찾아 CUDA- 버전으로 변경 한 다음 1 단계를 수행하십시오
+
+
+4. MSVS 2015 및 OpenCV 3.0 (경로 : C : \ opencv_3.0 \ opencv \ build \ include 
+및 C : \ opencv_3.0 \ opencv \ build \ x64 \ vc14 \ lib)
+에있는 경우 MSVS를 시작하고 
+
+build \ darknet \ darknet_no_gpu.sln을 열고 x64 및 Release를 설정하고 다음을 수행하시면됩니다.
+그리고 빌드설정은 빌드 -> 빌드 darknet 로 하면 됩니다.
+\end{verbatim}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.2]
+{how/setting2.jpg}
+\caption{opencv를 이용한 setting2}
+\label{fig:detect}
+\end{figure}
+
+\begin{verbatim}
+5. 3.0 대신 OpenCV 2.4.13을 사용하고 있다면 \ darknet.sln을 연 후 pathes를 변경해야합니다
+
+- (우측클릭 속성) -> 속성(properties) -> C/C++ -> General -> Additional Include Directories:
+C:\opencv_2.4.13\opencv\build\include
+
+- (우측클릭 속성) -> 속성(properties) -> Linker -> General -> Additional Library Directories:
+C:\opencv_2.4.13\opencv\build\x64\vc14\lib
+
+
+6. 속도 향상을 위해 CUDNN으로 빌드하려면 다음을 수행하십시오.
+
+-download and install cuDNN 6.0 for CUDA 8.0: https://developer.nvidia.com/cudnn
+
+-add Windows system variable cudnn with path to CUDNN: https://hsto.org/files/
+a49/3dc/fc4/a493dcfc4bd34a1295fd15e0e2e01f26.jpg
+
+-open \darknet.sln -> (right click on project) -> properties -> C/C++ -> Preprocessor
+-> Preprocessor Definitions, and add at the beginning of line: CUDNN;
+
+
+
+
+
+
+
+
+
+
+
+\end{verbatim}
+
+\section{YOLO OSS 구현 화면}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.4]
+{how/YOLO_darknet_1.jpg}
+\caption{YOLO-darknet 구현화면 1}
+\label{fig:detect}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.4]
+{how/YOLO_darknet_.jpg}
+\caption{YOLO-darknet 구현화면 2}
+\label{fig:detect}
+\end{figure}
+
+
+\begin{verbatim}
+다음 사진과 같이 학습된 데이터 셋을 통해 image 를 인식하고 해당 정보를 표시해줍니다.    
+
+다운받은 소스에 보면 여러 가지 설정의 Visual Studio (VS) 프로젝트 파일들이 제공됩니다. 이 중에서 yolo_cpp_dll 버전으로 빌드 및 테스트를 했습니다. yolo를 dll 라이브러리로 만들어 놓으면 다른 윈도우즈 프로그램에서도 자유롭게 사용할 수 있기 때문입니다.
+
+
+
+다만, 한 가지 문제는 사이트에서 제공하는 프로젝트 파일은 Visual Studio 2015 용이기 때문에 그 이전버전의 Visual Studio(VS 2013 등)에서는 사용이 안된다는 점이 있습니다.
+
+
+
+한 가지 해결법은 다음과 같습니다. (1) 먼저, *.sIn 파일을 삭제한다. (2) 이후 *.vcxproj 파일을 메모장으로 열어서 프로젝트의 버전을 자신의 VS에 맞게 수정해 준다. (3) 이후 수정된 *.vcxproj를 클릭하여 프로젝트를 연다 (프로젝트를 저장하면 *.sIn 파일이 자신의 버전에 맞게 자동 생성됩니다).
+
+
+
+예를 들어, 자신이 사용하는 버전이 Visual Studio 2013라면 14.0은 12.0으로 v140은 v120으로 변경해 주면 됩니다.
+
+\end{verbatim}
 
 
 \end{document}
