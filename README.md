@@ -28,7 +28,7 @@ Python 프로그래밍과 OpenCV, Computer Vision 분야에 대해서 함께 Stu
 
 팀 프로젝트를 팀원들 모두 **재미있게 즐기면서 하자**는 의미에서 선택을 하였습니다.
 
-##3.YOLO Window 실행 환경 사용법
+## 3.YOLO Window 실행 환경 사용법
 - **MSVS 2015, CUDA 8.0, OPENCV 3.0** 을 사용 중이라면 Path 설정을 다음과 같이 해줍니다.
 **(C:\opencv_3.0\opencv\build\include
   & C:\opencv_3.0\opencv\build\x64\vc14\lib)**
