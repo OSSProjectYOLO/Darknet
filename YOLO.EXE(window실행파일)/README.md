@@ -42,7 +42,7 @@ Yolo 교차 플랫폼 Windows 및 Linux 버전 (객체 감지 용). Contributtor
   - OpenCV allows to show image or video detection in the window and store result to file that specified in command line `-out_filename res.avi`
 * **GPU with CC >= 2.0** if you use CUDA, or **GPU CC >= 3.0** if you use cuDNN + CUDA: https://en.wikipedia.org/wiki/CUDA#GPUs_supported
 
-##### 다양한 cfg 파일에 대한 사전 학습 된 모델을 다운로드 할 수 있습니다 (더 작은 -> 더 빠르고 낮은 품질의):
+##### 다양한 cfg 파일에 대한 사전 학습 된 모델을 다운로드 할 수 있습니다 (더 작은 용량 -> 더 빠르고 낮은 품질):
 * `yolo.cfg` (194 MB COCO-model) - require 4 GB GPU-RAM: http://pjreddie.com/media/files/yolo.weights
 * `yolo-voc.cfg` (194 MB VOC-model) - require 4 GB GPU-RAM: http://pjreddie.com/media/files/yolo-voc.weights
 * `tiny-yolo.cfg` (60 MB COCO-model) - require 1 GB GPU-RAM: http://pjreddie.com/media/files/tiny-yolo.weights
@@ -93,81 +93,84 @@ Linux 사용시 `./darknet` 대신 `darknet.exe`, 이렇게 : `./darknet detecto
     `darknet.exe detector test data/voc.data yolo-voc.cfg yolo-voc.weights < image_list.txt > result.txt`
     이 선을 주석 처리하여 각 이미지에 ESC 버튼을 누르지 않아도됩니다 : https://github.com/AlexeyAB/darknet/blob/6ccb41808caf753feea58ca9df79d6367dedc434/src/detector.c#L509
 
-##### For using network video-camera mjpeg-stream with any Android smartphone:
+##### 모든 Android 스마트 폰에서 네트워크 비디오 카메라 mjpeg-stream을 사용하는 경우 :
 
-1. Download for Android phone mjpeg-stream soft: IP Webcam / Smart WebCam
+1. Android phone mjpeg-stream soft 용 다운로드 : IP Webcam / Smart WebCam
 
 
     * Smart WebCam - preferably: https://play.google.com/store/apps/details?id=com.acontech.android.SmartWebCam2
     * IP Webcam: https://play.google.com/store/apps/details?id=com.pas.webcam
 
-2. Connect your Android phone to computer by WiFi (through a WiFi-router) or USB
-3. Start Smart WebCam on your phone
-4. Replace the address below, on shown in the phone application (Smart WebCam) and launch:
+2. Android 폰을 Wi-Fi (WiFi-router를 통해) 또는 USB를 통해 컴퓨터에 연결하십시오.
+3. 스마트 웹캠을 휴대 전화에서 시작하십시오.
+4. 전화 응용 프로그램 (Smart WebCam)에 표시된 주소를 아래에서 바꾸고 실행하십시오.
 
 
 * 194 MB COCO-model: `darknet.exe detector demo data/coco.data yolo.cfg yolo.weights http://192.168.0.80:8080/video?dummy=param.mjpg -i 0`
 * 194 MB VOC-model: `darknet.exe detector demo data/voc.data yolo-voc.cfg yolo-voc.weights http://192.168.0.80:8080/video?dummy=param.mjpg -i 0`
 
-### How to compile on Linux:
+### 리눅스에서 컴파일하는 방법 :
 
-Just do `make` in the darknet directory.
-Before make, you can set such options in the `Makefile`: [link](https://github.com/AlexeyAB/darknet/blob/9c1b9a2cf6363546c152251be578a21f3c3caec6/Makefile#L1)
-* `GPU=1` to build with CUDA to accelerate by using GPU (CUDA should be in `/usr/local/cuda`)
-* `CUDNN=1` to build with cuDNN v5/v6 to accelerate training by using GPU (cuDNN should be in `/usr/local/cudnn`)
-* `OPENCV=1` to build with OpenCV 3.x/2.4.x - allows to detect on video files and video streams from network cameras or web-cams
-* `DEBUG=1` to bould debug version of Yolo
-* `OPENMP=1` to build with OpenMP support to accelerate Yolo by using multi-core CPU
-* `LIBSO=1` to build a library `darknet.so` and binary runable file `uselib` that uses this library. Or you can try to run so `LD_LIBRARY_PATH=./:$LD_LIBRARY_PATH ./uselib test.mp4` How to use this SO-library from your own code - you can look at C++ example: https://github.com/AlexeyAB/darknet/blob/master/src/yolo_console_dll.cpp
+darknet에서  `make` 실행
+make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blob/9c1b9a2cf6363546c152251be578a21f3c3caec6/Makefile#L1)
+* `GPU=1` GPU를 사용하여 CUDA로 가속화 (CUDA가 있어야합니다.  `/usr/local/cuda`)
+* `CUDNN=1` cuDNN v5 / v6으로 구축하여 GPU를 사용하여 교육 시간 단축 (cuDNN이 있어야합니다.  `/usr/local/cudnn`)
+* `OPENCV=1` OpenCV 3.x / 2.4.x로 구축 - 네트워크 카메라 또는 웹캠에서 비디오 파일과 비디오 스트림을 감지 할 수 있습니다.
+* `DEBUG=1` Yolo의 디버그 버전을 빌드하는 방법
+* `OPENMP=1` 멀티 코어 CPU를 사용하여 Yolo 가속화를위한 OpenMP 지원 구축
+* `LIBSO=1` to build a library `darknet.so` and binary runable file `uselib` that uses this library. 또는 그렇게 실행하려고 할 수 있습니다. `LD_LIBRARY_PATH=./:$LD_LIBRARY_PATH ./uselib test.mp4`  코드에서 이 SO 라이브러리를 사용하는 법 -  C ++ 예제를 볼 수 있습니다 : https://github.com/AlexeyAB/darknet/blob/master/src/yolo_console_dll.cpp
 
 
-### How to compile on Windows:
+### Windows에서 컴파일하는 방법 :
 
-1. If you have **MSVS 2015, CUDA 8.0 and OpenCV 3.0** (with paths: `C:\opencv_3.0\opencv\build\include` & `C:\opencv_3.0\opencv\build\x64\vc14\lib`), then start MSVS, open `build\darknet\darknet.sln`, set **x64** and **Release**, and do the: Build -> Build darknet
+1. ** MSVS 2015, CUDA 8.0 및 OpenCV 3.0을 보유한 경우 **  (with paths: `C:\opencv_3.0\opencv\build\include` & `C:\opencv_3.0\opencv\build\x64\vc14\lib`), MSVS를 시작하고 open
+`build\darknet\darknet.sln`, set **x64** 그리고 **Release**, 다음을 진행 : Build -> Build darknet
 
-    1.1. Find files `opencv_world320.dll` and `opencv_ffmpeg320_64.dll` in `C:\opencv_3.0\opencv\build\x64\vc14\bin` and put it near with `darknet.exe`
+1.1. 파일들을 찾는다 `opencv_world320.dll` 와  `opencv_ffmpeg320_64.dll` 에서 `C:\opencv_3.0\opencv\build\x64\vc14\bin` 그리고  `darknet.exe` 가까이 둔다.
 
-2. If you have other version of **CUDA (not 8.0)** then open `build\darknet\darknet.vcxproj` by using Notepad, find 2 places with "CUDA 8.0" and change it to your CUDA-version, then do step 1
+2. 다른 버전이 있다면  **CUDA (not 8.0)** 그때 다음을 연다.  `build\darknet\darknet.vcxproj` 메모장을 사용하여 "CUDA 8.0"으로 2 개 장소를 찾고 CUDA 버전으로 변경 한 다음 1 단계 수행
 
-3. If you **don't have GPU**, but have **MSVS 2015 and OpenCV 3.0** (with paths: `C:\opencv_3.0\opencv\build\include` & `C:\opencv_3.0\opencv\build\x64\vc14\lib`), then start MSVS, open `build\darknet\darknet_no_gpu.sln`, set **x64** and **Release**, and do the: Build -> Build darknet
+3. **GPU**가 없지만 **MSVS 2015 및 OpenCV 3.0이있는 경우** (with paths: `C:\opencv_3.0\opencv\build\include` & `C:\opencv_3.0\opencv\build\x64\vc14\lib`), MSVS를 시작하고 open
+`build\darknet\darknet_no_gpu.sln`, set **x64** 그리고 **Release**, 다음을 실행 : Build -> Build darknet
 
-4. If you have **OpenCV 2.4.13** instead of 3.0 then you should change pathes after `\darknet.sln` is opened
 
-    4.1 (right click on project) -> properties  -> C/C++ -> General -> Additional Include Directories:  `C:\opencv_2.4.13\opencv\build\include`
+4. 3.0 대신에 **OpenCV 2.4.13**을 가지고 있다면, 이후에 pathes를 변경. 변경 후 `\darknet.sln` 이 열림.
+
+    4.1 (프로젝트에서 오른쪽 클릭) -> 속성 -> C / C ++ -> 일반 -> 추가 포함 디렉토리 :  `C:\opencv_2.4.13\opencv\build\include`
   
-    4.2 (right click on project) -> properties  -> Linker -> General -> Additional Library Directories: `C:\opencv_2.4.13\opencv\build\x64\vc14\lib`
+    4.2 (프로젝트에서 마우스 오른쪽 버튼 클릭) -> 속성 -> 링커 -> 일반 -> 추가 라이브러리 디렉토리 : `C:\opencv_2.4.13\opencv\build\x64\vc14\lib`
   
-5. If you want to build with CUDNN to speed up then:
+5. 속도 향상을 위해 CUDNN으로 빌드하려면 다음을 수행.
       
-    * download and install **cuDNN 6.0 for CUDA 8.0**: https://developer.nvidia.com/cudnn
+    * 다운로드 및 설치  **cuDNN 6.0 for CUDA 8.0** : https://developer.nvidia.com/cudnn
       
-    * add Windows system variable `cudnn` with path to CUDNN: https://hsto.org/files/a49/3dc/fc4/a493dcfc4bd34a1295fd15e0e2e01f26.jpg
+      * Windows 시스템 변수`cudnn`에 CUDNN의 경로를 추가 : https://hsto.org/files/a49/3dc/fc4/a493dcfc4bd34a1295fd15e0e2e01f26.jpg
       
-    * open `\darknet.sln` -> (right click on project) -> properties  -> C/C++ -> Preprocessor -> Preprocessor Definitions, and add at the beginning of line: `CUDNN;`
+      *  `\darknet.sln` 실행 -> (프로젝트를 마우스 오른쪽 버튼으로 클릭)-> properties  -> C/C++ -> Preprocessor -> Preprocessor Definitions, and add at the beginning of line: `CUDNN;`
 
-### How to compile (custom):
+### 컴파일하는 법 (custom) :
 
-Also, you can to create your own `darknet.sln` & `darknet.vcxproj`, this example for CUDA 8.0 and OpenCV 3.0
+또한 자신 만의`darknet.sln`과`darknet.vcxproj`를 만들 수 있습니다. 이 예제는 CUDA 8.0과 OpenCV 3.0입니다.
 
-Then add to your created project:
-- (right click on project) -> properties  -> C/C++ -> General -> Additional Include Directories, put here: 
+그런 다음 생성 된 프로젝트에 추가.
+- (프로젝트를 마우스 오른쪽 단추로 클릭) -> properties  -> C/C++ -> General -> Additional Include Directories, put here:
 
 `C:\opencv_3.0\opencv\build\include;..\..\3rdparty\include;%(AdditionalIncludeDirectories);$(CudaToolkitIncludeDir);$(cudnn)\include`
-- (right click on project) -> Build dependecies -> Build Customizations -> set check on CUDA 8.0 or what version you have - for example as here: http://devblogs.nvidia.com/parallelforall/wp-content/uploads/2015/01/VS2013-R-5.jpg
-- add to project all .c & .cu files from `\src`
-- (right click on project) -> properties  -> Linker -> General -> Additional Library Directories, put here: 
+- (프로젝트를 마우스 오른쪽 단추로 클릭) -> Build dependecies -> Build Customizations -> set check on CUDA 8.0 or what version you have - for example as here: http://devblogs.nvidia.com/parallelforall/wp-content/uploads/2015/01/VS2013-R-5.jpg
+- `\ src`에서 모든 .c & .cu 파일을 프로젝트에 추가.
+- (프로젝트를 마우스 오른쪽 단추로 클릭)  -> properties  -> Linker -> General -> Additional Library Directories, put here:
 
 `C:\opencv_3.0\opencv\build\x64\vc14\lib;$(CUDA_PATH)lib\$(PlatformName);$(cudnn)\lib\x64;%(AdditionalLibraryDirectories)`
--  (right click on project) -> properties  -> Linker -> Input -> Additional dependecies, put here: 
+-  (프로젝트를 마우스 오른쪽 단추로 클릭)  -> properties  -> Linker -> Input -> Additional dependecies, put here:
 
 `..\..\3rdparty\lib\x64\pthreadVC2.lib;cublas.lib;curand.lib;cudart.lib;cudnn.lib;%(AdditionalDependencies)`
-- (right click on project) -> properties -> C/C++ -> Preprocessor -> Preprocessor Definitions
+- (프로젝트를 마우스 오른쪽 단추로 클릭) -> properties -> C/C++ -> Preprocessor -> Preprocessor Definitions
 
 `OPENCV;_TIMESPEC_DEFINED;_CRT_SECURE_NO_WARNINGS;_CRT_RAND_S;WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)`
 
-- open file: `\src\detector.c` and check lines `#pragma` and `#inclue` for OpenCV.
+- `\ src \ detector.c` 파일을 열고`#pragma`와`# inclue`를 OpenCV로 검사.
 
-- compile to .exe (X64 & Release) and put .dll-s near with .exe:
+- .exe (X64 및 Release)로 컴파일하고 .dll-s를 .exe와 가까이 위치. 
 
     * `pthreadVC2.dll, pthreadGC2.dll` from \3rdparty\dll\x64
 
