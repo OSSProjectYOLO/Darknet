@@ -63,13 +63,13 @@ Yolo 교차 플랫폼 Windows 및 Linux 버전 (객체 감지 용). Contributtor
 
 ##### Example of usage in cmd-files from `build\darknet\x64\`:
 
-* `darknet_voc.cmd` - initialization with 194 MB VOC-model yolo-voc.weights & yolo-voc.cfg and waiting for entering the name of the image file
-* `darknet_demo_voc.cmd` - initialization with 194 MB VOC-model yolo-voc.weights & yolo-voc.cfg and play your video file which you must rename to: test.mp4
-* `darknet_demo_store.cmd` - initialization with 194 MB VOC-model yolo-voc.weights & yolo-voc.cfg and play your video file which you must rename to: test.mp4, and store result to: res.avi
-* `darknet_net_cam_voc.cmd` - initialization with 194 MB VOC-model, play video from network video-camera mjpeg-stream (also from you phone)
-* `darknet_web_cam_voc.cmd` - initialization with 194 MB VOC-model, play video from Web-Camera number #0
-* `darknet_coco_9000.cmd` - initialization with 186 MB Yolo9000 COCO-model, and show detection on the image: dog.jpg
-* `darknet_coco_9000_demo.cmd` - initialization with 186 MB Yolo9000 COCO-model, and show detection on the video (if it is present): street4k.mp4, and store result to: res.avi
+* `darknet_voc.cmd` - 194MB VOC 모델 yolo-voc.weights 및 yolo-voc.cfg로 초기화하고 이미지 파일의 이름을 입력하기를 기다리는 중.
+* `darknet_demo_voc.cmd` - 194MB VOC 모델 yolo-voc.weights 및 yolo-voc.cfg로 초기화하고 이름을 바꾸어야하는 비디오 파일을 재생. test.mp4
+* `darknet_demo_store.cmd` - 194MB VOC 모델 yolo-voc.weights 및 yolo-voc.cfg로 초기화하고 이름을 바꾸어야하는 비디오 파일을 재생 : test.mp4, 결과 저장 : res.avi
+* `darknet_net_cam_voc.cmd` - 194MB VOC 모델로 초기화, 네트워크 비디오 카메라 mjpeg-stream (또한 휴대 전화로)에서 비디오 재생.
+* `darknet_web_cam_voc.cmd` - 194MB VOC 모델로 초기화, 웹 카메라 번호 # 0에서 비디오 재생.
+* `darknet_coco_9000.cmd` - 186 MB Yolo9000 COCO 모델로 초기화하고 이미지에 탐지를 표시. dog.jpg
+* `darknet_coco_9000_demo.cmd` - 186 MB Yolo9000 COCO 모델로 초기화하고 비디오 (존재하는 경우) : street4k.mp4에 대한 감지를 표시하고 결과를 res.avi에 저장.
 
 ##### cmd-files에서의 사용 예 :
 
@@ -170,11 +170,11 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
 
 - `\ src \ detector.c` 파일을 열고`#pragma`와`# inclue`를 OpenCV로 검사.
 
-- .exe (X64 및 Release)로 컴파일하고 .dll-s를 .exe와 가까이 위치. 
+- .exe (X64 및 Release)로 컴파일하고 .dll-s를 .exe와 가까이 위치.
 
     * `pthreadVC2.dll, pthreadGC2.dll` from \3rdparty\dll\x64
 
-    * `cusolver64_80.dll, curand64_80.dll, cudart64_80.dll, cublas64_80.dll` - 80 for CUDA 8.0 or your version, from C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\bin
+* `cusolver64_80.dll, curand64_80.dll, cudart64_80.dll, cublas64_80.dll` - CUDA 8.0 또는 사용자 버전의 경우 : 80, 다음 경로 확인 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\bin
 
     * For OpenCV 3.X: `opencv_world320.dll` and `opencv_ffmpeg320_64.dll` from `C:\opencv_3.0\opencv\build\x64\vc14\bin` 
     * For OpenCV 2.4.13: `opencv_core2413.dll`, `opencv_highgui2413.dll` and `opencv_ffmpeg2413_64.dll` from  `C:\opencv_2.4.13\opencv\build\x64\vc14\bin`
