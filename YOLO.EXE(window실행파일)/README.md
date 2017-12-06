@@ -1,16 +1,16 @@
-# Yolo-v2 Windows and Linux version
+# Yolo-v2 윈도우와 리눅스 버전
 
 [![CircleCI](https://circleci.com/gh/AlexeyAB/darknet.svg?style=svg)](https://circleci.com/gh/AlexeyAB/darknet)
 
-1. [How to use](#how-to-use)
-2. [How to compile on Linux](#how-to-compile-on-linux)
-3. [How to compile on Windows](#how-to-compile-on-windows)
-4. [How to train (Pascal VOC Data)](#how-to-train-pascal-voc-data)
-5. [How to train (to detect your custom objects)](#how-to-train-to-detect-your-custom-objects)
-6. [When should I stop training](#when-should-i-stop-training)
-7. [How to improve object detection](#how-to-improve-object-detection)
-8. [How to mark bounded boxes of objects and create annotation files](#how-to-mark-bounded-boxes-of-objects-and-create-annotation-files)
-9. [How to use Yolo as DLL](#how-to-use-yolo-as-dll)
+1. [사용하는 방법](#how-to-use)
+2. [리눅스에서 컴파일 하는 방법](#how-to-compile-on-linux)
+3. [윈도우에서 컴파일 하는 방법](#how-to-compile-on-windows)
+4. [훈련하는 방법 (Pascal VOC Data)](#how-to-train-pascal-voc-data)
+5. [훈련하는 방법 (사용자 정의 개체를 검색하는 방법) :](#how-to-train-to-detect-your-custom-objects)
+6. [훈련을 중단해야 하는 때](#when-should-i-stop-training)
+7. [개체 검색을 개선하는 방법](#how-to-improve-object-detection)
+8. [개체의 둘러싸인 상자를 표시하고 주석 파일을 만드는 방법](#how-to-mark-bounded-boxes-of-objects-and-create-annotation-files)
+9. [Yolo를 DLL로 사용하는 방법](#how-to-use-yolo-as-dll)
 
 |  ![Darknet Logo](http://pjreddie.com/media/files/darknet-black-small.png) | &nbsp; ![map_fps](https://hsto.org/files/a24/21e/068/a2421e0689fb43f08584de9d44c2215f.jpg) https://arxiv.org/abs/1612.08242 |
 |---|---|
