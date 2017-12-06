@@ -6,7 +6,7 @@
 2. [리눅스에서 컴파일 하는 방법](#how-to-compile-on-linux)
 3. [윈도우에서 컴파일 하는 방법](#how-to-compile-on-windows)
 4. [훈련하는 방법 (Pascal VOC Data)](#how-to-train-pascal-voc-data)
-5. [훈련하는 방법 (사용자 정의 개체를 검색하는 방법) :](#how-to-train-to-detect-your-custom-objects)
+5. [훈련하는 방법 (사용자 정의 개체를 검색하는 방법)](#how-to-train-to-detect-your-custom-objects)
 6. [훈련을 중단해야 하는 때](#when-should-i-stop-training)
 7. [개체 검색을 개선하는 방법](#how-to-improve-object-detection)
 8. [개체의 둘러싸인 상자를 표시하고 주석 파일을 만드는 방법](#how-to-mark-bounded-boxes-of-objects-and-create-annotation-files)
@@ -19,22 +19,22 @@
 |---|---|
 
 
-# "You Only Look Once: Unified, Real-Time Object Detection (version 2)"
-A Yolo cross-platform Windows and Linux version (for object detection). Contributtors: https://github.com/pjreddie/darknet/graphs/contributors
+# "You Only Look Once: 통합 된 실시간 객체 탐지 (version 2)"
+Yolo 교차 플랫폼 Windows 및 Linux 버전 (객체 감지 용). Contributtors: https://github.com/pjreddie/darknet/graphs/contributors
 
-This repository is forked from Linux-version: https://github.com/pjreddie/darknet
+이 저장소는 Linux 버전에서 포크됩니다 : https://github.com/pjreddie/darknet
 
-More details: http://pjreddie.com/darknet/yolo/
+더많은 세부사항 : http://pjreddie.com/darknet/yolo/
 
-This repository supports:
+이 저장소는 다음을 지원합니다 :
 
 * both Windows and Linux
 * both OpenCV 3.x and OpenCV 2.4.13
 * both cuDNN 5 and cuDNN 6
 * CUDA >= 7.5
-* also create SO-library on Linux and DLL-library on Windows
+* 또한 Linux에서 SO- 라이브러리를 만들고 Windows에서 DLL 라이브러리를 만듭니다.
 
-##### Requires: 
+##### 요구사항들:
 * **Linux GCC>=4.9 or Windows MS Visual Studio 2015 (v140)**: https://go.microsoft.com/fwlink/?LinkId=532606&clcid=0x409  (or offline [ISO image](https://go.microsoft.com/fwlink/?LinkId=615448&clcid=0x409))
 * **CUDA 8.0**: https://developer.nvidia.com/cuda-downloads
 * **OpenCV 3.x**: https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.2.0/opencv-3.2.0-vc14.exe/download
@@ -42,24 +42,24 @@ This repository supports:
   - OpenCV allows to show image or video detection in the window and store result to file that specified in command line `-out_filename res.avi`
 * **GPU with CC >= 2.0** if you use CUDA, or **GPU CC >= 3.0** if you use cuDNN + CUDA: https://en.wikipedia.org/wiki/CUDA#GPUs_supported
 
-##### Pre-trained models for different cfg-files can be downloaded from (smaller -> faster & lower quality):
+##### 다양한 cfg 파일에 대한 사전 학습 된 모델을 다운로드 할 수 있습니다 (더 작은 -> 더 빠르고 낮은 품질의):
 * `yolo.cfg` (194 MB COCO-model) - require 4 GB GPU-RAM: http://pjreddie.com/media/files/yolo.weights
 * `yolo-voc.cfg` (194 MB VOC-model) - require 4 GB GPU-RAM: http://pjreddie.com/media/files/yolo-voc.weights
 * `tiny-yolo.cfg` (60 MB COCO-model) - require 1 GB GPU-RAM: http://pjreddie.com/media/files/tiny-yolo.weights
 * `tiny-yolo-voc.cfg` (60 MB VOC-model) - require 1 GB GPU-RAM: http://pjreddie.com/media/files/tiny-yolo-voc.weights
 * `yolo9000.cfg` (186 MB Yolo9000-model) - require 4 GB GPU-RAM: http://pjreddie.com/media/files/yolo9000.weights
 
-Put it near compiled: darknet.exe
+컴파일 된 것을 darknet.exe 근처에 놓으십시오.
 
-You can get cfg-files by path: `darknet/cfg/`
+경로별로 cfg 파일을 얻을 수 있습니다  : `darknet/cfg/`
 
-##### Examples of results:
+##### 결과의 예 :
 
 [![Everything Is AWESOME](http://img.youtube.com/vi/VOC3huqHrss/0.jpg)](https://www.youtube.com/watch?v=VOC3huqHrss "Everything Is AWESOME")
 
-Others: https://www.youtube.com/channel/UC7ev3hNVkx4DzZ3LO19oebg
+기타 : https://www.youtube.com/channel/UC7ev3hNVkx4DzZ3LO19oebg
 
-### How to use:
+### 사용하는 방법 :
 
 ##### Example of usage in cmd-files from `build\darknet\x64\`:
 
@@ -71,9 +71,9 @@ Others: https://www.youtube.com/channel/UC7ev3hNVkx4DzZ3LO19oebg
 * `darknet_coco_9000.cmd` - initialization with 186 MB Yolo9000 COCO-model, and show detection on the image: dog.jpg
 * `darknet_coco_9000_demo.cmd` - initialization with 186 MB Yolo9000 COCO-model, and show detection on the video (if it is present): street4k.mp4, and store result to: res.avi
 
-##### How to use on the command line:
+##### cmd-files에서의 사용 예 :
 
-On Linux use `./darknet` instead of `darknet.exe`, like this:`./darknet detector test ./cfg/coco.data ./cfg/yolo.cfg ./yolo.weights`
+Linux 사용시 `./darknet` 대신 `darknet.exe`, 이렇게 : `./darknet detector test ./cfg/coco.data ./cfg/yolo.cfg ./yolo.weights`
 
 * 194 MB COCO-model - image: `darknet.exe detector test data/coco.data yolo.cfg yolo.weights -i 0 -thresh 0.2`
 * Alternative method 194 MB COCO-model - image: `darknet.exe detect yolo.cfg yolo.weights -i 0 -thresh 0.2`
@@ -89,9 +89,9 @@ On Linux use `./darknet` instead of `darknet.exe`, like this:`./darknet detector
 * 194 MB VOC-model - WebCamera #0: `darknet.exe detector demo data/voc.data yolo-voc.cfg yolo-voc.weights -c 0`
 * 186 MB Yolo9000 - image: `darknet.exe detector test cfg/combine9k.data yolo9000.cfg yolo9000.weights`
 * 186 MB Yolo9000 - video: `darknet.exe detector demo cfg/combine9k.data yolo9000.cfg yolo9000.weights test.mp4`
-* To process a list of images `image_list.txt` and save results of detection to `result.txt` use:                             
+* 이미지 목록을 처리하려면 `image_list.txt` 탐지의 결과  `result.txt` 사용:
     `darknet.exe detector test data/voc.data yolo-voc.cfg yolo-voc.weights < image_list.txt > result.txt`
-    You can comment this line so that each image does not require pressing the button ESC: https://github.com/AlexeyAB/darknet/blob/6ccb41808caf753feea58ca9df79d6367dedc434/src/detector.c#L509
+    이 선을 주석 처리하여 각 이미지에 ESC 버튼을 누르지 않아도됩니다 : https://github.com/AlexeyAB/darknet/blob/6ccb41808caf753feea58ca9df79d6367dedc434/src/detector.c#L509
 
 ##### For using network video-camera mjpeg-stream with any Android smartphone:
 
