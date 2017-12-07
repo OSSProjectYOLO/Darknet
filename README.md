@@ -69,3 +69,6 @@ Python 프로그래밍과 OpenCV, Computer Vision 분야에 대해서 함께 Stu
 | 이대경(팀장)| 20124956  | cocobino      |
 | 강일송      | 20134845  | Borngroundg  |
 | 김한섭      | 20134822  | khseob0715(master 계정)  |
+
+## 6. 협업 증빙
+<![](https://github.com/OSSProjectYOLO/Darknet/graphs/contributors)
