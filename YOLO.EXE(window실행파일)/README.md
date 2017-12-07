@@ -204,13 +204,13 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
 
 추가정보를 얻고 싶으시면 다음 링크를 참고 : http://pjreddie.com/darknet/yolo/#train-voc
 
-## How to train with multi-GPU:
+## 멀티 GPU로 훈련하는 법 :
 
-1. Train it first on 1 GPU for like 1000 iterations: `darknet.exe detector train data/voc.data yolo-voc.2.0.cfg darknet19_448.conv.23`
+1. 1000 회의 반복을 위해 1 GPU에서 우선적으로 훈련 : `darknet.exe detector train data/voc.data yolo-voc.2.0.cfg darknet19_448.conv.23`
 
-2. Then stop and by using partially-trained model `/backup/yolo-voc_1000.weights` run training with multigpu (up to 4 GPUs): `darknet.exe detector train data/voc.data yolo-voc.2.0.cfg /backup/yolo-voc_1000.weights -gpus 0,1,2,3`
+2. 그런 다음 부분적으로 훈련 된 모델을 사용하여 중지하고 `/backup/yolo-voc_1000.weights`  멀티GPU를  (최대 4 GPU)로 교육을 실행  `darknet.exe detector train data/voc.data yolo-voc.2.0.cfg /backup/yolo-voc_1000.weights -gpus 0,1,2,3`
 
-https://groups.google.com/d/msg/darknet/NbJqonJBTSY/Te5PfIpuCAAJ
+더 자세한 정보는 다음 사이트에서 참고 : https://groups.google.com/d/msg/darknet/NbJqonJBTSY/Te5PfIpuCAAJ
 
 ## How to train (to detect your custom objects):
 
