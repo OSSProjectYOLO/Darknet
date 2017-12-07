@@ -181,28 +181,28 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
 
 ## Pascal VOC Data를 이용한 방법 :
 
-1. Download pre-trained weights for the convolutional layers (76 MB): http://pjreddie.com/media/files/darknet19_448.conv.23 and put to the directory `build\darknet\x64`
+1. 콘볼루션 계층의 미리 정해놓은 가중치 다운 (76 MB): http://pjreddie.com/media/files/darknet19_448.conv.23 and put to the directory `build\darknet\x64`
 
-2. Download The Pascal VOC Data and unpack it to directory `build\darknet\x64\data\voc` will be created dir `build\darknet\x64\data\voc\VOCdevkit\`:
+2.Pascal VOC Data를 다운로드하고 `build\darknet\x64\data\voc` 생성된 디렉토리 확인  `build\darknet\x64\data\voc\VOCdevkit\`:
     * http://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar
     * http://pjreddie.com/media/files/VOCtrainval_06-Nov-2007.tar
     * http://pjreddie.com/media/files/VOCtest_06-Nov-2007.tar
     
     2.1 Download file `voc_label.py` to dir `build\darknet\x64\data\voc`: http://pjreddie.com/media/files/voc_label.py
 
-3. Download and install Python for Windows: https://www.python.org/ftp/python/3.5.2/python-3.5.2-amd64.exe
+3. Windows 용 Python 다운로드 및 설치 : https://www.python.org/ftp/python/3.5.2/python-3.5.2-amd64.exe
 
-4. Run command: `python build\darknet\x64\data\voc\voc_label.py` (to generate files: 2007_test.txt, 2007_train.txt, 2007_val.txt, 2012_train.txt, 2012_val.txt)
+4. 실행 명령어 : `python build\darknet\x64\data\voc\voc_label.py` (to generate files: 2007_test.txt, 2007_train.txt, 2007_val.txt, 2012_train.txt, 2012_val.txt)
 
-5. Run command: `type 2007_train.txt 2007_val.txt 2012_*.txt > train.txt`
+5. 실행 명령어 : `type 2007_train.txt 2007_val.txt 2012_*.txt > train.txt`
 
 6. Set `batch=64` and `subdivisions=8` in the file `yolo-voc.2.0.cfg`: [link](https://github.com/AlexeyAB/darknet/blob/master/build/darknet/x64/yolo-voc.2.0.cfg#L2)
 
-7. Start training by using `train_voc.cmd` or by using the command line: `darknet.exe detector train data/voc.data yolo-voc.2.0.cfg darknet19_448.conv.23`
+7. 다음 명령어를 입력하여 훈련을 시작하거나  `train_voc.cmd` 커멘드 라인에 다음을 입력하여 시작한다 : `darknet.exe detector train data/voc.data yolo-voc.2.0.cfg darknet19_448.conv.23`
 
-If required change pathes in the file `build\darknet\x64\data\voc.data`
+필요한 경우 파일에서 경로 변경 `build\darknet\x64\data\voc.data`
 
-More information about training by the link: http://pjreddie.com/darknet/yolo/#train-voc
+추가정보를 얻고 싶으시면 다음 링크를 참고 : http://pjreddie.com/darknet/yolo/#train-voc
 
 ## How to train with multi-GPU:
 
