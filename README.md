@@ -2,7 +2,7 @@
 Open Source SW 02 Class Team Project
 
 ## 1. YOLO API란?
-![](http://imageshack.com/a/img922/3384/k4diRJ.jpg) <br>
+[![Video Label](http://imageshack.com/a/img922/3525/ohBvzL.jpg)](https://youtu.be/VOC3huqHrss) <br>
 
 객체 탐지 기법에 있어서 새로운 접근법인 YOLO를 소개합니다.
 기존 객체 탐지 기법은 사전 작업으로 탐지를 먼저 수행합니다.<br>
