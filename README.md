@@ -47,7 +47,7 @@ Python 프로그래밍과 OpenCV, Computer Vision 분야에 대해서 함께 Stu
 - CUDNN 의 속도를 향상 시키고 싶으시다면 다음과 절차를 따르시면 됩니다.
   - **cuDNN 6.0 for CUDA 8.0** 설치하면 됩니다 : https://developer.nvidia.com/cudnn
   - https://hsto.org/files/a49/3dc/fc4/a493dcfc4bd34a1295fd15e0e2e01f26.jpg
-  -  \darknet.sln 파일을 연 후 -> (right click on project) -> properties -> C/C++ -> Preprocessor -> Preprocessor Definitions, 을 열어서 다음내용을 추가해줍니다. : CUDNN;
+  -  \darknet.sln 파일을 연 후 -> (right click on project) -> properties -> C/C++ -> Preprocessor -> Preprocessor Definitions을 열어서 다음내용을 추가해줍니다.
 
 
 
@@ -61,6 +61,8 @@ Python 프로그래밍과 OpenCV, Computer Vision 분야에 대해서 함께 Stu
 
 ## 5. 참고문헌
 * Ali Farhadi Joseph Redmon.YOLO9000: Better, Faster, Stronger.  San Val, 2016 : https://arxiv.org/abs/1612.08242
+<br>
+<br>
 
 | 팀원        | 학번      | GitHub아이디  |
 | :----      | :----     | :----         |
