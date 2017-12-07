@@ -179,7 +179,7 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
     * For OpenCV 3.X: `opencv_world320.dll` and `opencv_ffmpeg320_64.dll` from `C:\opencv_3.0\opencv\build\x64\vc14\bin` 
     * For OpenCV 2.4.13: `opencv_core2413.dll`, `opencv_highgui2413.dll` and `opencv_ffmpeg2413_64.dll` from  `C:\opencv_2.4.13\opencv\build\x64\vc14\bin`
 
-## How to train (Pascal VOC Data):
+## Pascal VOC Data를 이용한 방법 :
 
 1. Download pre-trained weights for the convolutional layers (76 MB): http://pjreddie.com/media/files/darknet19_448.conv.23 and put to the directory `build\darknet\x64`
 
