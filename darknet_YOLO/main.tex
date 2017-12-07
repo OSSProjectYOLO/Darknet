@@ -472,13 +472,11 @@ vc14\textbackslash lib
 \label{fig:detect}
 \end{figure}
 
-
 \section{YOLO OSS 구현 화면}
-
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.4]
+\includegraphics[scale=0.3]
 {how/YOLO_darknet_1.jpg}
 \caption{YOLO-darknet 구현화면 1}
 \label{fig:detect}
@@ -486,33 +484,25 @@ vc14\textbackslash lib
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.4]
+\includegraphics[scale=0.3]
 {how/YOLO_darknet_.jpg}
 \caption{YOLO-darknet 구현화면 2}
 \label{fig:detect}
 \end{figure}
 
 다음 사진과 같이 학습된 데이터 셋을 통해 image 를 인식하고 해당 정보를 표시해줍니다.    
-
-다운받은 소스에 보면 여러 가지 설정의 Visual Studio (VS) 프로젝트 파일들이 제공됩니다. 
+\newline다운받은 소스에 보면 여러 가지 설정의 Visual Studio (VS) 프로젝트 파일들이 제공됩니다. 
 이 중에서 \verb yolo_cpp_dll 버전으로 빌드 및 테스트를 했습니다. yolo를 dll 라이브러리로 
 만들어 놓으면 다른 윈도우즈 프로그램에서도 자유롭게 사용할 수 있기 때문입니다.
-
-
-
 다만, 한 가지 문제는 사이트에서 제공하는 프로젝트 파일은 Visual Studio 2015 용이기 때문에 
 그 이전버전의 Visual Studio(VS 2013 등)에서는 사용이 안된다는 점이 있습니다.
-
-
-
-한 가지 해결법은 다음과 같습니다. (1) 먼저, *.sIn 파일을 삭제한다. 
-(2) 이후 *.vcxproj 파일을 메모장으로 열어서 프로젝트의 버전을 자신의 VS에 맞게 수정해 준다. 
-(3) 이후 수정된 *.vcxproj를 클릭하여 프로젝트를 연다.
-(프로젝트를 저장하면 *.sIn 파일이 자신의 버전에 맞게 자동 생성됩니다)
-
-
-
-예를 들어, 자신이 사용하는 버전이 Visual Studio 2013라면 14.0은 12.0으로 v140은 v120으로 변경해 주면 됩니다.
+\newline
+\newline한 가지 해결법은 다음과 같습니다. 
+\newline(1) 먼저, *.sIn 파일을 삭제한다. 
+\newline(2) 이후 *.vcxproj 파일을 메모장으로 열어서 프로젝트의 버전을 자신의 VS에 맞게 수정해 준다. 
+\newline(3) 이후 수정된 *.vcxproj를 클릭하여 프로젝트를 연다.
+\newline(프로젝트를 저장하면 *.sIn 파일이 자신의 버전에 맞게 자동 생성됩니다)
+\newline예를 들어, 자신이 사용하는 버전이 Visual Studio 2013라면 14.0은 12.0으로 v140은 v120으로 변경해 주면 됩니다.
 
 
 
