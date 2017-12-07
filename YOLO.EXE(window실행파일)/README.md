@@ -372,20 +372,21 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
 
 예를 들면 : `train.txt`,`obj.names`,`obj.data`,`yolo-obj.cfg`,`air`1-6`.txt`,`bird`1-4`.txt` 2 클래스 (공기, 새)와`train_obj.cmd`의 예를 들자면 Yolo v2로이 이미지 세트를 훈련시키는 방법을 보여줍니다
 
-## How to use Yolo as DLL
+## Yolo를 DLL로 사용하는 방법
 
-1. To compile Yolo as C++ DLL-file `yolo_cpp_dll.dll` - open in MSVS2015 file `build\darknet\yolo_cpp_dll.sln`, set **x64** and **Release**, and do the: Build -> Build yolo_cpp_dll
-    * You should have installed **CUDA 8.0**
-    * To use cuDNN do: (right click on project) -> properties -> C/C++ -> Preprocessor -> Preprocessor Definitions, and add at the beginning of line: `CUDNN;`
+1. Yolo를 C ++ DLL 파일`yolo_cpp_dll.dll`로 컴파일하려면 MSVS2015 파일`build \ darknet \ yolo_cpp_dll.sln`에서 열고, **x64**와 **Release**를 설정하고 다음을 수행하십시오 : Build -> Build yolo_cpp_dll
+    * **CUDA 8.0**을 설치해야합니다.
+    * cuDNN을 사용하려면 : (프로젝트에서 오른쪽 클릭) -> 속성 -> C / C ++ -> 전 처리기 -> 전 처리기 정의를 클릭하고 줄 맨 앞에 'CUDNN 입력;
+2. Yolo를 C ++ 콘솔 응용 프로그램에서 DLL 파일로 사용하려면 MSVS2015 파일에서 연다. `build\darknet\yolo_console_dll.sln`, **x64** 와**Release**로 설정하고 : Build -> Build yolo_console_dll
 
-2. To use Yolo as DLL-file in your C++ console application - open in MSVS2015 file `build\darknet\yolo_console_dll.sln`, set **x64** and **Release**, and do the: Build -> Build yolo_console_dll
-
-    * you can run your console application from Windows Explorer `build\darknet\x64\yolo_console_dll.exe`
-    * or you can run from MSVS2015 (before this - you should copy 2 files `yolo-voc.cfg` and `yolo-voc.weights` to the directory `build\darknet\` )
-    * after launching your console application and entering the image file name - you will see info for each object: 
-    `<obj_id> <left_x> <top_y> <width> <height> <probability>`
-    * to use simple OpenCV-GUI you should uncomment line `//#define OPENCV` in `yolo_console_dll.cpp`-file: [link](https://github.com/AlexeyAB/darknet/blob/a6cbaeecde40f91ddc3ea09aa26a03ab5bbf8ba8/src/yolo_console_dll.cpp#L5)
-    * you can see source code of simple example for detection on the video file: [link](https://github.com/AlexeyAB/darknet/blob/ab1c5f9e57b4175f29a6ef39e7e68987d3e98704/src/yolo_console_dll.cpp#L75)
+    * Windows 탐색기에서 콘솔 응용 프로그램을 실행할 수 있습니다.
+           `build\darknet\x64\yolo_console_dll.exe`
+    * 또는 MSVS2015에서 실행할 수 있습니다 (이전에는`yolo-voc.cfg`와`yolo-voc.weights` 파일 두 개를`build \ darknet \ '디렉토리에 복사해야합니다)
+    * 콘솔 응용 프로그램을 실행하고 이미지 파일 이름을 입력하면 각 개체에 대한 정보가 표시됩니다.
+           `<obj_id> <left_x> <top_y> <width> <height> <probability>`
+    * 간단한 OpenCV-GUI를 사용하려면 줄의 주석 처리를 제거해야합니다.
+            `//#define OPENCV` in`yolo_console_dll.cpp`-file: [link](https://github.com/AlexeyAB/darknet/blob/a6cbaeecde40f91ddc3ea09aa26a03ab5bbf8ba8/src/yolo_console_dll.cpp#L5)
+    * 당신은 비디오 파일에서 탐지를위한 간단한 예제의 소스 코드를 볼 수 있습니다 : [link](https://github.com/AlexeyAB/darknet/blob/ab1c5f9e57b4175f29a6ef39e7e68987d3e98704/src/yolo_console_dll.cpp#L75)
    
 `yolo_cpp_dll.dll`-API: [link](https://github.com/AlexeyAB/darknet/blob/master/src/yolo_v2_class.hpp#L42)
 ```
