@@ -350,19 +350,21 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
 | ![Yolo_v2_training](https://hsto.org/files/d12/1e7/515/d121e7515f6a4eb694913f10de5f2b61.jpg) | ![Yolo_v2_training](https://hsto.org/files/727/c7e/5e9/727c7e5e99bf4d4aa34027bb6a5e4bab.jpg) |
 |---|---|
 
-## How to improve object detection:
+## 개체 감지를 개선하는 방법 :
 
-1. Before training:
-  * set flag `random=1` in your `.cfg`-file - it will increase precision by training Yolo for different resolutions: [link]https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo-voc.2.0.cfg#L244)
+1. 훈련 전 준비:
+  *`.cfg` 파일에`random = 1` 플래그를 설정하십시오. - 해상도가 다른 Yolo를 교육함으로써 정밀도를 높일 수 있습니다 : [link]https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo-voc.2.0.cfg#L244)
   
-  * desirable that your training dataset include images with objects at diffrent: scales, rotations, lightings, from different sides
+  * 훈련 데이터 세트가 다른 측면에서 확장, 회전, 조명 등 다양한 분야의 이미지를 포함하는 것이 바람직합니다.
 
-2. After training - for detection:
+2. 훈련 후 다음을 수행 :
 
-  * Increase network-resolution by set in your `.cfg`-file (`height=608` and `width=608`) or (`height=832` and `width=832`) or (any value multiple of 32) - this increases the precision and makes it possible to detect small objects: [link](https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo-voc.2.0.cfg#L4)
+* `.cfg` 파일 (`height = 608` 및`width = 608`) 또는 (`height = 832` 및`width = 832`) 또는 (32의 배수의 임의의 값)로 네트워크 해상도를 높이십시오 - 이렇게하면 정밀도가 향상되고 작은 물체를 감지 할 수 있습니다 : [link](https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo-voc.2.0.cfg#L4)
   
-    * you do not need to train the network again, just use `.weights`-file already trained for 416x416 resolution
-    * if error `Out of memory` occurs then in `.cfg`-file you should increase `subdivisions=16`, 32 or 64: [link](https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo-voc.2.0.cfg#L3)
+  * 네트워크를 다시 훈련 할 필요가 없으며 이미 416x416 해상도로 훈련 된`.weights`-file을 사용하십시오.
+
+* 만일`Out of memory` 오류가`.cfg` -file에 있으면`subdivisions = 16`, 32 또는 64를 증가시켜야합니다
+  : [link](https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo-voc.2.0.cfg#L3)
 
 ## How to mark bounded boxes of objects and create annotation files:
 
