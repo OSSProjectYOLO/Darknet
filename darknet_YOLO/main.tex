@@ -507,12 +507,10 @@ vc14\textbackslash lib
 
 
 \section{사용 설명서 작성 중 느낀 기능 향상을 위한 제안}
-\author{(1) 기존의 YOLO 방법 }
-
-\begin{verbatim}
-    R-CNN 계열의 검출 네트워크들은 영상에서 오브젝트가 있을 것 같은 후보를 먼저 뽑는다.
+(1) 기존의 YOLO 방법 
+\newlineR-CNN 계열의 검출 네트워크들은 영상에서 오브젝트가 있을 것 같은 후보를 먼저 뽑는다.
 후보로 뽑힌 ROI 들은 분류기에 의해 클래스 분류가 이뤄지고 경계박스 를 찾는다.
-\end{verbatim}
+
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=1.0]{enhanceyolo.jpg}
@@ -520,16 +518,13 @@ vc14\textbackslash lib
 \label{fig:detect}
 \end{figure}
 
-\begin{verbatim}
-    제안된 영역이 어떤 클래스인지 분류하기 위해서 classifier 의 많은 레이어들을 통과해야만 합니다.
+제안된 영역이 어떤 클래스인지 분류하기 위해서 classifier 의 많은 레이어들을 통과해야만 합니다.
 즉 아래쪽에 하얀 박스로 표시된 CNN을 통해 경계 박스를 얻고 그 경계박스안에 어떤 클래스가 있는지
 classifier(분류 네트워크-이것 역시 NN)로 검사를 합니다.
-
-각각 역활이 다른 3개의 네트워크가 하나로 연결되어 있어 전체를 한번에 학습시킬 수 있으므로 결국 하나라고 말할 수도 있습니다.(End to End)
+\newline각각 역활이 다른 3개의 네트워크가 하나로 연결되어 있어 전체를 한번에 학습시킬 수 있으므로 결국 하나라고 말할 수도 있습니다.(End to End)
 앞단의 CNN이 특징추출기의 역활을 하며, RPN(Region Proposal Network)는 오브젝트가 있을 법 한 경계 박스를 추천하며,
 classifier는 앞의 두 네트워크가 전달하는 특징데이터와 경계 박스 위치를 받아서 분류를 합니다.
 
-\end{verbatim}
 
 \begin{figure}[h!]
 \centering
@@ -538,35 +533,24 @@ classifier는 앞의 두 네트워크가 전달하는 특징데이터와 경계 
 \label{fig:detect}
 \end{figure}
 
-\begin{verbatim}
-    Proposal 방식은 영상에서 수많은 제안(proposal)을 하는 Selective Search 로 2.24초가 걸립니다.
 
-Selective Search에서 한 발 나아가서 엣지 정보를 바탕으로 엣지 박스를 찾으면 proposal의 수가 훨씬 적어지게 된니다.
+Proposal 방식은 영상에서 수많은 제안(proposal)을 하는 Selective Search 로 2.24초가 걸립니다.
+\newline Selective Search에서 한 발 나아가서 엣지 정보를 바탕으로 엣지 박스를 찾으면 proposal의 수가 훨씬 적어지게 된니다.
 Selective Search 의 2.24초보다 훨씬 빠른 0.38 초가 걸립니다. 
 R-CNN 과 EdgeBoxes 가 스타일이 비슷합니다.
-
-Selective Search 보다 EdgeBoxes 방식이 6배 빠릅니다.
+\newline Selective Search 보다 EdgeBoxes 방식이 6배 빠릅니다.
 하지만 EdgeBoxes 방식보다 grids 방식이 훨신 더 빠릅니다.
-
-grid cell 의 갯수가 곧 proposal의 수로 proposal을 구하는 과정에서 오버헤드가 전혀 없습니다.
+\newline grid cell 의 갯수가 곧 proposal의 수로 proposal을 구하는 과정에서 오버헤드가 전혀 없습니다.
 grid cell 안에 오브젝트가 있다는 보장은 전혀 없지만 그것은 다른 방식도 마찬가지입니다.
-
-YOLO는 실시간성을 확보하기 위해 Proposal의 수가 적은 grid 방식을 더욱 발전시켜서 사용했습니다.
-\end{verbatim}
-
-\author{(2) YOLO 향상 제안 NMS 알고리즘}
-
-\begin{verbatim}
-위에 YOLO 영상인식 처리방법을 알아보던중 영상인식에 처리 속도가 많은 문제가 되어 왔음을 알게되었습니다 그래서 저희팀은 처음에는 데이터셋에 문제에 접근했었다가, 기존에 데이터 셋은 향상에 도움은 되지만 효율적이지 못해서 알고리즘으로 시선을 돌리게 되었습니다.
-
-
-    NMS 알고리즘이란 ?
-    
-    네트워크의 최종 출력단에서 경계박스를 위치 찾기와 클래스 분류가 동시에 이뤄집니다.
+\newline YOLO는 실시간성을 확보하기 위해 Proposal의 수가 적은 grid 방식을 더욱 발전시켜서 사용했습니다.
+\newline
+\newline (2) YOLO 향상 제안 NMS 알고리즘
+\newline위에 YOLO 영상인식 처리방법을 알아보던중 영상인식에 처리 속도가 많은 문제가 되어 왔음을 알게되었습니다 그래서 저희팀은 처음에는 데이터셋에 문제에 접근했었다가, 기존에 데이터 셋은 향상에 도움은 되지만 효율적이지 못해서 알고리즘으로 시선을 돌리게 되었습니다.
+\newline
+\newline NMS 알고리즘이란 ?
+\newline 네트워크의 최종 출력단에서 경계박스를 위치 찾기와 클래스 분류가 동시에 이뤄집니다.
 단 하나의 네트워크가 한번에 특징도 추출하고, 경계박스도 만들고, 클래스도 분류합니다.  그러므로 기존의 방식보다 간단하고 빠릅니다.
-
 복잡한 알고리즘이지만 간단하게 요약하지만 다음과 같습니다.
-\end{verbatim}
 
 \begin{figure}[h!]
 \centering
