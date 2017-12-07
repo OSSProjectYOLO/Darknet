@@ -1,7 +1,8 @@
-# Darknet YOLO API Instruction
+  # Darknet YOLO API Instruction
 Open Source SW 02 Class Team Project
 
 ## 1. YOLO API란?
+![](http://imageshack.com/a/img922/3384/k4diRJ.jpg)
 객체 탐지 기법에 있어서 새로운 접근법인 YOLO를 소개합니다.
 
 기존 객체 탐지 기법은 사전 작업으로 탐지를 먼저 수행합니다.<br>
@@ -70,5 +71,5 @@ Python 프로그래밍과 OpenCV, Computer Vision 분야에 대해서 함께 Stu
 | 강일송      | 20134845  | Borngroundg  |
 | 김한섭      | 20134822  | khseob0715(master 계정)  |
 
-## 6. 협업 증빙
+## 6. 협업 히스토리
 ![](http://imageshack.com/a/img923/6836/XNOwtM.jpg)
