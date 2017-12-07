@@ -204,26 +204,26 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
 
 추가정보를 얻고 싶으시면 다음 링크를 참고 : http://pjreddie.com/darknet/yolo/#train-voc
 
-## 멀티 GPU로 훈련하는 법 :
+## 멀티 GPU로 훈련하는 방법 :
 
-1. 1000 회의 반복을 위해 1 GPU에서 우선적으로 훈련 : `darknet.exe detector train data/voc.data yolo-voc.2.0.cfg darknet19_448.conv.23`
+1. 한개의 GPU에서 우선적으로 훈련 : `darknet.exe detector train data/voc.data yolo-voc.2.0.cfg darknet19_448.conv.23`
 
 2. 그런 다음 부분적으로 훈련 된 모델을 사용하여 중지하고 `/backup/yolo-voc_1000.weights`  멀티GPU를  (최대 4 GPU)로 교육을 실행  `darknet.exe detector train data/voc.data yolo-voc.2.0.cfg /backup/yolo-voc_1000.weights -gpus 0,1,2,3`
 
 더 자세한 정보는 다음 사이트에서 참고 : https://groups.google.com/d/msg/darknet/NbJqonJBTSY/Te5PfIpuCAAJ
 
-## How to train (to detect your custom objects):
+## 사용자 커스텀 객체를 탐지하기 위한 훈련 방법:
 
-1. Create file `yolo-obj.cfg` with the same content as in `yolo-voc.2.0.cfg` (or copy `yolo-voc.2.0.cfg` to `yolo-obj.cfg)` and:
+1.  `yolo-voc.2.0.cfg`와 동일한 내용으로 `yolo-obj.cfg` 파일을 만들거나  `yolo-obj.cfg`에   `yolo-voc.2.0.cfg`를 복사하고 다음을 수행.
 
-  * change line batch to [`batch=64`](https://github.com/AlexeyAB/darknet/blob/master/build/darknet/x64/yolo-voc.2.0.cfg#L2)
-  * change line subdivisions to [`subdivisions=8`](https://github.com/AlexeyAB/darknet/blob/master/build/darknet/x64/yolo-voc.2.0.cfg#L3)
-  * change line `classes=20` to your number of objects
+  * batch의 내용을 변경  [`batch=64`](https://github.com/AlexeyAB/darknet/blob/master/build/darknet/x64/yolo-voc.2.0.cfg#L2)
+  * subdivisions의 내용을 변경  [`subdivisions=8`](https://github.com/AlexeyAB/darknet/blob/master/build/darknet/x64/yolo-voc.2.0.cfg#L3)
+  * `class = 20` 줄은 사용자의 객체 수로 변경
   * change line #237 from [`filters=125`](https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo-voc.2.0.cfg#L224) to: filters=(classes + 5)*5, so if `classes=2` then should be `filter=35`
   
-  (Generally `filters` depends on the `classes`, `num` and `coords`, i.e. equal to `(classes + coords + 1)*num`)
+  (일반적으로`filters '는`classes`,`num` 및`coords`에 의존합니다. 즉`(classes + coords + 1) * num`과 같습니다.
 
-  So for example, for 2 objects, your file `yolo-obj.cfg` should differ from `yolo-voc.2.0.cfg` in such lines:
+  예를 들어, 2 개의 객체의 경우,`yolo-obj.cfg` 파일은`yolo-voc.2.0.cfg`와 다를 수 있음 :
 
   ```
   [convolutional]
@@ -233,9 +233,12 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
   classes=2
   ```
 
-2. Create file `obj.names` in the directory `build\darknet\x64\data\`, with objects names - each in new line
+2. `build \ darknet \ x64 \ data \`디렉토리에`obj.names` 파일을 만듭니다.
+    객체 이름은 - 각각 새로운 행에 있음.
 
-3. Create file `obj.data` in the directory `build\darknet\x64\data\`, containing (where **classes = number of objects**):
+
+3. ** classes \ object의 수 **를 포함하는`build \ darknet \ x64 \ data \`디렉토리에`obj.data` 파일을 생성 :
+
 
   ```
   classes= 2
@@ -245,17 +248,20 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
   backup = backup/
   ```
 
-4. Put image-files (.jpg) of your objects in the directory `build\darknet\x64\data\obj\`
+4. `build \ darknet \ x64 \ data \ obj \`디렉토리에 오브젝트의 이미지 파일 (.jpg)을 삽입.
 
-5. Create `.txt`-file for each `.jpg`-image-file - in the same directory and with the same name, but with `.txt`-extension, and put to file: object number and object coordinates on this image, for each object in new line: `<object-class> <x> <y> <width> <height>`
+
+5. `.jpg`-image-file에 대해서`.txt` 파일을 만든다 - 같은 디렉토리에 있고 같은 이름이지만 확장자는`.txt`이며, 파일에 넣으십시오 :이 이미지의 객체 번호와 객체 좌표 새로운 줄에있는 각 객체에 대해 : <object-class> <x> <y> <width> <height>`
+
 
   Where: 
-  * `<object-class>` - integer number of object from `0` to `(classes-1)`
-  * `<x> <y> <width> <height>` - float values relative to width and height of image, it can be equal from 0.0 to 1.0 
-  * for example: `<x> = <absolute_x> / <image_width>` or `<height> = <absolute_height> / <image_height>`
-  * atention: `<x> <y>` - are center of rectangle (are not top-left corner)
+  *`<object-class>`- '0'에서`(classes-1)`까지의 객체 정수
+  *`<x> <y> <width> <height>`- 이미지의 폭과 높이를 기준으로 한 부동 소수점 값으로, 0.0에서 1.0까지 동일 할 수 있습니다.
+  * 예 :`<x> = <absolute_x> / <image_width>`또는`<height> = <absolute_height> / <image_height>`
+  * atention :`<x> <y>`- 사각형의 중심 (왼쪽 위 모서리가 아님)
 
-  For example for `img1.jpg` you should create `img1.txt` containing:
+예를 들어`img1.jpg '의 경우 다음을 포함하는`img1.txt`를 생성 :
+
 
   ```
   1 0.716797 0.395833 0.216406 0.147222
@@ -263,7 +269,8 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
   1 0.420312 0.395833 0.140625 0.166667
   ```
 
-6. Create file `train.txt` in directory `build\darknet\x64\data\`, with filenames of your images, each filename in new line, with path relative to `darknet.exe`, for example containing:
+6. `build \ darknet \ x64 \ data \`디렉토리에`train.txt` 파일을 만든다. 이미지의 파일명, 각 파일명은`darknet.exe '에 상대적인 새로운 줄의 경로로 만들며  예를 들면 다음과 같다  :
+
 
   ```
   data/obj/img1.jpg
@@ -271,17 +278,19 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
   data/obj/img3.jpg
   ```
 
-7. Download pre-trained weights for the convolutional layers (76 MB): http://pjreddie.com/media/files/darknet19_448.conv.23 and put to the directory `build\darknet\x64`
+7. 콘볼루션 계층의 미리 정해놓은 가중치 다운 (76 MB): http://pjreddie.com/media/files/darknet19_448.conv.23 and put to the directory `build\darknet\x64`
 
-8. Start training by using the command line: `darknet.exe detector train data/obj.data yolo-obj.cfg darknet19_448.conv.23`
+8. 명령어 라인을 사용하여 훈련을 시작 : `darknet.exe detector train data/obj.data yolo-obj.cfg darknet19_448.conv.23`
 
-    (file `yolo-obj_xxx.weights` will be saved to the `build\darknet\x64\backup\` for each 100 iterations until 1000 iterations has been reached, and after for each 1000 iterations)
+    (파일`yolo-obj_xxx.weights`는 1000 반복이 도달 할 때까지 그리고 각 1000 반복 후에 100 반복마다`build \ darknet \ x64 \ backup \에 저장 될 것입니다)
 
-9. After training is complete - get result `yolo-obj_final.weights` from path `build\darknet\x64\backup\`
+9. 훈련이 끝나면`build \ darknet \ x64 \ backup \`경로에서`yolo-obj_final.weights` 결과를 얻습니다.
 
- * After each 1000 iterations you can stop and later start training from this point. For example, after 2000 iterations you can stop training, and later just copy `yolo-obj_2000.weights` from `build\darknet\x64\backup\` to `build\darknet\x64\` and start training using: `darknet.exe detector train data/obj.data yolo-obj.cfg yolo-obj_2000.weights`
 
- * Also you can get result earlier than all 45000 iterations.
+* 1000 번 반복 한 후에는이 시점부터 시작하여 나중에 시작할 수 있습니다. 예를 들어 2000 회 반복 한 후에는 교육을 중지하고 나중에 build \ darknet \ x64 \ backup \에서`yolo-obj_2000.weights`를`build \ darknet \ x64 \ '로 복사하고`darknet'을 사용하여 교육을 시작할 수 있습니다. exe 검출기 기차 데이터 / obj.data yolo-obj.cfg yolo-obj_2000.weights`
+
+* 또한 모든 45000회의 반복보다 빠른 결과를 얻을 수 있습니다.
+
  
 ## When should I stop training:
 
