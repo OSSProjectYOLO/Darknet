@@ -366,11 +366,11 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
 * 만일`Out of memory` 오류가`.cfg` -file에 있으면`subdivisions = 16`, 32 또는 64를 증가시켜야합니다
   : [link](https://github.com/AlexeyAB/darknet/blob/master/cfg/yolo-voc.2.0.cfg#L3)
 
-## How to mark bounded boxes of objects and create annotation files:
+## 개체의 경계 상자를 표시하고 주석 파일을 만드는 방법:
 
-Here you can find repository with GUI-software for marking bounded boxes of objects and generating annotation files for Yolo v2: https://github.com/AlexeyAB/Yolo_mark
+여기서 GUI-software를 표시하고 Holo v2v2에 대한 주석 파일을 생성하기 위한 GUID소프트 웨어를 사용할 수 있습니다 : https://github.com/AlexeyAB/Yolo_mark
 
-With example of: `train.txt`, `obj.names`, `obj.data`, `yolo-obj.cfg`, `air`1-6`.txt`, `bird`1-4`.txt` for 2 classes of objects (air, bird) and `train_obj.cmd` with example how to train this image-set with Yolo v2
+예를 들면 : `train.txt`,`obj.names`,`obj.data`,`yolo-obj.cfg`,`air`1-6`.txt`,`bird`1-4`.txt` 2 클래스 (공기, 새)와`train_obj.cmd`의 예를 들자면 Yolo v2로이 이미지 세트를 훈련시키는 방법을 보여줍니다
 
 ## How to use Yolo as DLL
 
