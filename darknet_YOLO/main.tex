@@ -348,7 +348,6 @@ Darknet git 저장소를  다운하시기 바랍니다. 다음 명령어들을 �
 \begin{lstlisting}
 1. gcc -I/usr/local/cuda/include/ -Wall -Wfatal-errors -Ofast.... 
 2. gcc -I/usr/local/cuda/include/ -Wall -Wfatal-errors -Ofast.... 
-3. gcc -I/usr/local/cuda/include/ -Wall -Wfatal-errors -Ofast.... 
    .... 
 n. gcc -I/usr/local/cuda/include/ -Wall -Wfatal-errors -Ofast -lm.... 
 \end{lstlisting}
@@ -366,15 +365,14 @@ n. gcc -I/usr/local/cuda/include/ -Wall -Wfatal-errors -Ofast -lm....
 할 수 있는 일들을 확인하시기 바랍니다.
 
 \section{CUDA와 협업}
-
 \begin{lstlisting}
-  ./darknet 
+./darknet 
 \end{lstlisting}
 CPU에 있는 Darknet은 빠르지만 GPU에서 500배 더 빠릅니다! 그러기에  \href{https://developer.nvidia.com/cuda-gpus}{Nvidia GPU} 와 \href{https://developer.nvidia.com/cuda-downloads}{CUDA} 설치해야 합니다. 
-CUDA 설치에 관해서는 복잡한 내용이기에 깊게 다루지는 않겠습니다.\newline
+CUDA 설치에 관해서는 복잡한 내용이기에 깊게 다루지는 않겠습니다.
 \newline CUDA가 설치되어 있다면 기본 디렉토리에서 Makefile의 첫번째 행을 읽기 전용으로 바꿔줍니다.
 \begin{lstlisting}
-  GPU=1 
+GPU=1 
 \end{lstlisting}
 이제 여러분은 make 입력하면 프로젝트를 생성하고 CUDA를 활성화 할 수 있습니다. 
 CUDA가 올바르게 설치됬다면 nvidia-smi 명령어를 이용해 당신의 그래픽 카드 리스트를 확인할 수 있으며 기본적으로 시스템의 우선 순위로 그래픽 카드를 네트워크에서 실행합니다. 
@@ -382,148 +380,97 @@ CUDA가 올바르게 설치됬다면 nvidia-smi 명령어를 이용해 당신의
 명령어 줄의 flag -i \textlangle index \textrangle  를 아래를 참고하여 바꾸시면 됩니다.
 
 \begin{lstlisting}
- ./darknet -i 1 imagenet test cfg/alexnet.cfg alexnet.weights
+./darknet -i 1 imagenet test cfg/alexnet.cfg alexnet.weights
 \end{lstlisting}
 만약 여러분이 CUDA를 사용하여 컴파일 할 수 있지만 어떤 이유로든 
 사용할 수 있는 CPU계산을 위해 CPU를 대신하여-nogpu 명령어를 사용하세요.   
  
 \begin{lstlisting}
-  ./darknet -nogpu imagenet test cfg/alexnet.cfg alexnet.weights 
+./darknet -nogpu imagenet test cfg/alexnet.cfg alexnet.weights 
 
 \end{lstlisting}
    
 \section{OPENCV를 이용한 컴파일}
-
-\begin{lstlisting}
-
-\end{lstlisting}
-기본적으로 Darknet은 이미지 로딩을 위해 stb-image.h 를 사용합니다. 또한 OpenCV를 사용하면 디스크에 저장하지 않아도 이미지와 탐지 기능을 볼 수 있습니다.
-
-우선 OpenCV를 먼저 설치하세요.
+기본적으로 Darknet은 이미지 로딩을 위해 stb-image.h 를 사용합니다. 또한 OpenCV를 사용하면 디스크에 저장하지 않아도 이미지와 탐지 기능을 볼 수 있습니다. 우선 OpenCV를 먼저 설치하세요.
 소스에서 이 작업을 수행하면 오래걸리고 복잡하므로 패키지 매니저를 사용하여 수행할 수 있습니다.
 \newline 다음으로 Makefile의 두번째 줄을 변경합니다.
 
 \begin{lstlisting}
   OPENCV=1 
 \end{lstlisting}
- 다 끝났습니다! 실행하기 전, 우선 다시 make를 사용해 프로젝트를 다시 시작하세요. 그 다음 imtest 사용하여 영상 로드를 테스트하고 다음을 표시합니다.
+실행하기 전 다시 make를 사용해 프로젝트를 다시 시작한 뒤 imtest 사용하여 영상 로드를 테스트하고 다음을 표시합니다. 지금까지의 절차대로 정상적으로 동작한다면 사진과 같이 보일 것입니다.
 \begin{lstlisting}
  ./darknet imtest data/eagle.jpg 
-
 \end{lstlisting}
 
- 지금까지의 절차대로 정상적으로 동작한다면 사진과 같이 보일 것입니다.
-
- \begin{lstlisting}
-\end{lstlisting}
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.2]{egle.png}
+\includegraphics[scale=0.13]{egle.png}
 \caption{출력 결과}
 \label{fig:detect} 
 \end{figure}
- 
- \begin{verbatim}
-     
-     
-     
-     
-     
-     
- \end{verbatim} 
 
 
 \section{YOLO OSS 구현하기}
 
-\author{Window 환경 }
-
-\begin{lstlisting}
-
-\end{lstlisting}
-YOLO OSS는 구현 기반이 Linux 기반으로 구성되어 있습니다. 따라서 Windows 환경에서는 구현내용이 다소 복잡하고 어려울수 있으나 아래내용을 따라하게 되면 누구나 쉽게 이용하실수 있습니다!
-
-YOLO 윈도우 버전 :: \href{https://github.com/AlexeyAB/darknet/}{https://github.com/AlexeyAB/darknet/}
-
-첫번째 사이트(AlexeyAB)에 가면 YOLO 윈도우 버전을 다운받을 수 있습니다. 또한 설치, 컴파일, 실행 방법까지 상세하게 설명되어 있습니다. 따라서 설명만 따르면 어렵지 않게 빌드 및 테스트가 가능합니다.
-
-순서는 다음과 같습니다.
-
-\begin{lstlisting}
-
-\end{lstlisting}
-1. MSVS2015, CUDA8.0, OpenCV3.0 을 이미 설치하고 있다면 
-
-(경로설정을 C:\textbackslash opencv3.0 \textbackslash opencv \textbackslash build\textbackslash include 
-
-C:\textbackslash opencv3.0\textbackslash opencv\textbackslash build\textbackslash x64\textbackslash vc14\textbackslash lib ) 으로 해줍니다 그후에
-MSVS2015를 실행하고 build\textbackslash darknet\textbackslash darknet.sln 의 설정을 x64, Release 설정은 Build \textrightarrow Build 로 바꾸어 줍니다.
-
-2. C :\textbackslash \verb opencv_3.0\textbackslash opencv\textbackslash build\textbackslash x64\textbackslash vc14\textbackslash  bin에있는 opencv-world320.dll
-및 opencv-ffmpeg320-64.dll 파일을 찾아 darknet.exe 파일과 함께 둡니다.
-
+Window 환경
+\newline YOLO OSS는 구현 기반이 Linux 기반으로 구성되어 있습니다. 따라서 Windows 환경에서는 구현내용이 다소 복잡하고 어려울수 있으나 아래내용을 따라하게 되면 누구나 쉽게 이용하실수 있습니다!
+\newline YOLO 윈도우 버전 :: \href{https://github.com/AlexeyAB/darknet/}{https://github.com/AlexeyAB/darknet/}
+\newline 첫번째 사이트(AlexeyAB)에 가면 YOLO 윈도우 버전을 다운받을 수 있습니다. 또한 설치, 컴파일, 실행 방법까지 상세하게 설명되어 있습니다. 따라서 설명만 따르면 어렵지 않게 빌드 및 테스트가 가능합니다.
+\newline순서는 다음과 같습니다.
+\newline
+\newline1. MSVS2015, CUDA8.0, OpenCV3.0 을 이미 설치하고 있다면 경로설정을 C:\textbackslash opencv3.0 \textbackslash opencv \textbackslash 
+build\textbackslash include 또는 C:\textbackslash opencv3.0\textbackslash opencv\textbackslash build\textbackslash x64\textbackslash 
+vc14\textbackslash lib ) 으로 해줍니다 그후에 MSVS2015를 실행하고 build\textbackslash darknet\textbackslash darknet.sln 의 설정을 x64, 
+Release 설정은 Build \textrightarrow Build 로 바꾸어 줍니다.
+\newline
+\newline2. C :\textbackslash \verb opencv_3.0\textbackslash opencv\textbackslash build\textbackslash x64\textbackslash vc14\textbackslash
+bin에있는 opencv-world320.dll 및 opencv-ffmpeg320-64.dll 파일을 찾아 darknet.exe 파일과 함께 둡니다.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.2]
+\includegraphics[scale=0.4]
 {how/setting_darknet.jpg}
 \caption{opencv를 이용한 setting}
 \label{fig:detect}
 \end{figure}
+  .
+\newline 3. 다른 버전의 CUDA (8.0 아님)를 가지고 있다면 메모장을 사용하여 build \ darknet \ darknet.vcxproj를 열고 
+"CUDA 8.0"으로 2 곳을 찾아 CUDA- 버전으로 변경 한 다음 1 단계를 수행하십시오
+\newline
+\newline 4. MSVS 2015 및 OpenCV 3.0 경로가 C :\textbackslash \verb opencv_3.0\textbackslash opencv\textbackslash 
+build\textbackslash include 혹은 
+\newline C :\textbackslash \verb opencv_3.0\textbackslash opencv\textbackslash build\textbackslash x64\textbackslash 
+vc14\textbackslash lib에 있는 경우 MSVS를 시작하고 build\textbackslash darknet\textbackslash 
+\newline\verb darknet_no_gpu.sln을 열고 x64 및 Release를 설정하고 다음을 수행하시면됩니다. 
+\newline그리고 빌드설정은 빌드 \textrightarrow 빌드 darknet 로 하면 됩니다.
+\newline
+\newline 5. 3.0 대신 OpenCV 2.4.13을 사용하고 있다면 \textbackslash darknet.sln을 연 후 pathes를 변경해야합니다
 
-\begin{lstlisting}
+   - (우측클릭 속성) \textrightarrow 속성(properties) \textrightarrow C/C++ \textrightarrow General \textrightarrow Additional Include 
 
-\end{lstlisting}
+     Directories: C:\textbackslash \verb opencv_2.4.13\textbackslash opencv\textbackslash build\textbackslash include
 
-3. 다른 버전의 CUDA (8.0 아님)를 가지고 있다면 메모장을 사용하여 build \ darknet \ darknet.vcxproj를 열고 "CUDA 8.0"으로 2 곳을 찾아 CUDA- 버전으로 변경 한 다음 1 단계를 수행하십시오
+   - (우측클릭 속성) \textrightarrow 속성(properties) \textrightarrow Linker \textrightarrow General \textrightarrow Additional Library
 
-
-4. MSVS 2015 및 OpenCV 3.0 (경로 : C :\textbackslash \verb opencv_3.0\textbackslash opencv\textbackslash 
-build\textbackslash include 
-및 C :\textbackslash \verb opencv_3.0\textbackslash opencv\textbackslash build\textbackslash x64\textbackslash 
-vc14\textbackslash lib)
-에있는 경우 MSVS를 시작하고 
-
-build\textbackslash darknet\textbackslash \verb darknet_no_gpu.sln을 열고 x64 및 Release를 설정하고 다음을 수행하시면됩니다.
-그리고 빌드설정은 빌드 \textrightarrow 빌드 darknet 로 하면 됩니다.
+      Directories: C:\textbackslash \verb opencv_2.4.13\textbackslash opencv\textbackslash build\textbackslash x64\textbackslash
+vc14\textbackslash lib
+\newline
+\newline6. 속도 향상을 위해 CUDNN으로 빌드하려면 다음을 수행하십시오.
+\newline   - download and install CUDNN 6.0 for CUDA 8.0: https://developer.nvidia.com/cudnn
+\newline   - add Windows system variable cudnn with path to 
+\newline     CUDNN: https://hsto.org/files/a49/3dc/fc4/a493dcfc4bd34a1295fd15e0e2e01f26.jpg                                                    
+\newline   - open \textbackslash darknet.sln \textrightarrow (right click on project) \textrightarrow properties 
+\textrightarrow C/C++ \textrightarrow Preprocessor
+\textrightarrow Preprocessor Definitions, and add at the beginning of line: CUDNN;
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.2]
+\includegraphics[scale=0.4]
 {how/setting2.jpg}
 \caption{opencv를 이용한 setting2}
 \label{fig:detect}
 \end{figure}
-
-\begin{lstlisting}
-\end{lstlisting}
-
-5. 3.0 대신 OpenCV 2.4.13을 사용하고 있다면 \textbackslash darknet.sln을 연 후 pathes를 변경해야합니다
-
-- (우측클릭 속성) \textrightarrow 속성(properties) \textrightarrow C/C++ \textrightarrow General \textrightarrow Additional Include Directories:
-C:\textbackslash \verb opencv_2.4.13\textbackslash opencv\textbackslash build\textbackslash include
-
-- (우측클릭 속성) \textrightarrow 속성(properties) \textrightarrow Linker \textrightarrow General \textrightarrow Additional Library Directories:
-C:\textbackslash \verb opencv_2.4.13\textbackslash opencv\textbackslash build\textbackslash x64\textbackslash vc14\textbackslash lib
-
-
-
-6. 속도 향상을 위해 CUDNN으로 빌드하려면 다음을 수행하십시오.
-
--download and install CUDNN 6.0 for CUDA 8.0: https://developer.nvidia.com/cudnn
-
--add Windows system variable cudnn with path to CUDNN: https://hsto.org/files/
-a49/3dc/fc4/a493dcfc4bd34a1295fd15e0e2e01f26.jpg
-
--open \textbackslash darknet.sln \textrightarrow (right click on project) \textrightarrow properties 
-\textrightarrow C/C++ \textrightarrow Preprocessor
-\textrightarrow Preprocessor Definitions, and add at the beginning of line: CUDNN;
-
-\begin{lstlisting}
-
-\end{lstlisting}
-
-
-
 
 
 \section{YOLO OSS 구현 화면}
@@ -545,11 +492,6 @@ a49/3dc/fc4/a493dcfc4bd34a1295fd15e0e2e01f26.jpg
 \label{fig:detect}
 \end{figure}
 
-
-\begin{lstlisting}
-
-
-\end{lstlisting}
 다음 사진과 같이 학습된 데이터 셋을 통해 image 를 인식하고 해당 정보를 표시해줍니다.    
 
 다운받은 소스에 보면 여러 가지 설정의 Visual Studio (VS) 프로젝트 파일들이 제공됩니다. 
