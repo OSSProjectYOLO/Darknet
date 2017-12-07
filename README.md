@@ -71,4 +71,4 @@ Python 프로그래밍과 OpenCV, Computer Vision 분야에 대해서 함께 Stu
 | 김한섭      | 20134822  | khseob0715(master 계정)  |
 
 ## 6. 협업 증빙
-<![](https://github.com/OSSProjectYOLO/Darknet/graphs/contributors)
+![](http://imageshack.com/a/img923/6836/XNOwtM.jpg)
