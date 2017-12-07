@@ -212,7 +212,7 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
 
 더 자세한 정보는 다음 사이트에서 참고 : https://groups.google.com/d/msg/darknet/NbJqonJBTSY/Te5PfIpuCAAJ
 
-## 사용자 커스텀 객체를 탐지하기 위한 훈련 방법:
+## 사용자 지정 개체를 탐지하기 위한 훈련 방법
 
 1.  `yolo-voc.2.0.cfg`와 동일한 내용으로 `yolo-obj.cfg` 파일을 만들거나  `yolo-obj.cfg`에   `yolo-voc.2.0.cfg`를 복사하고 다음을 수행.
 
@@ -292,11 +292,11 @@ make를하기 전에, `Makefile`: [link](https://github.com/AlexeyAB/darknet/blo
 * 또한 모든 45000회의 반복보다 빠른 결과를 얻을 수 있습니다.
 
  
-## When should I stop training:
+ ## 훈련을 중지해야 하는 시기:
 
-Usually sufficient 2000 iterations for each class(object). But for a more precise definition when you should stop training, use the following manual:
+일반적으로 각 클래스(객체)에 대해 2000회 반복적으로 반복됩니다. 그러나 교육을 중단해야 할 때 보다 정확한 정의를 위해 다음 매뉴얼을 사용하십시오.
 
-1. During training, you will see varying indicators of error, and you should stop when no longer decreases **0.060730 avg**:
+1. 교육 과정에서 다양한 오류 표시등이 나타날 것이며**0.060730 avg**를 더 이상 줄이지 않을 때는 중지해야 합니다
 
   > Region Avg IOU: 0.798363, Class: 0.893232, Obj: 0.700808, No Obj: 0.004567, Avg Recall: 1.000000,  count: 8
   > Region Avg IOU: 0.800677, Class: 0.892181, Obj: 0.701590, No Obj: 0.004574, Avg Recall: 1.000000,  count: 8
@@ -307,41 +307,45 @@ Usually sufficient 2000 iterations for each class(object). But for a more precis
   * **9002** - iteration number (number of batch)
   * **0.060730 avg** - average loss (error) - **the lower, the better**
 
-  When you see that average loss **0.xxxxxx avg** no longer decreases at many iterations then you should stop training.
+평균 손실**0.274 xxxavg**가 더 이상 반복적으로 감소하지 않는 경우에는 교육을 중단해야 합니다.
 
-2. Once training is stopped, you should take some of last `.weights`-files from `darknet\build\darknet\x64\backup` and choose the best of them:
+2. 일단 훈련이 중단되면, 당신은 다음과 같은 것들 중에서 마지막으로 `werket\build\x6\\\ba\backup` 을 선택하그 중에서 가장 좋은 것을 선택해야 한다.
 
-For example, you stopped training after 9000 iterations, but the best result can give one of previous weights (7000, 8000, 9000). It can happen due to overfitting. **Overfitting** - is case when you can detect objects on images from training-dataset, but can't detect ojbects on any others images. You should get weights from **Early Stopping Point**:
+
+예를 들어, 9000회 반복 작업을 중지한 후에는 최상의 결과를 얻을 수 있습니다. 최상의 결과는 이전의 가중치(7000, 8,000, 9000)입니다. 그것은 지나치게 과한 것으로 인해 발생할 수 있다. **overfitting**-trainingdata에서 물체의 이미지를 감지할 수 있지만 다른 영상에서는 물체를 감지할 수 없습니다. **StopPoint****에서 가중치를 얻어야 합니다.
 
 ![Overfitting](https://hsto.org/files/5dc/7ae/7fa/5dc7ae7fad9d4e3eb3a484c58bfc1ff5.png) 
 
-To get weights from Early Stopping Point:
+초기 정지 지점에서 가중치을 구하려면:
 
-  2.1. At first, in your file `obj.data` you must specify the path to the validation dataset `valid = valid.txt` (format of `valid.txt` as in `train.txt`), and if you haven't validation images, just copy `data\train.txt` to `data\valid.txt`.
+2.1. 처음에는 파일`obj.data`에서 유효성 검사 데이터 셋`valid = valid.txt` (`train.txt`에서와 같이`valid.txt` 형식)을 지정해야합니다. valid image,`data\train.txt`를 `data\valid.txt`에 복사하십시오.
 
-  2.2 If training is stopped after 9000 iterations, to validate some of previous weights use this commands:
+2. 29000회 반복 후에 훈련이 중단된 경우, 이전의 가중치를 확인하기 위해 다음과 같은 명령을 사용한다.
+
 
 * `darknet.exe detector recall data/obj.data yolo-obj.cfg backup\yolo-obj_7000.weights`
 * `darknet.exe detector recall data/obj.data yolo-obj.cfg backup\yolo-obj_8000.weights`
 * `darknet.exe detector recall data/obj.data yolo-obj.cfg backup\yolo-obj_9000.weights`
 
-And comapre last output lines for each weights (7000, 8000, 9000):
+각 가중치에 대한 최종 출력 라인(7000, 8,000, 9000):
 
 > 7586 7612 7689 RPs/Img: 68.23 **IOU: 77.86%** Recall:99.00%
 
-* **IOU** - the bigger, the better (says about accuracy) - **better to use**
-* **Recall** - the bigger, the better (says about accuracy) - actually Yolo calculates true positives, so it shouldn't be used
+* **IOU** - 크기가 클수록 정확도가 높음 - **사용하기가 더 편리함**
+* **RECALL** - 크면 클수록, 더 좋습니다 (정확도에 대해 말합니다). 실제로 Yolo는 긍정적으로 계산하므로 사용되어서는 안됩니다.
 
-For example, **bigger IOU** gives weights `yolo-obj_8000.weights` - then **use this weights for detection**.
+
+예를 들어, **더 큰 IOU**는 `yolo-obj_8000.weights`에 가중치를 부여한 다음 **가중치를 사용하여 탐지합니다**.
 
 
 ![precision_recall_iou](https://hsto.org/files/ca8/866/d76/ca8866d76fb840228940dbf442a7f06a.jpg)
 
-How to calculate **mAP** [voc_eval.py](https://github.com/AlexeyAB/darknet/blob/master/scripts/voc_eval.py) or [datascience.stackexchange link](https://datascience.stackexchange.com/questions/16797/what-does-the-notation-map-5-95-mean)
+**mAP**계산하는 방법 [voc_eval.py](https://github.com/AlexeyAB/darknet/blob/master/scripts/voc_eval.py) or [datascience.stackexchange link](https://datascience.stackexchange.com/questions/16797/what-does-the-notation-map-5-95-mean)
 
-### Custom object detection:
+###사용자 정의 객체 탐지:
 
-Example of custom object detection: `darknet.exe detector test data/obj.data yolo-obj.cfg yolo-obj_8000.weights`
+사용자 정의 객체 탐지의 예 : `darknet.exe detector test data / obj.data yolo-obj.cfg yolo-obj_8000.weights`
+
 
 | ![Yolo_v2_training](https://hsto.org/files/d12/1e7/515/d121e7515f6a4eb694913f10de5f2b61.jpg) | ![Yolo_v2_training](https://hsto.org/files/727/c7e/5e9/727c7e5e99bf4d4aa34027bb6a5e4bab.jpg) |
 |---|---|
