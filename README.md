@@ -2,9 +2,9 @@
 Open Source SW 02 Class Team Project
 
 ## 1. YOLO API란?
-![](http://imageshack.com/a/img922/3384/k4diRJ.jpg)
-객체 탐지 기법에 있어서 새로운 접근법인 YOLO를 소개합니다.
+![](http://imageshack.com/a/img922/3384/k4diRJ.jpg) <br>
 
+객체 탐지 기법에 있어서 새로운 접근법인 YOLO를 소개합니다.
 기존 객체 탐지 기법은 사전 작업으로 탐지를 먼저 수행합니다.<br>
 하지만 YOLO API 시스템은 객체 탐지를 공간적으로 분리된 경계공간들과 class(분류할 object 종류들)에 대한 확률과 연관된 회귀문제로 재정의하였습니다.
 API의 단일 신경망 네트워크는 전체 이미지에서 한번의 평가를 통해서 직접적으로 경계공간들을 예측하고 class의 확률을 계산합니다.
@@ -65,11 +65,11 @@ Python 프로그래밍과 OpenCV, Computer Vision 분야에 대해서 함께 Stu
 <br>
 <br>
 
+## 6. 협업 히스토리
+![](http://imageshack.com/a/img923/6836/XNOwtM.jpg)
+
 | 팀원        | 학번      | GitHub아이디  |
 | :----      | :----     | :----         |
 | 이대경(팀장)| 20124956  | cocobino      |
 | 강일송      | 20134845  | Borngroundg  |
 | 김한섭      | 20134822  | khseob0715(master 계정)  |
-
-## 6. 협업 히스토리
-![](http://imageshack.com/a/img923/6836/XNOwtM.jpg)
