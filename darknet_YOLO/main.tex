@@ -1,4 +1,7 @@
 \documentclass{article}
+\usepackage{tocloft}
+
+\usepackage{titletoc}
 \usepackage[utf8]{inputenc}
 \usepackage{kotex} % 한국어를 가능하도록 해주는 패키지 입니다. 
 \usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm,a4paper]{geometry} % 페이지 레이아웃 설정입니다. 
@@ -16,25 +19,37 @@
 \usepackage{hyperref} \hypersetup{ 
 colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan, }
 
+\usepackage{hyperref}% http://ctan.org/pkg/hyperref
+\hypersetup{%
+  colorlinks = true,
+  linkcolor  = black
+}
+
 \usepackage{ textcomp }
-
-
-
 
 \title{Darknet YOLO API}
 \author{이대경, 김한섭, 강일송 }
 \date{2017학년도 2학기 오픈소스 Team Project}
+
 
 \usepackage{natbib}
 \usepackage{graphicx}
 
 \begin{document}
 
+
 \maketitle
+
+
+\newpage %이거 쓰면 다음페이지로 넘어가집니다 
+
+\tableofcontents %각 섹션값을 받아 순차 정렬하고 클릭시 해당 인덱스로 이동 가능함  
+
+\newpage
 
 \section{You Only Look Once}
 
-\indent YOLO시스템은 최첨단 실시간 물체 감지 시스템이다.
+\indent YOLO시스템은 최첨단 실시간 물체 감지 시스템이다
 기존의 탐지시스템은 Repurpose classifiers 혹은 Localizers를 사용하여 탐지를 수행하였습니다. 이 방법은 모델의 여러 위치에 격자 이미지를 적용하는 방식이며 격자 중 높은 일치도를 보인 물체를 탐지합니다. 하지만 YOLO는 하나의 신경망을 전체 이미지에 적용하는 완전히 다른 방식을 사용합니다. 이 신경망은 이미지를 여러 영역으로 분할하고 각 영역에 대한 바운딩 영역과 가중치로 사용될 일치 확률을 예측하여 줍니다.
 
 \begin{figure}[h!]
@@ -131,19 +146,18 @@ data/horses.jpg이미지의 경로를 입력하면 해당 이미지의 경계 �
 하나의 이미지가 완료되면 다른 이미지를 시도하귀 위해 더 많은 경로를 물어볼 것입니다.
 Ctrl-C를 사용해 프로그램을 종료하시면 됩니다.
 \section{탐색의 임계값 변경}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.12]{eximage.png}
+\caption{임계값 0 탐색결과 }
+\label{fig:eximg}
+\end{figure}
 YOLO 시스템의 신뢰도는 기본값이 0.25이며 객체의 탐색 일치도가 0.25 이상인 객체만을 표시하여 사용자에게 보여줍니다.
 이러한 임계값은 -thresh \textlangle val\textrangle 명령어 플래그를 이용하여 임계값을 변경 할 수 있습니다. 
 아래의 예시는 탐색된 모든 객체를 표시하기 위하여 임계값을 0으로 설정한 것입니다. 예시 이미지를 참고하시기 바랍니다.
 \begin{lstlisting}
  ./darknet detect cfg/yolo.cfg yolo.weights data/dog.jpg -thresh 0 
 \end{lstlisting}
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.2]{eximage.png}
-\caption{임계값 0 탐색결과 }
-\label{fig:eximg}
-\end{figure}
-
 모델별로 임계값을 제어하는 값을 다른 값으로 설정할 수 있습니다. 
 그러나 이것이 유용하다고 명백하게 말하기는 힘듭니다.
 
@@ -161,7 +175,7 @@ GPU에서는 200 FPS 이상에서 실행이됩니다.
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.15]{tinyyolo.png}
-\caption{임계값 0 탐색결과 }
+\caption{Tiny YOLO 시스템 결과}
 \label{fig:tinyimg}
 \end{figure}
 
@@ -182,7 +196,7 @@ OpenCV가 연결할 수있는 컴퓨터에 웹캠이 연결되어 있어야합�
 \begin{lstlisting}
  ./darknet detector demo cfg/coco.data cfg/yolo.cfg yolo.weights <video file> 
 \end{lstlisting}
-이것이 YOLO 시스템이 위의 YouTube 동영상을 만든 방법입니다
+이것이 YOLO 시스템이 YouTube 동영상을 만든 방법입니다
 
 \section{VOC에서의 YOLO 훈련}
 다른 훈련체계와 Hyper-Parameters 또는 데이터 셋으로 훈련을 하고 싶다면 YOLO를 처음부터 교육 할 수 있습니다. Pascal VOC 데이터 세트에서 작업하는 방법은 다음과 같습니다.
@@ -405,7 +419,7 @@ CUDA가 올바르게 설치됬다면 nvidia-smi 명령어를 이용해 당신의
 
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.13]{egle.png}
+\includegraphics[scale=0.4]{egle.png}
 \caption{출력 결과}
 \label{fig:detect} 
 \end{figure}
