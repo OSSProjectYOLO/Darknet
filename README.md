@@ -4,6 +4,8 @@ Open Source SW 02 Class Team Project
 ## 1. YOLO API란?
 [![Video Label](http://imageshack.com/a/img922/3525/ohBvzL.jpg)](https://youtu.be/VOC3huqHrss) <br>
 
+*↑YoLo 영상 재생하기*
+
 객체 탐지 기법에 있어서 새로운 접근법인 YOLO를 소개합니다.
 기존 객체 탐지 기법은 사전 작업으로 탐지를 먼저 수행합니다.<br>
 하지만 YOLO API 시스템은 객체 탐지를 공간적으로 분리된 경계공간들과 class(분류할 object 종류들)에 대한 확률과 연관된 회귀문제로 재정의하였습니다.
@@ -29,7 +31,7 @@ Python 프로그래밍과 OpenCV, Computer Vision 분야에 대해서 함께 Stu
 
 팀 프로젝트를 팀원들 모두 **재미있게 즐기면서 하자**는 의미에서 선택을 하였습니다.
 
-## 3.YOLO Window 실행 환경 사용법
+## 3. YOLO Window 실행 환경 사용법
 - **MSVS 2015, CUDA 8.0, OPENCV 3.0** 을 사용 중이라면 Path 설정을 다음과 같이 해줍니다.
 **(C:\opencv_3.0\opencv\build\include
   & C:\opencv_3.0\opencv\build\x64\vc14\lib)**
@@ -66,7 +68,7 @@ Python 프로그래밍과 OpenCV, Computer Vision 분야에 대해서 함께 Stu
 <br>
 
 ## 6. 협업 히스토리
-![](http://imageshack.com/a/img923/6836/XNOwtM.jpg)
+  ![](http://imageshack.com/a/img922/3584/bHTvlg.png)
 
 | 팀원        | 학번      | GitHub아이디  |
 | :----      | :----     | :----         |
